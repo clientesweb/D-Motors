@@ -3,13 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const preloader = document.getElementById('preloader');
     if (preloader) {
         window.addEventListener('load', () => {
-            gsap.to(preloader, {
-                opacity: 0,
-                duration: 0.5,
-                onComplete: () => {
-                    preloader.style.display = 'none';
-                }
-            });
+            preloader.style.display = 'none';
         });
     }
 
@@ -17,14 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            gsap.to(window, {
-                duration: 1,
-                scrollTo: {
-                    y: target,
-                    offsetY: 50
-                },
-                ease: "power2.inOut"
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
             });
         });
     });
@@ -34,155 +22,104 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                gsap.to(entry.target, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.5, // Reduced from 0.8 to make animations faster
-                    ease: "power2.out"
-                });
+                entry.target.classList.add('visible');
             }
         });
     }, { threshold: 0.1 });
 
     fadeElems.forEach(elem => observer.observe(elem));
 
-    // Customer reviews slider
-    const reviewsTrack = document.querySelector('.reviews-track');
-    if (reviewsTrack) {
-        const reviews = reviewsTrack.querySelectorAll('.review-card');
-        let currentIndex = 0;
+    // Top banner messages
+    const bannerMessages = [
+        "Descubre el lujo en cada detalle con D'Motors",
+        "Vehículos de alta gama para los más exigentes",
+        "Tu sueño sobre ruedas te espera en D'Motors"
+    ];
+    const bannerContainer = document.getElementById('banner-messages');
+    let currentMessageIndex = 0;
 
-        function showNextReview() {
-            gsap.to(reviewsTrack, {
-                x: -currentIndex * 100 + '%',
-                duration: 0.5,
-                ease: "power2.inOut"
-            });
-            currentIndex = (currentIndex + 1) % reviews.length;
-        }
-
-        setInterval(showNextReview, 5000); // Change review every 5 seconds
+    function rotateBannerMessage() {
+        bannerContainer.style.transform = 'translateY(-100%)';
+        setTimeout(() => {
+            currentMessageIndex = (currentMessageIndex + 1) % bannerMessages.length;
+            bannerContainer.innerHTML = `<p class="text-center w-full">${bannerMessages[currentMessageIndex]}</p>`;
+            bannerContainer.style.transform = 'translateY(0)';
+        }, 500);
     }
 
-    // FAQ functionality
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
-        
-        question.addEventListener('click', () => {
-            const isOpen = item.classList.contains('active');
-            
-            // Close all other FAQ items
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                    gsap.to(otherItem.querySelector('.faq-answer'), {
-                        height: 0,
-                        duration: 0.3,
-                        ease: "power2.inOut"
-                    });
+    setInterval(rotateBannerMessage, 5000);
+
+    // Contact form submission
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch('https://formspree.io/f/your_formspree_id', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    showNotification('¡Mensaje enviado con éxito!');
+                    contactForm.reset();
+                } else {
+                    throw new Error('Error al enviar el mensaje');
                 }
-            });
-            
-            // Toggle current FAQ item
-            item.classList.toggle('active');
-            gsap.to(answer, {
-                height: isOpen ? 0 : 'auto',
-                duration: 0.3,
-                ease: "power2.inOut"
-            });
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Hubo un error al enviar tu mensaje. Por favor, intenta de nuevo.', 'error');
+            }
         });
-    });
+    }
 
     // Back to top button functionality
     const backToTopButton = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 100) {
-            gsap.to(backToTopButton, { opacity: 1, duration: 0.3 });
+            backToTopButton.classList.add('opacity-100');
+            backToTopButton.classList.remove('opacity-0', 'pointer-events-none');
         } else {
-            gsap.to(backToTopButton, { opacity: 0, duration: 0.3 });
+            backToTopButton.classList.remove('opacity-100');
+            backToTopButton.classList.add('opacity-0', 'pointer-events-none');
         }
     });
 
     backToTopButton.addEventListener('click', () => {
-        gsap.to(window, {
-            duration: 1,
-            scrollTo: {
-                y: 0,
-                autoKill: false
-            },
-            ease: "power2.inOut"
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
     });
 
-    // Instagram posts horizontal scroll
-    const instagramScroll = document.querySelector('.instagram-scroll');
-    if (instagramScroll) {
-        let isDown = false;
-        let startX;
-        let scrollLeft;
+    // Notification function
+    function showNotification(message, type = 'success') {
+        const notification = document.createElement('div');
+        notification.textContent = message;
+        notification.className = `fixed bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg text-white ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} transition-opacity duration-300`;
+        document.body.appendChild(notification);
 
-        instagramScroll.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - instagramScroll.offsetLeft;
-            scrollLeft = instagramScroll.scrollLeft;
-        });
-
-        instagramScroll.addEventListener('mouseleave', () => {
-            isDown = false;
-        });
-
-        instagramScroll.addEventListener('mouseup', () => {
-            isDown = false;
-        });
-
-        instagramScroll.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - instagramScroll.offsetLeft;
-            const walk = (x - startX) * 2;
-            instagramScroll.scrollLeft = scrollLeft - walk;
-        });
-    }
-
-    // Push notification animation
-    const pushNotification = document.getElementById('push-notification');
-    if (pushNotification) {
         setTimeout(() => {
-            gsap.fromTo(pushNotification,
-                { y: 100, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
-            );
-
+            notification.style.opacity = '0';
             setTimeout(() => {
-                gsap.to(pushNotification, {
-                    y: 100,
-                    opacity: 0,
-                    duration: 0.5,
-                    ease: "power2.in"
-                });
-            }, 5000);
-        }, 10000);
+                document.body.removeChild(notification);
+            }, 300);
+        }, 3000);
     }
 
-    // Parallax effect for hero section
-    gsap.to('.hero-section video', {
-        yPercent: 50,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".hero-section",
-            start: "top top",
-            end: "bottom top",
-            scrub: true
-        }
-    });
+    // GSAP animations
+    gsap.registerPlugin(ScrollTrigger);
 
     // Animate featured vehicles on scroll
-    gsap.utils.toArray('.vehicle-card').forEach((card, i) => {
-        gsap.from(card, {
+    gsap.utils.toArray('#vehicles .relative').forEach((vehicle, i) => {
+        gsap.from(vehicle, {
             scrollTrigger: {
-                trigger: card,
+                trigger: vehicle,
                 start: "top bottom-=100",
                 toggleActions: "play none none reverse"
             },
@@ -193,8 +130,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Animate contact form
+    gsap.from('#contact form', {
+        scrollTrigger: {
+            trigger: '#contact',
+            start: "top center",
+            toggleActions: "play none none reverse"
+        },
+        opacity: 0,
+        x: -50,
+        duration: 0.8
+    });
+
+    // Animate about section
+    gsap.from('#about img', {
+        scrollTrigger: {
+            trigger: '#about',
+            start: "top center",
+            toggleActions: "play none none reverse"
+        },
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.8
+    });
+
     // Animate Instagram posts
-    gsap.utils.toArray('.instagram-post').forEach((post, i) => {
+    gsap.utils.toArray('#instagram .bg-gray-900').forEach((post, i) => {
         gsap.from(post, {
             scrollTrigger: {
                 trigger: post,
@@ -209,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // WhatsApp button animation
-    gsap.to('.whatsapp-button', {
+    gsap.to('.bounce', {
         y: -10,
         repeat: -1,
         yoyo: true,
@@ -217,8 +178,124 @@ document.addEventListener('DOMContentLoaded', function() {
         ease: "power1.inOut"
     });
 
+    // Notification for WhatsApp button
+    setTimeout(() => {
+        showNotification('¿Necesitas ayuda? ¡Contáctanos por WhatsApp!', 'info');
+    }, 5000);
+
+    // Image slider for featured vehicles
+    const slider = document.querySelector('.horizontal-scroll');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('active');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 3;
+        slider.scrollLeft = scrollLeft - walk;
+    });
+
+    // Agregar animación para la notificación push
+    setTimeout(() => {
+        const pushNotification = document.getElementById('push-notification');
+        gsap.to(pushNotification, {
+            x: 0,
+            duration: 0.5,
+            ease: "power2.out"
+        });
+
+        setTimeout(() => {
+            gsap.to(pushNotification, {
+                x: '100%',
+                duration: 0.5,
+                ease: "power2.in"
+            });
+        }, 5000);
+    }, 10000);
+
+    // Animación para el banner publicitario
+    gsap.from('#banner-ad', {
+        scrollTrigger: {
+            trigger: '#banner-ad',
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+        },
+        y: 100,
+        opacity: 0,
+        duration: 1
+    });
+
+    // Animación para las reseñas de clientes
+    gsap.utils.toArray('.review').forEach((review, i) => {
+        gsap.from(review, {
+            scrollTrigger: {
+                trigger: review,
+                start: "top bottom-=100",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.6,
+            delay: i * 0.2
+        });
+    });
+
+    // Animación para el mapa
+    gsap.from('#map', {
+        scrollTrigger: {
+            trigger: '#map',
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+        },
+        opacity: 0,
+        duration: 1
+    });
+
+    // Mejorar la animación del menú inferior
+    gsap.from('.bottom-menu a', {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "body",
+            start: "top top",
+            end: "bottom bottom",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    // Animación para el slider de Instagram
+    const instagramSlider = document.querySelector('.instagram-slider .flex');
+    gsap.to(instagramSlider, {
+        x: '-50%',
+        ease: "none",
+        duration: 20,
+        repeat: -1
+    });
+
+
     console.log("D'Motors script loaded successfully!");
 });
-
-// Log a message to demonstrate the script is running
-console.log("D'Motors script executed");
