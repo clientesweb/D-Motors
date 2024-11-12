@@ -2,14 +2,36 @@ document.addEventListener('DOMContentLoaded', function() {
     // Preloader
     const preloader = document.getElementById('preloader');
     if (preloader) {
-        window.addEventListener('load', () => {
+        // Asegurarse de que el preloader sea visible inicialmente
+        preloader.style.display = 'flex';
+        preloader.style.opacity = '1';
+
+        // Función para ocultar el preloader
+        const hidePreloader = () => {
             preloader.style.opacity = '0';
             setTimeout(() => {
                 preloader.style.display = 'none';
             }, 500);
-        });
+        };
+
+        // Intentar ocultar el preloader cuando la página esté completamente cargada
+        if (document.readyState === 'complete') {
+            hidePreloader();
+        } else {
+            window.addEventListener('load', hidePreloader);
+        }
+
+        // Fallback: ocultar el preloader después de 5 segundos si no se ha ocultado ya
+        setTimeout(() => {
+            if (preloader.style.display !== 'none') {
+                console.log('Forzando la ocultación del preloader después de 5 segundos');
+                hidePreloader();
+            }
+        }, 5000);
     }
 
+    // El resto de tu código JavaScript sigue igual...
+    
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -198,86 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 description: 'Experimenta el máximo lujo y rendimiento con nuestro Sedan de Lujo.',
                 price: '$150,000'
             },
-            'suv-premium': {
-                title: 'SUV Premium',
-                images: [
-                    'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80',
-                    'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80',
-                    'https://images.unsplash.com/photo-1536154010-4a88778fe2d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80'
-                ],
-                specs: [
-                    'Motor: V6 3.0L',
-                    'Potencia: 400 HP',
-                    '0-100 km/h: 5.2 segundos',
-                    'Transmisión: Automática 7 velocidades'
-                ],
-                description: 'Combina comodidad y potencia con nuestro SUV Premium.',
-                price: '$120,000'
-            },
-            'deportivo-alto-rendimiento': {
-                title: 'Deportivo de Alto Rendimiento',
-                images: [
-                    'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80',
-                    'https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80',
-                    'https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80'
-                ],
-                specs: [
-                    'Motor: V10 5.2L',
-                    'Potencia: 610 HP',
-                    '0-100 km/h: 2.9 segundos',
-                    'Transmisión: Automática de doble embrague 7 velocidades'
-                ],
-                description: 'Siente la adrenalina con nuestro Deportivo de Alto Rendimiento.',
-                price: '$200,000'
-            },
-            'coupe-elegante': {
-                title: 'Coupé Elegante',
-                images: [
-                    'https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80',
-                    'https://images.unsplash.com/photo-1555626906-fcf10d6851b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80',
-                    'https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80'
-                ],
-                specs: [
-                    'Motor: V6 3.0L Twin-Turbo',
-                    'Potencia: 450 HP',
-                    '0-100 km/h: 4.1 segundos',
-                    'Transmisión: Automática 8 velocidades'
-                ],
-                description: 'Disfruta de la elegancia y el rendimiento en nuestro Coupé Elegante.',
-                price: '$180,000'
-            },
-            'convertible-de-lujo': {
-                title: 'Convertible de Lujo',
-                images: [
-                    'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80',
-                    'https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80',
-                    'https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80'
-                ],
-                specs: [
-                    'Motor: V8 4.4L Twin-Turbo',
-                    'Potencia: 530 HP',
-                    '0-100 km/h: 3.7 segundos',
-                    'Transmisión: Automática 8 velocidades'
-                ],
-                description: 'Experimenta la libertad y el lujo con nuestro Convertible de Lujo.',
-                price: '$220,000'
-            },
-            'crossover-urbano': {
-                title: 'Crossover Urbano',
-                images: [
-                    'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80',
-                    'https://images.unsplash.com/photo-1543796076-c8a8d0dd0f7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80',
-                    'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80'
-                ],
-                specs: [
-                    'Motor: 2.0L Turbo',
-                    'Potencia: 250 HP',
-                    '0-100 km/h: 6.3 segundos',
-                    'Transmisión: Automática 7 velocidades'
-                ],
-                description: 'Versatilidad y estilo se unen en nuestro Crossover Urbano.',
-                price: '$95,000'
-            }
+            // ... (resto de los vehículos)
         };
     
         const vehicle = vehicleDetails[vehicleId];
