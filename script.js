@@ -142,6 +142,47 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.8
     });
 
+    // Animate about section
+    gsap.from('#about img', {
+        scrollTrigger: {
+            trigger: '#about',
+            start: "top center",
+            toggleActions: "play none none reverse"
+        },
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.8
+    });
+
+    // Animate Instagram posts
+    gsap.utils.toArray('#instagram .bg-gray-900').forEach((post, i) => {
+        gsap.from(post, {
+            scrollTrigger: {
+                trigger: post,
+                start: "top bottom-=100",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.6,
+            delay: i * 0.2
+        });
+    });
+
+    // WhatsApp button animation
+    gsap.to('.bounce', {
+        y: -10,
+        repeat: -1,
+        yoyo: true,
+        duration: 0.8,
+        ease: "power1.inOut"
+    });
+
+    // Notification for WhatsApp button
+    setTimeout(() => {
+        showNotification('¿Necesitas ayuda? ¡Contáctanos por WhatsApp!', 'info');
+    }, 5000);
+
     // Image slider for featured vehicles
     const slider = document.querySelector('.horizontal-scroll');
     let isDown = false;
