@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Animate Instagram posts
-    gsap.utils.toArray('#instagram .bg-gray-900').forEach((post, i) => {
+    gsap.utils.toArray('#instagram .w-80').forEach((post, i) => {
         gsap.from(post, {
             scrollTrigger: {
                 trigger: post,
@@ -183,38 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showNotification('¿Necesitas ayuda? ¡Contáctanos por WhatsApp!', 'info');
     }, 5000);
 
-    // Image slider for featured vehicles
-    const slider = document.querySelector('.horizontal-scroll');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        slider.classList.add('active');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener('mouseleave', () => {
-        isDown = false;
-        slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mouseup', () => {
-        isDown = false;
-        slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 3;
-        slider.scrollLeft = scrollLeft - walk;
-    });
-
-    // Agregar animación para la notificación push
+    // Push notification animation
     setTimeout(() => {
         const pushNotification = document.getElementById('push-notification');
         gsap.to(pushNotification, {
@@ -233,9 +202,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 10000);
 
     // Animación para el banner publicitario
-    gsap.from('#banner-ad', {
+    gsap.from('.mb-12.fade-in', {
         scrollTrigger: {
-            trigger: '#banner-ad',
+            trigger: '.mb-12.fade-in',
             start: "top bottom",
             end: "bottom top",
             scrub: true
@@ -246,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Animación para las reseñas de clientes
-    gsap.utils.toArray('.review').forEach((review, i) => {
+    gsap.utils.toArray('.bg-gray-900').forEach((review, i) => {
         gsap.from(review, {
             scrollTrigger: {
                 trigger: review,
@@ -261,9 +230,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Animación para el mapa
-    gsap.from('#map', {
+    gsap.from('.rounded-lg.overflow-hidden.shadow-lg', {
         scrollTrigger: {
-            trigger: '#map',
+            trigger: '.rounded-lg.overflow-hidden.shadow-lg',
             start: "top bottom",
             end: "bottom top",
             scrub: true
@@ -273,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Mejorar la animación del menú inferior
-    gsap.from('.bottom-menu a', {
+    gsap.from('.fixed.bottom-0 a', {
         y: 20,
         opacity: 0,
         duration: 0.5,
@@ -296,6 +265,8 @@ document.addEventListener('DOMContentLoaded', function() {
         repeat: -1
     });
 
-
     console.log("D'Motors script loaded successfully!");
 });
+
+// Log a message to confirm the script has been updated
+console.log("D'Motors script has been updated with the latest changes.");
