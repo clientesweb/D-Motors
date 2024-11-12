@@ -61,6 +61,8 @@
                         primary: '#666666',
                         secondary: '#000000',
                         accent: '#333333',
+                        'logo-gray': '#4A4A4A',
+                        'logo-silver': '#919191',
                     },
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
@@ -226,7 +228,7 @@
     </div>
 
     <!-- Header -->
-    <header class="sticky top-0 z-40 bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-md">
+    <header class="sticky top-0 z-40 bg-gradient-to-r from-logo-gray to-logo-silver bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-md">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
                 <img src="images/logo.png" alt="D'Motors Logo" class="h-16 mr-4 transition-transform duration-300 hover:scale-105">
@@ -243,12 +245,21 @@
                 </a>
             </nav>
             <div class="flex items-center space-x-4">
-                <div class="flex space-x-2">
+                <div class="flex space-x-3">
                     <a href="https://www.instagram.com/dmotors.cba" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors duration-300">
                         <i class="fab fa-instagram text-2xl"></i>
                     </a>
-                    <a href="https://wa.me/5493547504071" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors duration-300">
-                        <i class="fab fa-whatsapp text-2xl"></i>
+                    <a href="https://www.facebook.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors duration-300">
+                        <i class="fab fa-facebook text-2xl"></i>
+                    </a>
+                    <a href="https://www.youtube.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors duration-300">
+                        <i class="fab fa-youtube text-2xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/dmotors" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors duration-300">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="https://twitter.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors duration-300">
+                        <i class="fab fa-twitter text-2xl"></i>
                     </a>
                 </div>
             </div>
@@ -327,6 +338,26 @@
         </div>
     </section>
 
+    <!-- Instagram Reels Section -->
+    <section class="mb-12 fade-in">
+        <h2 class="text-4xl font-serif font-bold text-center mb-6 text-primary">Nuestros Reels</h2>
+        <div class="horizontal-scroll">
+            <!-- Reel 1 -->
+            <div class="scroll-item w-64 h-[512px]">
+                <iframe src="https://www.instagram.com/reel/CzWMruspXAP/embed" width="256" height="512" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <!-- Reel 2 -->
+            <div class="scroll-item w-64 h-[512px]">
+                <iframe src="https://www.instagram.com/reel/CzWMruspXAP/embed" width="256" height="512" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <!-- Reel 3 -->
+            <div class="scroll-item w-64 h-[512px]">
+                <iframe src="https://www.instagram.com/reel/CzWMruspXAP/embed" width="256" height="512" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <!-- Add more reels as needed -->
+        </div>
+    </section>
+
     <!-- Featured Vehicles Section -->
     <section id="vehicles" class="mb-12 fade-in">
         <h2 class="text-4xl font-serif font-bold text-center mb-6 text-primary">Vehículos Destacados</h2>
@@ -388,6 +419,110 @@
         </div>
     </section>
 
+    <!-- FAQs Section -->
+    <section class="mb-12 fade-in">
+        <h2 class="text-4xl font-serif font-bold text-center mb-6 text-primary">Preguntas Frecuentes</h2>
+        <div class="bg-gray-900 rounded-lg p-6">
+            <div class="space-y-4">
+                <div class="collapse collapse-plus">
+                    <input type="radio" name="my-accordion-3" checked="checked" /> 
+                    <div class="collapse-title text-xl font-medium">
+                        ¿Ofrecen financiamiento?
+                    </div>
+                    <div class="collapse-content">
+                        <p>Sí, ofrecemos varias opciones de financiamiento. Trabajamos con diferentes entidades financieras para brindarle la mejor opción según su situación.</p>
+                    </div>
+                </div>
+                <div class="collapse collapse-plus">
+                    <input type="radio" name="my-accordion-3" /> 
+                    <div class="collapse-title text-xl font-medium">
+                        ¿Cuál es el proceso de compra?
+                    </div>
+                    <div class="collapse-content">
+                        <p>El proceso comienza con la selección del vehículo, seguido de una prueba de manejo si lo desea. Luego, discutimos las opciones de pago y financiamiento, y finalizamos con el papeleo necesario.</p>
+                    </div>
+                </div>
+                <div class="collapse collapse-plus">
+                    <input type="radio" name="my-accordion-3" /> 
+                    <div class="collapse-title text-xl font-medium">
+                        ¿Ofrecen garantía en los vehículos usados?
+                    </div>
+                    <div class="collapse-content">
+                        <p>Sí, todos nuestros vehículos usados vienen con una garantía limitada. La duración y cobertura específica puede variar según el vehículo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="mb-12 fade-in">
+        <h2 class="text-4xl font-serif font-bold text-center mb-6 text-primary">Lo que dicen nuestros clientes</h2>
+        <div class="relative overflow-hidden">
+            <div class="flex animate-slide">
+                <!-- Review 1 -->
+                <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-4">
+                    <div class="bg-gray-900 rounded-lg p-6 h-full">
+                        <div class="flex items-center mb-4">
+                            <img src="https://i.pravatar.cc/60?img=1" alt="Cliente 1" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold">Juan Pérez</h3>
+                                <div class="text-yellow-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-400">"Excelente servicio y atención al cliente. Encontré el auto de mis sueños a un precio inmejorable."</p>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-4">
+                    <div class="bg-gray-900 rounded-lg p-6 h-full">
+                        <div class="flex items-center mb-4">
+                            <img src="https://i.pravatar.cc/60?img=2" alt="Cliente 2" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold">María González</h3>
+                                <div class="text-yellow-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-400">"El proceso de compra fue muy sencillo y transparente. Estoy encantada con mi nuevo vehículo."</p>
+                    </div>
+                </div>
+                <!-- Review 3 -->
+                <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-4">
+                    <div class="bg-gray-900 rounded-lg p-6 h-full">
+                        <div class="flex items-center mb-4">
+                            <img src="https://i.pravatar.cc/60?img=3" alt="Cliente 3" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold">Carlos Rodríguez</h3>
+                                <div class="text-yellow-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-400">"Increíble selección de vehículos de alta gama. El equipo de ventas fue muy profesional y conocedor."</p>
+                    </div>
+                </div>
+                <!-- Duplicate reviews for continuous scroll -->
+                <!-- ... [Duplicate the review divs here] ... -->
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="mb-12 fade-in">
         <h2 class="text-4xl font-serif font-bold text-center mb-6 text-primary">Contáctanos</h2>
@@ -404,7 +539,7 @@
                     <i class="fas fa-envelope text-primary text-2xl"></i>
                     <div>
                         <h3 class="font-bold text-lg">Email</h3>
-                        <p class="text-gray-400">dmotors.cba@gmail.com</p>
+                        <p class="text-gray-400"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="56323b39223924257835343716313b373f3a7835393b">[email&#160;protected]</a></p>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -441,61 +576,65 @@
     </section>
 
     <!-- Newsletter Section -->
-    <section class="mb-12 fade-in bg-gray-900 py-12">
+    <section class="mb-24 fade-in bg-gradient-to-r from-logo-gray to-logo-silver py-16">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-serif font-bold text-center mb-6 text-primary">Suscríbete a Nuestro Boletín</h2>
-            <p class="text-center text-gray-400 mb-8">Recibe las últimas novedades y ofertas exclusivas directamente en tu correo.</p>
-            <form id="newsletter-form" class="max-w-md mx-auto flex">
-                <input type="email" placeholder="Tu correo electrónico" class="flex-grow p-3 rounded-l-lg bg-gray-800 text-white" required>
-                <button type="submit"
-
- class="bg-primary text-white px-6 py-3 rounded-r-lg hover:bg-opacity-90 transition-colors">Suscribirse</button>
+            <h2 class="text-4xl font-serif font-bold text-center mb-6 text-white">Suscríbete a Nuestro Boletín</h2>
+            <p class="text-center text-gray-200 mb-8">Recibe las últimas novedades y ofertas exclusivas directamente en tu correo.</p>
+            <form id="newsletter-form" class="max-w-lg mx-auto flex flex-col sm:flex-row gap-4">
+                <input type="email" placeholder="Tu correo electrónico" class="flex-grow p-4 rounded-lg bg-white/10 text-white placeholder-gray-300 border border-white/20 focus:border-white/40 transition-colors" required>
+                <button type="submit" class="bg-white text-logo-gray px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors font-bold">Suscribirse</button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 py-12">
+    <footer class="bg-gradient-to-r from-logo-gray to-logo-silver py-16">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-4 gap-12">
                 <div>
-                    <img src="images/logo.png" alt="D'Motors Logo" class="w-24 h-24 mb-4">
-                    <p class="text-gray-400">Especialistas en vehículos de alta gama. Venta de vehículos usados y 0KM.</p>
+                    <img src="images/logo.png" alt="D'Motors Logo" class="w-24 h-24 mb-6">
+                    <p class="text-gray-100">Especialistas en vehículos de alta gama. Venta de vehículos usados y 0KM.</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Enlaces Rápidos</h3>
-                    <nav class="space-y-2">
-                        <a href="#about" class="block text-gray-400 hover:text-white">Nosotros</a>
-                        <a href="#vehicles" class="block text-gray-400 hover:text-white">Vehículos</a>
-                        <a href="#contact" class="block text-gray-400 hover:text-white">Contacto</a>
+                    <h3 class="text-xl font-bold mb-6 text-white">Enlaces Rápidos</h3>
+                    <nav class="space-y-4">
+                        <a href="#about" class="block text-gray-100 hover:text-white transition-colors">Nosotros</a>
+                        <a href="#vehicles" class="block text-gray-100 hover:text-white transition-colors">Vehículos</a>
+                        <a href="#contact" class="block text-gray-100 hover:text-white transition-colors">Contacto</a>
                     </nav>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Horario de Atención</h3>
-                    <p class="text-gray-400">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
-                    <p class="text-gray-400">Sábados: 10:00 AM - 2:00 PM</p>
-                    <p class="text-gray-400">Domingos: Cerrado</p>
+                    <h3 class="text-xl font-bold mb-6 text-white">Horario de Atención</h3>
+                    <div class="space-y-4">
+                        <p class="text-gray-100">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                        <p class="text-gray-100">Sábados: 10:00 AM - 2:00 PM</p>
+                        <p class="text-gray-100">Domingos: Cerrado</p>
+                    </div>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Síguenos</h3>
-                    <div class="flex space-x-4">
-                        <a href="https://www.instagram.com/dmotors.cba" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white text-2xl">
+                    <h3 class="text-xl font-bold mb-6 text-white">Síguenos</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://www.instagram.com/dmotors.cba" target="_blank" rel="noopener noreferrer" class="text-gray-100 hover:text-white transition-colors text-2xl">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://www.facebook.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white text-2xl">
+                        <a href="https://www.facebook.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-100 hover:text-white transition-colors text-2xl">
                             <i class="fab fa-facebook"></i>
                         </a>
-                        <a href="https://www.youtube.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white text-2xl">
+                        <a href="https://www.youtube.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-100 hover:text-white transition-colors text-2xl">
                             <i class="fab fa-youtube"></i>
                         </a>
-                        <a href="https://www.linkedin.com/company/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white text-2xl">
+                        <a href="https://www.linkedin.com/company/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-100 hover:text-white transition-colors text-2xl">
                             <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-100 hover:text-white transition-colors text-2xl">
+                            <i class="fab fa-twitter"></i>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+            <div class="border-t border-white/10 mt-16 pt-8 text-center text-gray-100">
                 <p>&copy; 2024 D'Motors. Todos los derechos reservados.</p>
+                <p class="mt-2">Powered by <a href="https://dualitydomain.com" target="_blank" rel="noopener noreferrer" class="underline">Duality Domain</a></p>
             </div>
         </div>
     </footer>
@@ -505,8 +644,13 @@
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
+    <!-- Chatbot Button -->
+    <button id="chatbot-button" class="fixed bottom-36 right-6 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-opacity-90 transition-colors z-50">
+        <img src="images/logo.png" alt="D'Motors Chatbot" class="w-8 h-8">
+    </button>
+
     <!-- App Bar for Mobile -->
-    <div class="app-bar md:hidden flex justify-around items-center py-4 bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg">
+    <div class="app-bar md:hidden flex justify-around items-center py-6 bg-gradient-to-r from-logo-gray to-logo-silver bg-opacity-90 backdrop-filter backdrop-blur-lg mt-8">
         <a href="#about" class="text-white hover:text-primary transition-colors duration-300 flex flex-col items-center">
             <i class="fas fa-info-circle text-2xl mb-1"></i>
             <span class="text-xs">Nosotros</span>
@@ -531,7 +675,22 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <!-- Chatbot Modal -->
+    <div id="chatbotModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-gray-900 p-8 rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-bold mb-4">D'Motors Asistente Virtual</h2>
+            <div id="chatbotMessages" class="space-y-4 mb-4 h-64 overflow-y-auto">
+                <!-- Chat messages will be inserted here -->
+            </div>
+            <form id="chatbotForm" class="flex">
+                <input type="text" id="chatbotInput" placeholder="Escribe tu mensaje..." class="flex-grow p-2 rounded-l-lg bg-gray-800 text-white">
+                <button type="submit" class="bg-primary text-white px-4 py-2 rounded-r-lg">Enviar</button>
+            </form>
+            <button onclick="closeChatbotModal()" class="mt-4 bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors">Cerrar</button>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
