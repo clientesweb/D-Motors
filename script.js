@@ -342,5 +342,98 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Instagram Reels horizontal scroll
+    const reelsContainer = document.querySelector('.horizontal-scroll');
+    if (reelsContainer) {
+        reelsContainer.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            reelsContainer.scrollLeft += e.deltaY;
+        });
+    }
+
+    // FAQs accordion functionality
+    const faqItems = document.querySelectorAll('.collapse');
+    faqItems.forEach(item => {
+        const title = item.querySelector('.collapse-title');
+        const content = item.querySelector('.collapse-content');
+
+        title.addEventListener('click', () => {
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        });
+    });
+
+    // Customer Reviews auto-scroll
+    const reviewsContainer = document.querySelector('.animate-slide');
+    if (reviewsContainer) {
+        const reviewWidth = reviewsContainer.querySelector('.flex-shrink-0').offsetWidth;
+        let currentPosition = 0;
+
+        function slideReviews() {
+            currentPosition -= 1;
+            if (currentPosition <= -reviewWidth) {
+                currentPosition = 0;
+                reviewsContainer.style.transition = 'none';
+                reviewsContainer.style.transform = `translateX(0)`;
+                setTimeout(() => {
+                    reviewsContainer.style.transition = 'transform 0.5s ease-in-out';
+                }, 50);
+            } else {
+                reviewsContainer.style.transform = `translateX(${currentPosition}px)`;
+            }
+        }
+
+        setInterval(slideReviews, 50);
+    }
+
+    // Chatbot functionality
+    const chatbotButton = document.getElementById('chatbot-button');
+    const chatbotModal = document.getElementById('chatbotModal');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotForm = document.getElementById('chatbotForm');
+    const chatbotInput = document.getElementById('chatbotInput');
+
+    if (chatbotButton && chatbotModal) {
+        chatbotButton.addEventListener('click', () => {
+            chatbotModal.classList.remove('hidden');
+        });
+
+        window.closeChatbotModal = function() {
+            chatbotModal.classList.add('hidden');
+        }
+
+        chatbotForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userMessage = chatbotInput.value.trim();
+            if (userMessage) {
+                addMessage('user', userMessage);
+                chatbotInput.value = '';
+
+                // Simulating bot response (replace with actual chatbot.js logic)
+                setTimeout(async () => {
+                    const botResponse = await getBotResponse(userMessage);
+                    addMessage('bot', botResponse);
+                }, 1000);
+            }
+        });
+
+        function addMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('mb-2', sender === 'user' ? 'text-right' : 'text-left');
+            messageElement.innerHTML = `
+                <span class="inline-block px-4 py-2 rounded-lg ${sender === 'user' ? 'bg-primary text-white' : 'bg-gray-700 text-white'}">
+                    ${message}
+                </span>
+            `;
+            chatbotMessages.appendChild(messageElement);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        async function getBotResponse(userMessage) {
+            // This is where you'd integrate with your chatbot.js
+            // For now, we'll just return a placeholder response
+            return "Gracias por tu mensaje. Un representante se pondrá en contacto contigo pronto.";
+        }
+    }
+
     console.log("D'Motors script loaded successfully!");
 });
