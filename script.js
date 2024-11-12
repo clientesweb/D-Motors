@@ -142,131 +142,36 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.8
     });
 
-    // Animate about section
-    gsap.from('#about img', {
-        scrollTrigger: {
-            trigger: '#about',
-            start: "top center",
-            toggleActions: "play none none reverse"
-        },
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.8
+    // Image slider for featured vehicles
+    const slider = document.querySelector('.horizontal-scroll');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('active');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
     });
 
-    // Animate Instagram posts
-    gsap.utils.toArray('#instagram .w-80').forEach((post, i) => {
-        gsap.from(post, {
-            scrollTrigger: {
-                trigger: post,
-                start: "top bottom-=100",
-                toggleActions: "play none none reverse"
-            },
-            opacity: 0,
-            y: 50,
-            duration: 0.6,
-            delay: i * 0.2
-        });
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('active');
     });
 
-    // WhatsApp button animation
-    gsap.to('.bounce', {
-        y: -10,
-        repeat: -1,
-        yoyo: true,
-        duration: 0.8,
-        ease: "power1.inOut"
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('active');
     });
 
-    // Notification for WhatsApp button
-    setTimeout(() => {
-        showNotification('¿Necesitas ayuda? ¡Contáctanos por WhatsApp!', 'info');
-    }, 5000);
-
-    // Push notification animation
-    setTimeout(() => {
-        const pushNotification = document.getElementById('push-notification');
-        gsap.to(pushNotification, {
-            x: 0,
-            duration: 0.5,
-            ease: "power2.out"
-        });
-
-        setTimeout(() => {
-            gsap.to(pushNotification, {
-                x: '100%',
-                duration: 0.5,
-                ease: "power2.in"
-            });
-        }, 5000);
-    }, 10000);
-
-    // Animación para el banner publicitario
-    gsap.from('.mb-12.fade-in', {
-        scrollTrigger: {
-            trigger: '.mb-12.fade-in',
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-        },
-        y: 100,
-        opacity: 0,
-        duration: 1
-    });
-
-    // Animación para las reseñas de clientes
-    gsap.utils.toArray('.bg-gray-900').forEach((review, i) => {
-        gsap.from(review, {
-            scrollTrigger: {
-                trigger: review,
-                start: "top bottom-=100",
-                toggleActions: "play none none reverse"
-            },
-            opacity: 0,
-            y: 50,
-            duration: 0.6,
-            delay: i * 0.2
-        });
-    });
-
-    // Animación para el mapa
-    gsap.from('.rounded-lg.overflow-hidden.shadow-lg', {
-        scrollTrigger: {
-            trigger: '.rounded-lg.overflow-hidden.shadow-lg',
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-        },
-        opacity: 0,
-        duration: 1
-    });
-
-    // Mejorar la animación del menú inferior
-    gsap.from('.fixed.bottom-0 a', {
-        y: 20,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "body",
-            start: "top top",
-            end: "bottom bottom",
-            toggleActions: "play none none reverse"
-        }
-    });
-
-    // Animación para el slider de Instagram
-    const instagramSlider = document.querySelector('.instagram-slider .flex');
-    gsap.to(instagramSlider, {
-        x: '-50%',
-        ease: "none",
-        duration: 20,
-        repeat: -1
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 3;
+        slider.scrollLeft = scrollLeft - walk;
     });
 
     console.log("D'Motors script loaded successfully!");
 });
-
-// Log a message to confirm the script has been updated
-console.log("D'Motors script has been updated with the latest changes.");
