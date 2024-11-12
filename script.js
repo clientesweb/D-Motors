@@ -181,7 +181,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.openModal = function(vehicleId) {
         // Fetch vehicle details and populate modal
-        // This is a placeholder. Replace with actual data fetching logic
         const vehicleDetails = {
             'sedan-de-lujo': {
                 title: 'Sedan de Lujo',
@@ -317,6 +316,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         modal.classList.remove('hidden');
+        modal.classList.add('flex');
         
         // Initialize Swiper
         new Swiper('.swiper-container', {
@@ -333,6 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.closeModal = function() {
         modal.classList.add('hidden');
+        modal.classList.remove('flex');
     }
 
     // Close modal when clicking outside
