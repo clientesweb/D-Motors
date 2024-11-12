@@ -228,15 +228,19 @@
             <nav class="hidden md:flex space-x-6">
                 <a href="#about" class="text-white hover:text-primary transition-colors duration-300">Nosotros</a>
                 <a href="#vehicles" class="text-white hover:text-primary transition-colors duration-300">Vehículos</a>
+                <a href="#instagram" class="text-white hover:text-primary transition-colors duration-300">Instagram</a>
                 <a href="#contact" class="text-white hover:text-primary transition-colors duration-300">Contacto</a>
             </nav>
             <div class="flex items-center space-x-4">
                 <div class="flex space-x-2">
-                    <a href="https://www.instagram.com/dmotors.cba" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary transition-colors duration-300">
-                        <i class="fab fa-instagram"></i>
+                    <a href="https://www.instagram.com/dmotors.cba" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors duration-300">
+                        <i class="fab fa-instagram text-2xl"></i>
                     </a>
-                    <a href="https://wa.me/5493547504071" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary transition-colors duration-300">
-                        <i class="fab fa-whatsapp"></i>
+                    <a href="https://www.facebook.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors duration-300">
+                        <i class="fab fa-facebook text-2xl"></i>
+                    </a>
+                    <a href="https://www.youtube.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors duration-300">
+                        <i class="fab fa-youtube text-2xl"></i>
                     </a>
                 </div>
             </div>
@@ -258,9 +262,9 @@
             </video>
             <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                 <div class="relative z-10 text-center">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6">D'Motors</h1>
-                    <p class="text-xl md:text-2xl mb-8">Especialistas en Vehículos de Alta Gama</p>
-                    <p class="text-lg mb-8">Venta de vehículos usados y 0KM</p>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 text-shadow">D'Motors</h1>
+                    <p class="text-xl md:text-2xl mb-8 text-shadow">Especialistas en Vehículos de Alta Gama</p>
+                    <p class="text-lg mb-8 text-shadow">Venta de vehículos usados y 0KM</p>
                 </div>
             </div>
         </div>
@@ -269,43 +273,145 @@
     <!-- About Section -->
     <section id="about" class="mb-12 fade-in">
         <h2 class="text-4xl font-serif font-bold text-center mb-6 text-primary">Sobre D'Motors</h2>
-        <p class="text-lg text-white/80 mb-8 text-center max-w-3xl mx-auto">
-            D'Motors es un concesionario especializado en la venta de vehículos de alta gama. Ofrecemos una selección exclusiva de autos usados y 0KM, brindando a nuestros clientes una experiencia de compra única y personalizada.
-        </p>
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="D'Motors Showroom" class="rounded-lg shadow-lg">
+                </div>
+                <div class="col-span-2">
+                    <p class="text-lg text-white/80 mb-4">
+                        D'Motors es un concesionario especializado en la venta de vehículos de alta gama. Ofrecemos una selección exclusiva de autos usados y 0KM, brindando a nuestros clientes una experiencia de compra única y personalizada.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Luxury Car" class="rounded-lg shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Luxury SUV" class="rounded-lg shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Featured Vehicles Section -->
     <section id="vehicles" class="mb-12 fade-in">
         <h2 class="text-4xl font-serif font-bold text-center mb-6 text-primary">Vehículos Destacados</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="relative h-80 rounded-lg overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Vehículo de Lujo 1" class="absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-40 transition-all duration-300"></div>
-                <div class="relative z-10 p-6 h-full flex flex-col justify-end">
-                    <h3 class="text-xl font-bold mb-4 text-white">Sedan de Lujo</h3>
-                    <p class="text-white/80 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
-                        Elegancia y rendimiento en un solo vehículo.
-                    </p>
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="relative h-80 rounded-lg overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Sedan de Lujo" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-40 transition-all duration-300"></div>
+                    <div class="relative z-10 p-6 h-full flex flex-col justify-end">
+                        <h3 class="text-xl font-bold mb-4 text-white">Sedan de Lujo</h3>
+                        <p class="text-white/80 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+                            Elegancia y rendimiento en un solo vehículo.
+                        </p>
+                    </div>
+                </div>
+                <div class="relative h-80 rounded-lg overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="SUV Premium" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-40 transition-all duration-300"></div>
+                    <div class="relative z-10 p-6 h-full flex flex-col justify-end">
+                        <h3 class="text-xl font-bold mb-4 text-white">SUV Premium</h3>
+                        <p class="text-white/80 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+                            Espacio y lujo para toda la familia.
+                        </p>
+                    </div>
+                </div>
+                <div class="relative h-80 rounded-lg overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Deportivo de Alto Rendimiento" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-40 transition-all duration-300"></div>
+                    <div class="relative z-10 p-6 h-full flex flex-col justify-end">
+                        <h3 class="text-xl font-bold mb-4 text-white">Deportivo de Alto Rendimiento</h3>
+                        <p class="text-white/80 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+                            Velocidad y diseño en su máxima expresión.
+                        </p>
+                    </div>
+                </div>
+                <div class="relative h-80 rounded-lg overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Moto de Alta Gama" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-40 transition-all duration-300"></div>
+                    <div class="relative z-10 p-6 h-full flex flex-col justify-end">
+                        <h3 class="text-xl font-bold mb-4 text-white">Moto de Alta Gama</h3>
+                        <p class="text-white/80 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+                            Libertad y potencia sobre dos ruedas.
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="relative h-80 rounded-lg overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Vehículo de Lujo 2" class="absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-40 transition-all duration-300"></div>
-                <div class="relative z-10 p-6 h-full flex flex-col justify-end">
-                    <h3 class="text-xl font-bold mb-4 text-white">SUV Premium</h3>
-                    <p class="text-white/80 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
-                        Espacio y lujo para toda la familia.
-                    </p>
+        </div>
+    </section>
+
+    <!-- Instagram Posts Section -->
+    <section id="instagram" class="mb-12 fade-in">
+        <h2 class="text-4xl font-serif font-bold text-center mb-6 text-primary">Síguenos en Instagram</h2>
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Instagram Post 1 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/400/400" alt="Instagram Post 1" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <p class="text-sm text-gray-400 mb-2">Publicado hace 2 días</p>
+                        <p class="text-white">¡Nuevo ingreso! Este impresionante BMW M4 Competition ya está disponible. 🚗💨 #DMotors #LuxuryCars</p>
+                    </div>
+                </div>
+                <!-- Instagram Post 2 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/401/400" alt="Instagram Post 2" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <p class="text-sm text-gray-400 mb-2">Publicado hace 5 días</p>
+                        <p class="text-white">Elegancia y potencia en un solo vehículo. Mercedes-Benz AMG GT 63 S. 😍 #DMotors #MercedesBenz</p>
+                    </div>
+                </div>
+                <!-- Instagram Post 3 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/402/400" alt="Instagram Post 3" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <p class="text-sm text-gray-400 mb-2">Publicado hace 1 semana</p>
+                        <p class="text-white">¿Buscas una SUV de lujo? Tenemos la Range Rover Velar perfecta para ti. 🚙✨ #DMotors #RangeRover</p>
+                    </div>
                 </div>
             </div>
-            <div class="relative h-80 rounded-lg overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Vehículo de Lujo 3" class="absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-40 transition-all duration-300"></div>
-                <div class="relative z-10 p-6 h-full flex flex-col justify-end">
-                    <h3 class="text-xl font-bold mb-4 text-white">Deportivo de Alto Rendimiento</h3>
-                    <p class="text-white/80 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
-                        Velocidad y diseño en su máxima expresión.
-                    </p>
+        </div>
+    </section>
+
+    <!-- Instagram Reels Section -->
+    <section class="mb-12 fade-in">
+        <h2 class="text-4xl font-serif font-bold text-center mb-6 text-primary">Nuestros Reels</h2>
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Reel 1 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative pb-[177.77%]">
+                        <iframe src="https://www.instagram.com/reel/embedded_url_1/" class="absolute top-0 left-0 w-full h-full" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+                </div>
+                <!-- Reel 2 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative pb-[177.77%]">
+                        <iframe src="https://www.instagram.com/reel/embedded_url_2/" class="absolute top-0 left-0 w-full h-full" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+                </div>
+                <!-- Reel 3 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative pb-[177.77%]">
+                        <iframe src="https://www.instagram.com/reel/embedded_url_3/" class="absolute top-0 left-0 w-full h-full" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Publicitario -->
+    <section class="mb-12 fade-in">
+        <div class="container mx-auto px-4">
+            <div class="bg-gradient-to-r from-gray-900 to-black rounded-lg shadow-2xl overflow-hidden">
+                <div class="flex flex-col md:flex-row items-center justify-between p-8">
+                    <div class="mb-6 md:mb-0 md:mr-8">
+                        <h3 class="text-3xl font-bold text-white mb-4">¿Listo para tu próximo vehículo de lujo?</h3>
+                        <p class="text-lg text-gray-300 mb-4">Descubre nuestra selección exclusiva de vehículos de alta gama.</p>
+                    </div>
+                    <a href="#contact" class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+                        Contáctanos Ahora
+                    </a>
                 </div>
             </div>
         </div>
@@ -314,102 +420,145 @@
     <!-- Contact Section -->
     <section id="contact" class="mb-12 fade-in">
         <h2 class="text-4xl font-serif font-bold text-center mb-6 text-primary">Contáctanos</h2>
-        <div class="grid md:grid-cols-2 gap-12">
-            <div class="space-y-6">
-                <div class="flex items-center space-x-4">
-                    <i class="fas fa-phone text-primary"></i>
-                    <div>
-                        <h3 class="font-bold">Teléfono</h3>
-                        <p>+54 9 3547 50-4071</p>
+        <div class="container mx-auto px-4">
+            <div class="bg-gray-900 rounded-lg shadow-2xl overflow-hidden">
+                <div class="grid md:grid-cols-2 gap-12 p-8">
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-white mb-4">Información de Contacto</h3>
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-primary rounded-full p-3">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Teléfono</h4>
+                                <p class="text-gray-300">+54 9 3547 50-4071</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-primary rounded-full p-3">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Email</h4>
+                                <p class="text-gray-300">dmotors.cba@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-primary rounded-full p-3">
+                                <i class="fab fa-instagram text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Instagram</h4>
+                                <p class="text-gray-300">@dmotors.cba</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <i class="fas fa-envelope text-primary"></i>
-                    <div>
-                        <h3 class="font-bold">Email</h3>
-                        <p>dmotors.cba@gmail.com</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <i class="fab fa-instagram text-primary"></i>
-                    <div>
-                        <h3 class="font-bold">Instagram</h3>
-                        <p>@dmotors.cba</p>
-                    </div>
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300">Nombre</label>
+                            <input type="text" id="name" name="name" required class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                            <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-300">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300">Mensaje</label>
+                            <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105">Enviar Mensaje</button>
+                    </form>
                 </div>
             </div>
-            <form class="space-y-6">
-                <input type="text" placeholder="Nombre" class="w-full p-2 bg-gray-800 rounded">
-                <input type="email" placeholder="Email" class="w-full p-2 bg-gray-800 rounded">
-                <input type="tel" placeholder="Teléfono" class="w-full p-2 bg-gray-800 rounded">
-                <textarea placeholder="Mensaje" rows="4" class="w-full p-2 bg-gray-800 rounded"></textarea>
-                <button type="submit" class="w-full bg-primary text-white p-2 rounded hover:bg-opacity-90 transition-colors">Enviar Mensaje</button>
-            </form>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-gray-900 py-12">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <img src="images/logo.png" alt="D'Motors Logo" class="w-24 h-24 mb-4">
-                    <p class="text-gray-400">Especialistas en vehículos de alta gama. Venta de vehículos usados y 0KM.</p>
+                    <p class="text-gray-400">Especialistas en vehículos de alta gama.
+                    Venta de vehículos usados y 0KM.</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Enlaces Rápidos</h3>
+                    <h3 class="text-xl font-bold text-white mb-4">Enlaces Rápidos</h3>
                     <nav class="space-y-2">
-                        <a href="#about" class="block text-gray-400 hover:text-white">Nosotros</a>
-                        <a href="#vehicles" class="block text-gray-400 hover:text-white">Vehículos</a>
-                        <a href="#contact" class="block text-gray-400 hover:text-white">Contacto</a>
+                        <a href="#about" class="block text-gray-400 hover:text-white transition-colors duration-300">Nosotros</a>
+                        <a href="#vehicles" class="block text-gray-400 hover:text-white transition-colors duration-300">Vehículos</a>
+                        <a href="#instagram" class="block text-gray-400 hover:text-white transition-colors duration-300">Instagram</a>
+                        <a href="#contact" class="block text-gray-400 hover:text-white transition-colors duration-300">Contacto</a>
                     </nav>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Síguenos</h3>
+                    <h3 class="text-xl font-bold text-white mb-4">Síguenos</h3>
                     <div class="flex space-x-4">
-                        <a href="https://www.instagram.com/dmotors.cba" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://www.instagram.com/dmotors.cba" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram text-2xl"></i>
                         </a>
-                        <a href="https://wa.me/5493547504071" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-whatsapp"></i>
+                        <a href="https://www.facebook.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook text-2xl"></i>
+                        </a>
+                        <a href="https://www.youtube.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-youtube text-2xl"></i>
                         </a>
                     </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Boletín Informativo</h3>
+                    <form class="space-y-4">
+                        <input type="email" placeholder="Tu email" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out">Suscribirse</button>
+                    </form>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
                 <p>&copy; 2024 D'Motors. Todos los derechos reservados.</p>
+                <p class="mt-2">Powered by <a href="https://dualitydomain.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors duration-300">Duality Domain</a></p>
             </div>
         </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/5493547504071" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50">
+    <a href="https://wa.me/5493547504071" target="_blank" rel="noopener noreferrer" class="fixed bottom-20 right-4 z-50 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300 bounce">
         <i class="fab fa-whatsapp text-2xl"></i>
+        <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">1</span>
     </a>
 
+    <!-- App Bar -->
+    <div class="app-bar py-2 px-4">
+        <div class="flex justify-around items-center">
+            <a href="#" class="text-white hover:text-primary transition-colors duration-300">
+                <i class="fas fa-home text-xl"></i>
+                <span class="block text-xs mt-1">Inicio</span>
+            </a>
+            <a href="#vehicles" class="text-white hover:text-primary transition-colors duration-300">
+                <i class="fas fa-car text-xl"></i>
+                <span class="block text-xs mt-1">Vehículos</span>
+            </a>
+            <a href="#instagram" class="text-white hover:text-primary transition-colors duration-300">
+                <i class="fab fa-instagram text-xl"></i>
+                <span class="block text-xs mt-1">Instagram</span>
+            </a>
+            <a href="#contact" class="text-white hover:text-primary transition-colors duration-300">
+                <i class="fas fa-envelope text-xl"></i>
+                <span class="block text-xs mt-1">Contacto</span>
+            </a>
+        </div>
+    </div>
+
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-4 right-4 bg-primary text-secondary p-2 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
+    <button id="back-to-top" class="fixed bottom-4 right-4 bg-primary text-white p-2 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- App Bar for Mobile -->
-    <div class="app-bar md:hidden flex justify-around items-center py-4">
-        <a href="#about" class="text-white hover:text-primary transition-colors duration-300">
-            <i class="fas fa-info-circle text-2xl"></i>
-            <span class="block text-xs mt-1">Nosotros</span>
-        </a>
-        <a href="#vehicles" class="text-white hover:text-primary transition-colors duration-300">
-            <i class="fas fa-car text-2xl"></i>
-            <span class="block text-xs mt-1">Vehículos</span>
-        </a>
-        <a href="#contact" class="text-white hover:text-primary transition-colors duration-300">
-            <i class="fas fa-envelope text-2xl"></i>
-            <span class="block text-xs mt-1">Contacto</span>
-        </a>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
