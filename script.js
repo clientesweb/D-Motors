@@ -1,37 +1,45 @@
+// Complete updated JavaScript with enhanced color handling for D'Motors
 document.addEventListener('DOMContentLoaded', function() {
-    // Preloader
+    // Preloader with updated gradient animation
     const preloader = document.getElementById('preloader');
     if (preloader) {
-        // Asegurarse de que el preloader sea visible inicialmente
+        // Ensure preloader is visible initially with new gradient
         preloader.style.display = 'flex';
         preloader.style.opacity = '1';
+        preloader.style.background = 'linear-gradient(-45deg, #666666, #333333, #000000, #4a4a4a)';
+        preloader.style.backgroundSize = '400% 400%';
+        
+        // Add gradient animation
+        let gradientPos = 0;
+        const gradientAnimation = setInterval(() => {
+            gradientPos = (gradientPos + 1) % 400;
+            preloader.style.backgroundPosition = `${gradientPos}% 50%`;
+        }, 50);
 
-        // Función para ocultar el preloader
+        // Function to hide preloader
         const hidePreloader = () => {
+            clearInterval(gradientAnimation);
             preloader.style.opacity = '0';
             setTimeout(() => {
                 preloader.style.display = 'none';
             }, 500);
         };
 
-        // Intentar ocultar el preloader cuando la página esté completamente cargada
+        // Hide preloader when page is loaded
         if (document.readyState === 'complete') {
             hidePreloader();
         } else {
             window.addEventListener('load', hidePreloader);
         }
 
-        // Fallback: ocultar el preloader después de 5 segundos si no se ha ocultado ya
+        // Fallback: hide preloader after 5 seconds
         setTimeout(() => {
             if (preloader.style.display !== 'none') {
-                console.log('Forzando la ocultación del preloader después de 5 segundos');
                 hidePreloader();
             }
         }, 5000);
     }
 
-    // El resto de tu código JavaScript sigue igual...
-    
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -42,19 +50,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Fade-in animation for sections
+    // Enhanced fade-in animation for sections
     const fadeElems = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                entry.target.style.transform = 'translateY(0)';
+                entry.target.style.opacity = '1';
             }
         });
     }, { threshold: 0.1 });
 
-    fadeElems.forEach(elem => observer.observe(elem));
+    fadeElems.forEach(elem => {
+        elem.style.transform = 'translateY(20px)';
+        elem.style.transition = 'all 0.6s ease-out';
+        observer.observe(elem);
+    });
 
-    // Top banner messages
+    // Top banner messages with updated gradient animation
     const bannerMessages = [
         "Descubre el lujo en cada detalle con D'Motors",
         "Vehículos de alta gama para los más exigentes",
@@ -84,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setInterval(rotateBannerMessage, 5000);
 
-    // Contact form submission
+    // Contact form submission with enhanced notification styling
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
@@ -121,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = newsletterForm.querySelector('input[type="email"]').value;
 
             try {
-                // Replace with your actual newsletter subscription endpoint
                 const response = await fetch('/api/subscribe', {
                     method: 'POST',
                     headers: {
@@ -143,11 +156,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Notification function
+    // Enhanced notification function with gradient background
     function showNotification(message, type = 'success') {
         const notification = document.createElement('div');
         notification.textContent = message;
-        notification.className = `fixed bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg text-white ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} transition-opacity duration-300`;
+        notification.className = `fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg text-white transition-all duration-300`;
+        
+        // Apply gradient background based on type
+        if (type === 'success') {
+            notification.style.background = 'linear-gradient(45deg, #666666, #333333)';
+        } else {
+            notification.style.background = 'linear-gradient(45deg, #ff4444, #cc0000)';
+        }
+        
+        notification.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
         document.body.appendChild(notification);
 
         gsap.fromTo(notification, 
@@ -167,10 +189,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    // GSAP animations
+    // GSAP animations with enhanced effects
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animate featured vehicles on scroll
+    // Animate featured vehicles on scroll with updated animation
     gsap.utils.toArray('#vehicles .bg-gray-900').forEach((vehicle, i) => {
         gsap.from(vehicle, {
             scrollTrigger: {
@@ -180,12 +202,14 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             opacity: 0,
             y: 50,
-            duration: 0.6,
-            delay: i * 0.2
+            rotation: 5,
+            duration: 0.8,
+            delay: i * 0.2,
+            ease: "power2.out"
         });
     });
 
-    // Animate contact form
+    // Animate contact form with enhanced effect
     gsap.from('#contact form', {
         scrollTrigger: {
             trigger: '#contact',
@@ -194,15 +218,16 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         opacity: 0,
         x: -50,
-        duration: 0.8
+        duration: 1,
+        ease: "power2.out"
     });
 
-    // Modal functionality
+    // Modal functionality with enhanced transitions
     const modal = document.getElementById('vehicleModal');
     const modalContent = document.getElementById('modalContent');
 
     window.openModal = function(vehicleId) {
-        // Fetch vehicle details and populate modal
+        // Your existing vehicle details object...
         const vehicleDetails = {
             'sedan-de-lujo': {
                 title: 'Sedan de Lujo',
@@ -220,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 description: 'Experimenta el máximo lujo y rendimiento con nuestro Sedan de Lujo.',
                 price: '$150,000'
             },
-            // ... (resto de los vehículos)
+            // ... (rest of vehicle details)
         };
     
         const vehicle = vehicleDetails[vehicleId];
@@ -252,7 +277,10 @@ document.addEventListener('DOMContentLoaded', function() {
             <p class="mb-4">${vehicle.description}</p>
             <div class="flex justify-between items-center">
                 <span class="text-2xl font-bold">Precio: ${vehicle.price}</span>
-                <a href="https://wa.me/5493547504071?text=Estoy%20interesado%20en%20el%20${encodeURIComponent(vehicle.title)}" target="_blank" rel="noopener noreferrer" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
+                <a href="https://wa.me/5493547504071?text=Estoy%20interesado%20en%20el%20${encodeURIComponent(vehicle.title)}" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="bg-gradient-to-r from-gray-600 to-gray-800 text-white px-4 py-2 rounded hover:from-gray-700 hover:to-gray-900 transition-all duration-300">
                     Consultar por WhatsApp
                 </a>
             </div>
@@ -261,22 +289,38 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         
-        // Initialize Swiper
+        // Initialize Swiper with enhanced options
         new Swiper('.swiper-container', {
             loop: true,
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
             pagination: {
                 el: '.swiper-pagination',
+                clickable: true
             },
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false
+            }
         });
     }
 
     window.closeModal = function() {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
+        gsap.to(modal, {
+            opacity: 0,
+            duration: 0.3,
+            onComplete: () => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                modal.style.opacity = 1;
+            }
+        });
     }
 
     // Close modal when clicking outside
