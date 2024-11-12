@@ -447,7 +447,9 @@
             <p class="text-center text-gray-400 mb-8">Recibe las últimas novedades y ofertas exclusivas directamente en tu correo.</p>
             <form id="newsletter-form" class="max-w-md mx-auto flex">
                 <input type="email" placeholder="Tu correo electrónico" class="flex-grow p-3 rounded-l-lg bg-gray-800 text-white" required>
-                <button type="submit" class="bg-primary text-white px-6 py-3 rounded-r-lg hover:bg-opacity-90 transition-colors">Suscribirse</button>
+                <button type="submit"
+
+ class="bg-primary text-white px-6 py-3 rounded-r-lg hover:bg-opacity-90 transition-colors">Suscribirse</button>
             </form>
         </div>
     </section>
@@ -483,4 +485,54 @@
                         <a href="https://www.facebook.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white text-2xl">
                             <i class="fab fa-facebook"></i>
                         </a>
-                        <a href="https://www.youtube.com/dmotors" target="_
+                        <a href="https://www.youtube.com/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/dmotors" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white text-2xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 D'Motors. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5493547504071" target="_blank" rel="noopener noreferrer" class="fixed bottom-20 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50 bounce">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- App Bar for Mobile -->
+    <div class="app-bar md:hidden flex justify-around items-center py-4 bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg">
+        <a href="#about" class="text-white hover:text-primary transition-colors duration-300 flex flex-col items-center">
+            <i class="fas fa-info-circle text-2xl mb-1"></i>
+            <span class="text-xs">Nosotros</span>
+        </a>
+        <a href="#vehicles" class="text-white hover:text-primary transition-colors duration-300 flex flex-col items-center">
+            <i class="fas fa-car text-2xl mb-1"></i>
+            <span class="text-xs">Vehículos</span>
+        </a>
+        <a href="#contact" class="text-white hover:text-primary transition-colors duration-300 flex flex-col items-center">
+            <i class="fas fa-envelope text-2xl mb-1"></i>
+            <span class="text-xs">Contacto</span>
+        </a>
+    </div>
+
+    <!-- Modal for vehicle details -->
+    <div id="vehicleModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-gray-900 p-8 rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <div id="modalContent">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+            <button onclick="closeModal()" class="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition-colors">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
