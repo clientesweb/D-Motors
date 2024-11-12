@@ -3,7 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const preloader = document.getElementById('preloader');
     if (preloader) {
         window.addEventListener('load', () => {
-            preloader.style.display = 'none';
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
         });
     }
 
@@ -33,18 +36,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const bannerMessages = [
         "Descubre el lujo en cada detalle con D'Motors",
         "Vehículos de alta gama para los más exigentes",
-        "Tu sueño sobre ruedas te espera en D'Motors"
+        "Tu sueño sobre ruedas te espera en D'Motors",
+        "Experimenta la excelencia automotriz en D'Motors"
     ];
     const bannerContainer = document.getElementById('banner-messages');
     let currentMessageIndex = 0;
 
     function rotateBannerMessage() {
-        bannerContainer.style.transform = 'translateY(-100%)';
-        setTimeout(() => {
-            currentMessageIndex = (currentMessageIndex + 1) % bannerMessages.length;
-            bannerContainer.innerHTML = `<p class="text-center w-full">${bannerMessages[currentMessageIndex]}</p>`;
-            bannerContainer.style.transform = 'translateY(0)';
-        }, 500);
+        gsap.to(bannerContainer, {
+            y: '-100%',
+            duration: 0.5,
+            onComplete: () => {
+                currentMessageIndex = (currentMessageIndex + 1) % bannerMessages.length;
+                bannerContainer.innerHTML = `<p class="text-center w-full">${bannerMessages[currentMessageIndex]}</p>`;
+                gsap.fromTo(bannerContainer, 
+                    { y: '100%' },
+                    { y: '0%', duration: 0.5 }
+                );
+            }
+        });
     }
 
     setInterval(rotateBannerMessage, 5000);
@@ -104,11 +114,20 @@ document.addEventListener('DOMContentLoaded', function() {
         notification.className = `fixed bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg text-white ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} transition-opacity duration-300`;
         document.body.appendChild(notification);
 
+        gsap.fromTo(notification, 
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.3 }
+        );
+
         setTimeout(() => {
-            notification.style.opacity = '0';
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
+            gsap.to(notification, {
+                opacity: 0,
+                y: 20,
+                duration: 0.3,
+                onComplete: () => {
+                    document.body.removeChild(notification);
+                }
+            });
         }, 3000);
     }
 
@@ -116,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     gsap.registerPlugin(ScrollTrigger);
 
     // Animate featured vehicles on scroll
-    gsap.utils.toArray('#vehicles .relative').forEach((vehicle, i) => {
+    gsap.utils.toArray('#vehicles .bg-gray-900').forEach((vehicle, i) => {
         gsap.from(vehicle, {
             scrollTrigger: {
                 trigger: vehicle,
@@ -142,35 +161,96 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.8
     });
 
-    // Image slider for featured vehicles
-    const slider = document.querySelector('.horizontal-scroll');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+    // Modal functionality
+    const modal = document.getElementById('vehicleModal');
+    const modalContent = document.getElementById('modalContent');
 
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        slider.classList.add('active');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-    });
+    window.openModal = function(vehicleId) {
+        // Fetch vehicle details and populate modal
+        // This is a placeholder. Replace with actual data fetching logic
+        const vehicleDetails = {
+            'sedan-de-lujo': {
+                title: 'Sedan de Lujo',
+                image: '/placeholder.svg?height=300&width=400',
+                specs: [
+                    'Motor: V8 4.0L',
+                    'Potencia: 500 HP',
+                    '0-100 km/h: 3.5 segundos',
+                    'Transmisión: Automática 8 velocidades'
+                ],
+                description: 'Experimenta el máximo lujo y rendimiento con nuestro Sedan de Lujo.',
+                price: '$150,000'
+            },
+            'suv-premium': {
+                title: 'SUV Premium',
+                image: '/placeholder.svg?height=300&width=400',
+                specs: [
+                    'Motor: V6 3.0L',
+                    'Potencia: 400 HP',
+                    '0-100 km/h: 5.2 segundos',
+                    'Transmisión: Automática 7 velocidades'
+                ],
+                description: 'Combina comodidad y potencia con nuestro SUV Premium.',
+                price: '$120,000'
+            },
+            'deportivo-alto-rendimiento': {
+                title: 'Deportivo de Alto Rendimiento',
+                image: '/placeholder.svg?height=300&width=400',
+                specs: [
+                    'Motor: V10 5.2L',
+                    'Potencia: 610 HP',
+                    '0-100 km/h: 2.9 segundos',
+                    'Transmisión: Automática de doble embrague 7 velocidades'
+                ],
+                description: 'Siente la adrenalina con nuestro Deportivo de Alto Rendimiento.',
+                price: '$200,000'
+            }
+        };
 
-    slider.addEventListener('mouseleave', () => {
-        isDown = false;
-        slider.classList.remove('active');
-    });
+        const vehicle = vehicleDetails[vehicleId];
+        
+        modalContent.innerHTML = `
+            <h2 class="text-2xl font-bold mb-4">${vehicle.title}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <img src="${vehicle.image}" alt="${vehicle.title}" class="w-full rounded-lg">
+                <div>
+                    <h3 class="text-xl font-bold mb-2">Especificaciones</h3>
+                    <ul class="list-disc list-inside">
+                        ${vehicle.specs.map(spec => `<li>${spec}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+            <p class="mb-4">${vehicle.description}</p>
+            <div class="flex justify-between items-center">
+                <span class="text-2xl font-bold">Precio: ${vehicle.price}</span>
+                <a href="https://wa.me/5493547504071?text=Estoy%20interesado%20en%20el%20${encodeURIComponent(vehicle.title)}" target="_blank" rel="noopener noreferrer" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
+                    Consultar por WhatsApp
+                </a>
+            </div>
+        `;
+        
+        gsap.fromTo(modal, 
+            { opacity: 0, scale: 0.9 },
+            { opacity: 1, scale: 1, duration: 0.3, display: 'flex' }
+        );
+    }
 
-    slider.addEventListener('mouseup', () => {
-        isDown = false;
-        slider.classList.remove('active');
-    });
+    window.closeModal = function() {
+        gsap.to(modal, {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.3,
+            onComplete: () => {
+                modal.style.display = 'none';
+            }
+        });
+    }
 
-    slider.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 3;
-        slider.scrollLeft = scrollLeft - walk;
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
     });
 
     console.log("D'Motors script loaded successfully!");
