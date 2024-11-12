@@ -214,5 +214,88 @@ document.addEventListener('DOMContentLoaded', function() {
         slider.scrollLeft = scrollLeft - walk;
     });
 
+    // Agregar animación para la notificación push
+    setTimeout(() => {
+        const pushNotification = document.getElementById('push-notification');
+        gsap.to(pushNotification, {
+            x: 0,
+            duration: 0.5,
+            ease: "power2.out"
+        });
+
+        setTimeout(() => {
+            gsap.to(pushNotification, {
+                x: '100%',
+                duration: 0.5,
+                ease: "power2.in"
+            });
+        }, 5000);
+    }, 10000);
+
+    // Animación para el banner publicitario
+    gsap.from('#banner-ad', {
+        scrollTrigger: {
+            trigger: '#banner-ad',
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+        },
+        y: 100,
+        opacity: 0,
+        duration: 1
+    });
+
+    // Animación para las reseñas de clientes
+    gsap.utils.toArray('.review').forEach((review, i) => {
+        gsap.from(review, {
+            scrollTrigger: {
+                trigger: review,
+                start: "top bottom-=100",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.6,
+            delay: i * 0.2
+        });
+    });
+
+    // Animación para el mapa
+    gsap.from('#map', {
+        scrollTrigger: {
+            trigger: '#map',
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+        },
+        opacity: 0,
+        duration: 1
+    });
+
+    // Mejorar la animación del menú inferior
+    gsap.from('.bottom-menu a', {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "body",
+            start: "top top",
+            end: "bottom bottom",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    // Animación para el slider de Instagram
+    const instagramSlider = document.querySelector('.instagram-slider .flex');
+    gsap.to(instagramSlider, {
+        x: '-50%',
+        ease: "none",
+        duration: 20,
+        repeat: -1
+    });
+
+
     console.log("D'Motors script loaded successfully!");
 });
