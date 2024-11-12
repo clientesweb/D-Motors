@@ -3,7 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const preloader = document.getElementById('preloader');
     if (preloader) {
         window.addEventListener('load', () => {
-            preloader.style.display = 'none';
+            gsap.to(preloader, {
+                opacity: 0,
+                duration: 0.5,
+                onComplete: () => {
+                    preloader.style.display = 'none';
+                }
+            });
         });
     }
 
@@ -11,8 +17,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+            const target = document.querySelector(this.getAttribute('href'));
+            gsap.to(window, {
+                duration: 1,
+                scrollTo: {
+                    y: target,
+                    offsetY: 50
+                },
+                ease: "power2.inOut"
             });
         });
     });
@@ -22,7 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                gsap.to(entry.target, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
             }
         });
     }, { threshold: 0.1 });
@@ -39,12 +56,19 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentMessageIndex = 0;
 
     function rotateBannerMessage() {
-        bannerContainer.style.transform = 'translateY(-100%)';
-        setTimeout(() => {
-            currentMessageIndex = (currentMessageIndex + 1) % bannerMessages.length;
-            bannerContainer.innerHTML = `<p class="text-center w-full">${bannerMessages[currentMessageIndex]}</p>`;
-            bannerContainer.style.transform = 'translateY(0)';
-        }, 500);
+        gsap.to(bannerContainer, {
+            y: -30,
+            opacity: 0,
+            duration: 0.5,
+            onComplete: () => {
+                currentMessageIndex = (currentMessageIndex + 1) % bannerMessages.length;
+                bannerContainer.innerHTML = `<p class="text-center w-full">${bannerMessages[currentMessageIndex]}</p>`;
+                gsap.fromTo(bannerContainer, 
+                    { y: 30, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.5 }
+                );
+            }
+        });
     }
 
     setInterval(rotateBannerMessage, 5000);
@@ -82,18 +106,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const backToTopButton = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 100) {
-            backToTopButton.classList.add('opacity-100');
-            backToTopButton.classList.remove('opacity-0', 'pointer-events-none');
+            gsap.to(backToTopButton, { opacity: 1, duration: 0.3 });
         } else {
-            backToTopButton.classList.remove('opacity-100');
-            backToTopButton.classList.add('opacity-0', 'pointer-events-none');
+            gsap.to(backToTopButton, { opacity: 0, duration: 0.3 });
         }
     });
 
     backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        gsap.to(window, {
+            duration: 1,
+            scrollTo: {
+                y: 0,
+                autoKill: false
+            },
+            ease: "power2.inOut"
         });
     });
 
@@ -101,19 +127,29 @@ document.addEventListener('DOMContentLoaded', function() {
     function showNotification(message, type = 'success') {
         const notification = document.createElement('div');
         notification.textContent = message;
-        notification.className = `fixed bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg text-white ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} transition-opacity duration-300`;
+        notification.className = `fixed bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg text-white ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
         document.body.appendChild(notification);
 
+        gsap.fromTo(notification, 
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
+        );
+
         setTimeout(() => {
-            notification.style.opacity = '0';
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
+            gsap.to(notification, {
+                opacity: 0,
+                y: 50,
+                duration: 0.5,
+                ease: "power2.in",
+                onComplete: () => {
+                    document.body.removeChild(notification);
+                }
+            });
         }, 3000);
     }
 
     // GSAP animations
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
     // Animate featured vehicles on scroll
     gsap.utils.toArray('#vehicles .relative').forEach((vehicle, i) => {
@@ -214,25 +250,25 @@ document.addEventListener('DOMContentLoaded', function() {
         slider.scrollLeft = scrollLeft - walk;
     });
 
-    // Agregar animación para la notificación push
+    // Push notification animation
     setTimeout(() => {
         const pushNotification = document.getElementById('push-notification');
-        gsap.to(pushNotification, {
-            x: 0,
-            duration: 0.5,
-            ease: "power2.out"
-        });
+        gsap.fromTo(pushNotification,
+            { y: 100, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
+        );
 
         setTimeout(() => {
             gsap.to(pushNotification, {
-                x: '100%',
+                y: 100,
+                opacity: 0,
                 duration: 0.5,
                 ease: "power2.in"
             });
         }, 5000);
     }, 10000);
 
-    // Animación para el banner publicitario
+    // Banner ad animation
     gsap.from('#banner-ad', {
         scrollTrigger: {
             trigger: '#banner-ad',
@@ -245,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 1
     });
 
-    // Animación para las reseñas de clientes
+    // Customer reviews animation
     gsap.utils.toArray('.review').forEach((review, i) => {
         gsap.from(review, {
             scrollTrigger: {
@@ -260,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Animación para el mapa
+    // Map animation
     gsap.from('#map', {
         scrollTrigger: {
             trigger: '#map',
@@ -272,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 1
     });
 
-    // Mejorar la animación del menú inferior
+    // Bottom menu animation
     gsap.from('.bottom-menu a', {
         y: 20,
         opacity: 0,
@@ -287,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Animación para el slider de Instagram
+    // Instagram slider animation
     const instagramSlider = document.querySelector('.instagram-slider .flex');
     gsap.to(instagramSlider, {
         x: '-50%',
@@ -296,6 +332,21 @@ document.addEventListener('DOMContentLoaded', function() {
         repeat: -1
     });
 
+    // New feature: Parallax effect for hero section
+    gsap.to('.hero-parallax', {
+        y: (i, target) => -ScrollTrigger.maxScroll(window) * target.dataset.speed,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".hero-section",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            invalidateOnRefresh: true,
+        }
+    });
 
     console.log("D'Motors script loaded successfully!");
 });
+
+// Log a message to demonstrate the script is running
+console.log("D'Motors script executed in Node.js environment");
