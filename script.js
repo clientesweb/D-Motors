@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Top banner messages
     const bannerMessages = [
-        "Experience luxury like never before with VIP Design",
-        "Custom vehicle designs tailored to your dreams",
-        "Transform your ride into a masterpiece"
+        "Descubre el lujo en cada detalle con D'Motors",
+        "Vehículos de alta gama para los más exigentes",
+        "Tu sueño sobre ruedas te espera en D'Motors"
     ];
     const bannerContainer = document.getElementById('banner-messages');
     let currentMessageIndex = 0;
@@ -48,68 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     setInterval(rotateBannerMessage, 5000);
-
-    // Gallery filter functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const filter = button.getAttribute('data-filter');
-            
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            galleryItems.forEach(item => {
-                if (filter === 'all' || item.classList.contains(filter)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
-
-    // Reservation Modal
-    const reservationBtn = document.getElementById('reservation-btn');
-    const closeModal = document.getElementById('close-modal');
-    const reservationModal = document.getElementById('reservation-modal');
-    const reservationForm = document.getElementById('reservation-form');
-
-    reservationBtn.addEventListener('click', () => {
-        reservationModal.classList.remove('hidden');
-        showNotification('Reservation form opened!');
-    });
-
-    closeModal.addEventListener('click', () => {
-        reservationModal.classList.add('hidden');
-    });
-
-    reservationForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(reservationForm);
-
-        try {
-            const response = await fetch('https://formspree.io/f/your_formspree_id', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            if (response.ok) {
-                showNotification('Reservation submitted successfully!');
-                reservationForm.reset();
-                reservationModal.classList.add('hidden');
-            } else {
-                throw new Error('Reservation submission failed');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            showNotification('There was an error submitting your reservation. Please try again.', 'error');
-        }
-    });
 
     // Contact form submission
     const contactForm = document.getElementById('contact-form');
@@ -128,43 +66,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 if (response.ok) {
-                    showNotification('Message sent successfully!');
+                    showNotification('¡Mensaje enviado con éxito!');
                     contactForm.reset();
                 } else {
-                    throw new Error('Message submission failed');
+                    throw new Error('Error al enviar el mensaje');
                 }
             } catch (error) {
                 console.error('Error:', error);
-                showNotification('There was an error sending your message. Please try again.', 'error');
-            }
-        });
-    }
-
-    // Newsletter form submission
-    const newsletterForm = document.getElementById('newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(newsletterForm);
-
-            try {
-                const response = await fetch('https://formspree.io/f/your_formspree_id', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    showNotification('Successfully subscribed to the newsletter!');
-                    newsletterForm.reset();
-                } else {
-                    throw new Error('Newsletter subscription failed');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('There was an error subscribing to the newsletter. Please try again.', 'error');
+                showNotification('Hubo un error al enviar tu mensaje. Por favor, intenta de nuevo.', 'error');
             }
         });
     }
@@ -203,19 +112,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    // Initialize Instagram embed
-    if (window.instgrm) {
-        window.instgrm.Embeds.process();
-    }
-
     // GSAP animations
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animate services on scroll
-    gsap.utils.toArray('#services .group').forEach((service, i) => {
-        gsap.from(service, {
+    // Animate featured vehicles on scroll
+    gsap.utils.toArray('#vehicles .relative').forEach((vehicle, i) => {
+        gsap.from(vehicle, {
             scrollTrigger: {
-                trigger: service,
+                trigger: vehicle,
                 start: "top bottom-=100",
                 toggleActions: "play none none reverse"
             },
@@ -226,33 +130,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Animate gallery items on scroll
-    gsap.utils.toArray('#gallery .gallery-item').forEach((item, i) => {
-        gsap.from(item, {
-            scrollTrigger: {
-                trigger: item,
-                start: "top bottom-=50",
-                toggleActions: "play none none reverse"
-            },
-            opacity: 0,
-            scale: 0.8,
-            duration: 0.5,
-            delay: i * 0.1
-        });
+    // Animate contact form
+    gsap.from('#contact form', {
+        scrollTrigger: {
+            trigger: '#contact',
+            start: "top center",
+            toggleActions: "play none none reverse"
+        },
+        opacity: 0,
+        x: -50,
+        duration: 0.8
     });
 
-    // Animate FAQ items
-    gsap.utils.toArray('#faq .bg-secondary\\/10').forEach((faq, i) => {
-        gsap.from(faq, {
-            scrollTrigger: {
-                trigger: faq,
-                start: "top bottom-=50",
-                toggleActions: "play none none reverse"
-            },
-            opacity: 0,
-            x: -50,
-            duration: 0.5,
-            delay: i * 0.2
-        });
+    // Image slider for featured vehicles
+    const slider = document.querySelector('.horizontal-scroll');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('active');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
     });
+
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 3;
+        slider.scrollLeft = scrollLeft - walk;
+    });
+
+    console.log("D'Motors script loaded successfully!");
 });
