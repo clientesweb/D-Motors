@@ -21,48 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             cars = data;
             renderCarCards();
-            setupCategoryFilter();
         })
         .catch(error => console.error('Error cargando los datos de autos:', error));
 
-    // Filtro de categorías
-    function setupCategoryFilter() {
-        const categoryButtons = document.querySelectorAll('.category-item');
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const category = button.dataset.category;
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                filterCars(category);
-            });
-        });
-    }
-
-    function filterCars(category) {
-        const filteredCars = category === 'all' ? cars : cars.filter(car => car.category === category);
-        renderCarCards(filteredCars);
-    }
-
     // Renderizar Tarjetas de Autos
-    function renderCarCards(carsToRender = cars) {
+    function renderCarCards() {
         const carListings = document.getElementById('car-listings');
-        carListings.innerHTML = carsToRender.map(car => `
+        carListings.innerHTML = cars.map(car => `
             <div class="car-card">
                 <div class="relative">
-                    <img src="${car.images[0]}" alt="${car.name}" class="w-full h-64 object-cover">
+                    <img src="${car.images[0]}" alt="${car.name}" class="w-full h-48 object-cover">
                     <span class="car-badge ${car.condition}">
                         ${car.condition === 'new' ? 'Nuevo' : 'Usado'}
                     </span>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">${car.year} ${car.name}</h3>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">${car.mileage.toLocaleString()} km</span>
-                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">${car.type}</span>
-                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">${car.color}</span>
-                    </div>
-                    <p class="text-2xl font-bold text-primary mb-4">${car.price}</p>
-                    <button class="view-car-details w-full bg-dark text-white py-3 hover:bg-gray-800 transition-colors" 
+                <div class="p-4">
+                    <h3 class="text-lg font-bold mb-2">${car.year} ${car.name}</h3>
+                    <p class="text-xl font-bold text-primary mb-2">${car.price}</p>
+                    <button class="view-car-details w-full bg-dark text-white py-2 text-sm hover:bg-gray-800 transition-colors" 
                             data-car-id="${car.id}">
                         Ver Detalles
                     </button>
@@ -79,13 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Modal de Detalles
     const modal = document.getElementById('car-modal');
     const closeModal = document.getElementById('close-modal');
-    
+
     function showCarDetails(carId) {
         const car = cars.find(c => c.id === parseInt(carId));
         if (!car) return;
 
         document.getElementById('modal-title').textContent = `${car.year} ${car.name}`;
-        
+
         // Actualizar imágenes del slider
         const swiperWrapper = document.querySelector('.swiper-wrapper');
         swiperWrapper.innerHTML = car.images.map(img => `
@@ -119,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.classList.remove('hidden');
         document.body.classList.add('overflow-hidden');
-        
+
         // Reinicializar Swiper
         if (swiper) {
             swiper.destroy();
@@ -162,16 +138,16 @@ document.addEventListener('DOMContentLoaded', () => {
     accordionItems.forEach(item => {
         const header = item.querySelector('.accordion-header');
         const content = item.querySelector('.accordion-content');
-        
+
         header.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
-            
+
             // Cerrar todos los items
             accordionItems.forEach(i => {
                 i.classList.remove('active');
                 i.querySelector('.accordion-content').style.maxHeight = null;
             });
-            
+
             // Abrir el item actual si no estaba activo
             if (!isActive) {
                 item.classList.add('active');
@@ -192,10 +168,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         whatsappNotification.classList.remove('hidden');
     }, 5000);
-
-    // Animación de categorías
-    const categoryItems = document.querySelectorAll('.category-item');
-    categoryItems.forEach((item, index) => {
-        item.style.animationDelay = `${(index + 1) * 0.1}s`;
-    });
 });
