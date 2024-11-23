@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     let cars = [];
-    let swiper;
+    let carSliders = {};
 
     // Menú Móvil
     const mobileMenu = document.getElementById('mobile-menu');
@@ -30,9 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
         carListings.innerHTML = cars.map(car => `
             <div class="car-card">
                 <div class="car-image-slider" data-car-id="${car.id}">
-                    ${car.images.map((img, index) => `
-                        <img src="${img}" alt="${car.name}" class="${index === 0 ? 'active' : ''}" />
-                    `).join('')}
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            ${car.images.map(img => `
+                                <div class="swiper-slide">
+                                    <img src="${img}" alt="${car.name}" />
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
                 </div>
                 <div class="p-4">
                     <h3 class="text-lg font-bold mb-2">${car.year} ${car.name}</h3>
@@ -45,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
 
-        initImageSliders();
+        initCarSliders();
 
         // Agregar event listeners a los botones
         document.querySelectorAll('.view-car-details').forEach(button => {
@@ -54,17 +63,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Inicializar sliders de imágenes
-    function initImageSliders() {
+    function initCarSliders() {
         const sliders = document.querySelectorAll('.car-image-slider');
         sliders.forEach(slider => {
-            const images = slider.querySelectorAll('img');
-            let currentIndex = 0;
-
-            setInterval(() => {
-                images[currentIndex].classList.remove('active');
-                currentIndex = (currentIndex + 1) % images.length;
-                images[currentIndex].classList.add('active');
-            }, 3000); // Cambiar imagen cada 3 segundos
+            const carId = slider.dataset.carId;
+            carSliders[carId] = new Swiper(slider.querySelector('.swiper'), {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                },
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false
+                }
+            });
         });
     }
 
@@ -79,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-title').textContent = `${car.year} ${car.name}`;
 
         // Actualizar imágenes del slider
-        const swiperWrapper = document.querySelector('.swiper-wrapper');
+        const swiperWrapper = document.querySelector('.car-images-slider .swiper-wrapper');
         swiperWrapper.innerHTML = car.images.map(img => `
             <div class="swiper-slide">
                 <img src="${img}" alt="${car.name}" class="w-full h-96 object-cover">
@@ -133,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Inicializar Swiper
+    let swiper;
     function initSwiper() {
         swiper = new Swiper('.car-images-slider', {
             slidesPerView: 1,
