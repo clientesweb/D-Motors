@@ -153,3 +153,34 @@ body {
     max-height: 1000px; /* Ajusta este valor según sea necesario */
     transition: max-height 0.5s ease-in;
 }
+
+/* Estilos para el formulario de venta de autos */
+#sell-car-form {
+    @apply space-y-4;
+}
+
+#sell-car-form input,
+#sell-car-form select,
+#sell-car-form textarea {
+    @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary;
+}
+
+#sell-car-form button[type="submit"] {
+    @apply w-full;
+}
+
+/* Estilos para el slider de Instagram Reels */
+.instagram-reels-slider {
+    @apply relative overflow-hidden;
+    height: 600px; /* Ajusta esto según sea necesario */
+}
+
+.instagram-reels-slider .swiper-slide {
+    @apply flex items-center justify-center;
+}
+
+.instagram-reels-slider iframe {
+    @apply w-full h-full;
+    max-width: 315px; /* Ancho estándar de un Reel de Instagram */
+    max-height: 560px; /* Altura estándar de un Reel de Instagram */
+}
