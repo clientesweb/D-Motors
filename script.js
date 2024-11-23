@@ -158,8 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Manejar
-envío del formulario de venta de autos
+    // Manejar envío del formulario de venta de autos
     const sellCarForm = document.getElementById('sell-car-form');
     sellCarForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -225,4 +224,3 @@ Comentarios adicionales: ${formData.get('additional-comments')}`;
         whatsappNotification.classList.add('hidden');
     });
 });
-
