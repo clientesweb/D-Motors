@@ -64,27 +64,6 @@ body {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.car-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.car-badge.new {
-  background-color: var(--color-primary);
-  color: white;
-}
-
-.car-badge.used {
-  background-color: var(--color-secondary);
-  color: white;
-}
-
 /* Slider de imágenes de autos */
 .car-image-slider {
   position: relative;
@@ -128,27 +107,6 @@ body {
 
 #whatsapp-button:hover {
   transform: scale(1.1);
-}
-
-#whatsapp-notification {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(128, 128, 128, 0.7);
-  }
-  
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(128, 128, 128, 0);
-  }
-  
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(128, 128, 128, 0);
-  }
 }
 
 /* Responsive */
@@ -234,7 +192,7 @@ body {
 .instagram-reels-slider .instagram-reel {
   flex: 0 0 auto;
   width: 340px;
-  height: 600px;
+  height: 800px; /* Aumentado para mostrar más del Reel */
   margin-right: 1rem;
 }
 
@@ -272,7 +230,7 @@ body {
   }
   .instagram-reels-slider .instagram-reel {
     width: 100%;
-    height: 400px;
+    height: 600px;
   }
 }
 
@@ -353,5 +311,47 @@ header {
 @media (min-width: 1280px) {
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Estilos mejorados para el modal */
+#car-modal .modal-content {
+  max-width: 90%;
+  width: 900px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#car-modal .car-images-slider {
+  height: 50vh;
+}
+
+#car-modal .car-images-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  #car-modal .modal-content {
+    width: 95%;
+    margin: 1rem auto;
+  }
+
+  #car-modal .car-images-slider {
+    height: 40vh;
+  }
+}
+
+/* Ajuste de altura para los Reels */
+.instagram-reels-slider .instagram-reel {
+  height: 90vh;
+}
+
+@media (max-width: 768px) {
+  .instagram-reels-slider .instagram-reel {
+    height: 80vh;
   }
 }
