@@ -29,21 +29,44 @@ body {
     pointer-events: auto;
 }
 
-/* Categorías */
+/* Categorías actualizadas */
+.categories {
+    @apply py-6;
+}
+
 .category-item {
-    @apply flex items-center justify-center h-24 text-dark border-r border-b border-gray-200 transition duration-300 ease-in-out;
+    @apply px-6 py-3 m-2 text-dark border border-gray-200 rounded-full transition duration-300 ease-in-out;
 }
 
-.category-item:hover {
-    @apply bg-gray-100;
+.category-item:hover,
+.category-item.active {
+    @apply bg-primary text-white;
 }
 
-@screen md {
-    .category-item:last-child {
-        @apply border-r-0;
-    }
+/* Acordeón */
+.accordion-item {
+    @apply border-b border-gray-200;
 }
 
+.accordion-header {
+    @apply flex justify-between items-center w-full py-4 px-6 text-left text-lg font-semibold hover:bg-gray-50 transition-colors;
+}
+
+.accordion-header i {
+    @apply transition-transform duration-300;
+}
+
+.accordion-item.active .accordion-header i {
+    @apply transform rotate-180;
+}
+
+.accordion-content {
+    @apply hidden px-6 py-4;
+}
+
+.accordion-item.active .accordion-content {
+    @apply block;
+}
 /* Tarjetas de Autos */
 .car-card {
     @apply bg-white shadow-lg overflow-hidden transition duration-300 ease-in-out;
