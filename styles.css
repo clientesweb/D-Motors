@@ -1,3 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 :root {
     --color-primary: #FF0000;
     --color-primary-dark: #CC0000;
@@ -5,21 +9,8 @@
     --color-gray: #4A4A4A;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: 'Montserrat', sans-serif;
-    color: var(--color-dark);
-}
-
-.container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
 }
 
 /* Utilidades */
@@ -30,7 +21,7 @@ body {
 
 /* Menú Móvil */
 #mobile-menu {
-    transition: all 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 #mobile-menu.active {
@@ -40,59 +31,38 @@ body {
 
 /* Categorías */
 .category-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100px;
-    text-decoration: none;
-    color: var(--color-dark);
-    border-right: 1px solid #e5e5e5;
-    border-bottom: 1px solid #e5e5e5;
-    transition: all 0.3s ease;
-}
-
-.category-item:last-child {
-    border-right: none;
+    @apply flex items-center justify-center h-24 text-dark border-r border-b border-gray-200 transition duration-300 ease-in-out;
 }
 
 .category-item:hover {
-    background-color: #f8f8f8;
+    @apply bg-gray-100;
 }
 
-@media (max-width: 768px) {
-    .category-item {
-        border-right: none;
+@screen md {
+    .category-item:last-child {
+        @apply border-r-0;
     }
 }
 
 /* Tarjetas de Autos */
 .car-card {
-    transition: transform 0.3s ease;
+    @apply bg-white shadow-lg overflow-hidden transition duration-300 ease-in-out;
 }
 
 .car-card:hover {
-    transform: translateY(-5px);
+    @apply transform -translate-y-2 shadow-xl;
 }
 
 .car-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
+    @apply absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold uppercase;
 }
 
 .car-badge.new {
-    background-color: var(--color-primary);
-    color: white;
+    @apply bg-primary text-white;
 }
 
 .car-badge.used {
-    background-color: var(--color-dark);
-    color: white;
+    @apply bg-dark text-white;
 }
 
 /* Slider */
@@ -110,9 +80,48 @@ body {
     overflow: hidden;
 }
 
+/* Instagram Reels */
+.instagram-reel {
+    @apply w-full h-0 relative pb-[177.77%];
+}
+
+.instagram-reel iframe {
+    @apply absolute top-0 left-0 w-full h-full;
+}
+
+/* WhatsApp Button */
+#whatsapp-button {
+    transition: transform 0.3s ease-in-out;
+}
+
+#whatsapp-button:hover {
+    transform: scale(1.1);
+}
+
+#whatsapp-notification {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+    }
+    
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+    }
+    
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+    }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .container {
-        padding: 0 1rem;
+        @apply px-4;
     }
 }
