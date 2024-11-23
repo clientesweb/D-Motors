@@ -158,7 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Manejar envío del formulario de venta de autos
+    // Manejar
+envío del formulario de venta de autos
     const sellCarForm = document.getElementById('sell-car-form');
     sellCarForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -170,7 +171,8 @@ Teléfono: ${formData.get('phone')}
 Marca: ${formData.get('car-make')}
 Modelo: ${formData.get('car-model')}
 Año: ${formData.get('car-year')}
-Kilometraje: ${formData.get('car-mileage')}`;
+Kilometraje: ${formData.get('car-mileage')}
+Comentarios adicionales: ${formData.get('additional-comments')}`;
 
         window.open(`https://wa.me/5493547504071?text=${encodeURIComponent(message)}`, '_blank');
         sellCarForm.reset();
@@ -223,3 +225,4 @@ Kilometraje: ${formData.get('car-mileage')}`;
         whatsappNotification.classList.add('hidden');
     });
 });
+
