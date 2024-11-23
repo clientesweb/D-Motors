@@ -33,7 +33,7 @@ body {
 }
 
 /* Grid de vehículos */
-#car-listings {
+#car-listings, #moto-listings {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -42,12 +42,12 @@ body {
   -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
-#car-listings::-webkit-scrollbar {
+#car-listings::-webkit-scrollbar, #moto-listings::-webkit-scrollbar {
   display: none; /* WebKit */
 }
 
-/* Tarjetas de Autos */
-.car-card {
+/* Tarjetas de Autos y Motos */
+.car-card, .moto-card {
   flex: 0 0 auto;
   width: 280px;
   margin-right: 1rem;
@@ -59,19 +59,19 @@ body {
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.car-card:hover {
+.car-card:hover, .moto-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Slider de imágenes de autos */
-.car-image-slider {
+/* Slider de imágenes de autos y motos */
+.car-image-slider, .moto-image-slider {
   position: relative;
   overflow: hidden;
   padding-top: 75%; /* Aspect ratio 4:3 */
 }
 
-.car-image-slider .swiper {
+.car-image-slider .swiper, .moto-image-slider .swiper {
   position: absolute;
   top: 0;
   left: 0;
@@ -79,7 +79,7 @@ body {
   height: 100%;
 }
 
-.car-image-slider .swiper-slide img {
+.car-image-slider .swiper-slide img, .moto-image-slider .swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -225,7 +225,7 @@ body {
   .hero p {
     font-size: 1rem;
   }
-  .car-card {
+  .car-card, .moto-card {
     width: 85%;
   }
   .instagram-reels-slider .instagram-reel {
@@ -235,19 +235,19 @@ body {
 }
 
 @media (min-width: 641px) and (max-width: 768px) {
-  .car-card {
+  .car-card, .moto-card {
     width: 45%;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .car-card {
+  .car-card, .moto-card {
     width: 30%;
   }
 }
 
 @media (min-width: 1025px) {
-  .car-card {
+  .car-card, .moto-card {
     width: 23%;
   }
 }
