@@ -335,8 +335,8 @@ Comentarios adicionales: ${formData.get('additional-comments')}`;
         // Reemplaza estos con los códigos de inserción reales de tus Reels de Instagram
         const reelEmbedCodes = [
             '<iframe src="https://www.instagram.com/reel/DCpleENxVsU/embed" width="340" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
-            '<iframe src="https://www.instagram.com/reel/DEF456/embed" width="340" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
-            '<iframe src="https://www.instagram.com/reel/GHI789/embed" width="340" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
+            '<iframe src="https://www.instagram.com/reel/DBynjb5RMbZ/embed" width="340" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
+            '<iframe src="https://www.instagram.com/reel/DAo0z1dxNoY/embed" width="340" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
         ];
 
         reelsContainer.innerHTML = reelEmbedCodes.map(code => `
