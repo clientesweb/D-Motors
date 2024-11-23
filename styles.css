@@ -232,3 +232,45 @@ body {
     background-size: cover;
     background-position: center;
 }
+
+/* Mejoras de responsividad */
+@media (max-width: 640px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    #car-listings {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+    .instagram-reels-slider .instagram-reel {
+        width: 100%;
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-cols-1 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Ajustes para el formulario de venta */
+#sell-car-form textarea {
+    @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary;
+    min-height: 100px;
+}
+
+/* Logo en el footer */
+.footer-logo {
+    max-width: 150px;
+    height: auto;
+}
+
