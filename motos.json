@@ -1,0 +1,84 @@
+[
+  {
+    "id": 1,
+    "name": "Harley-Davidson Street Glide",
+    "year": 2023,
+    "price": "$26,999",
+    "mileage": 0,
+    "condition": "Nueva",
+    "transmission": "Manual",
+    "engine": "Milwaukee-Eight 114",
+    "power": "93 CV",
+    "cardImages": [
+      "https://source.unsplash.com/random/800x600?harley+davidson",
+      "https://source.unsplash.com/random/800x600?motorcycle+front",
+      "https://source.unsplash.com/random/800x600?motorcycle+side"
+    ],
+    "detailImages": [
+      "https://source.unsplash.com/random/1200x800?harley+davidson",
+      "https://source.unsplash.com/random/1200x800?motorcycle+engine",
+      "https://source.unsplash.com/random/1200x800?motorcycle+dashboard",
+      "https://source.unsplash.com/random/1200x800?motorcycle+wheel"
+    ],
+    "specs": {
+      "Combustible": "Gasolina",
+      "Cilindrada": "1868 cc",
+      "Color": "Negro"
+    }
+  },
+  {
+    "id": 2,
+    "name": "BMW R 1250 GS Adventure",
+    "year": 2023,
+    "price": "$22,345",
+    "mileage": 500,
+    "condition": "Casi nueva",
+    "transmission": "Manual",
+    "engine": "Boxer de dos cilindros",
+    "power": "136 CV",
+    "cardImages": [
+      "https://source.unsplash.com/random/800x600?bmw+motorcycle",
+      "https://source.unsplash.com/random/800x600?adventure+bike",
+      "https://source.unsplash.com/random/800x600?motorcycle+offroad"
+    ],
+    "detailImages": [
+      "https://source.unsplash.com/random/1200x800?bmw+motorcycle",
+      "https://source.unsplash.com/random/1200x800?adventure+bike+side",
+      "https://source.unsplash.com/random/1200x800?motorcycle+dashboard",
+      "https://source.unsplash.com/random/1200x800?motorcycle+luggage"
+    ],
+    "specs": {
+      "Combustible": "Gasolina",
+      "Cilindrada": "1254 cc",
+      "Color": "Azul"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Ducati Panigale V4",
+    "year": 2023,
+    "price": "$23,295",
+    "mileage": 100,
+    "condition": "Nueva",
+    "transmission": "Manual",
+    "engine": "V4 Desmosedici Stradale",
+    "power": "214 CV",
+    "cardImages": [
+      "https://source.unsplash.com/random/800x600?ducati",
+      "https://source.unsplash.com/random/800x600?sportbike",
+      "https://source.unsplash.com/random/800x600?motorcycle+racing"
+    ],
+    "detailImages": [
+      "https://source.unsplash.com/random/1200x800?ducati",
+      "https://source.unsplash.com/random/1200x800?sportbike+side",
+      "https://source.unsplash.com/random/1200x800?motorcycle+cockpit",
+      "https://source.unsplash.com/random/1200x800?motorcycle+exhaust"
+    ],
+    "specs": {
+      "Combustible": "Gasolina",
+      "Cilindrada": "1103 cc",
+      "Color": "Rojo"
+    }
+  }
+]
+
