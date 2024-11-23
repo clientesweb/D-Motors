@@ -47,15 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="swiper-button-prev"></div>
                     </div>
                 </div>
-                <div class="car-info">
-                    <h3 class="car-title">${car.year} ${car.name}</h3>
-                    <p class="car-price">${car.price}</p>
-                    <div class="car-details">
-                        <span class="car-detail"><i class="fas fa-road"></i> ${car.mileage}</span>
-                        <span class="car-detail"><i class="fas fa-gas-pump"></i> ${car.fuelType}</span>
-                        <span class="car-detail"><i class="fas fa-cog"></i> ${car.transmission}</span>
+                <div class="p-4">
+                    <h3 class="text-lg font-bold mb-2">${car.year} ${car.name}</h3>
+                    <p class="text-xl font-bold text-primary mb-2">${car.price}</p>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span><i class="fas fa-road mr-1"></i>${car.mileage} km</span>
+                        <span><i class="fas fa-gas-pump mr-1"></i>${car.specs.Combustible}</span>
+                        <span><i class="fas fa-cog mr-1"></i>${car.transmission}</span>
                     </div>
-                    <button class="view-car-details" data-car-id="${car.id}">
+                    <button class="view-car-details w-full bg-accent text-white py-2 text-sm hover:bg-gray-800 transition-colors" 
+                            data-car-id="${car.id}">
                         Ver Detalles
                     </button>
                 </div>
@@ -128,11 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Actualizar información del vehículo
         const vehicleInfo = document.getElementById('vehicle-info');
         vehicleInfo.innerHTML = `
-            <p><strong>Marca:</strong> ${car.brand}</p>
-            <p><strong>Modelo:</strong> ${car.name}</p>
+            <p><strong>Marca:</strong> ${car.name.split(' ')[0]}</p>
+            <p><strong>Modelo:</strong> ${car.name.split(' ').slice(1).join(' ')}</p>
             <p><strong>Año:</strong> ${car.year}</p>
             <p><strong>Precio:</strong> ${car.price}</p>
-            <p><strong>Kilometraje:</strong> ${car.mileage}</p>
+            <p><strong>Kilometraje:</strong> ${car.mileage} km</p>
             <p><strong>Condición:</strong> ${car.condition}</p>
         `;
 
@@ -140,11 +141,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const technicalSpecs = document.getElementById('technical-specs');
         technicalSpecs.innerHTML = `
             <p><strong>Motor:</strong> ${car.engine}</p>
+            <p><strong>Potencia:</strong> ${car.power}</p>
             <p><strong>Transmisión:</strong> ${car.transmission}</p>
-            <p><strong>Combustible:</strong> ${car.fuelType}</p>
-            <p><strong>Tracción:</strong> ${car.drivetrain}</p>
-            <p><strong>Color Exterior:</strong> ${car.exteriorColor}</p>
-            <p><strong>Color Interior:</strong> ${car.interiorColor}</p>
+            <p><strong>Combustible:</strong> ${car.specs.Combustible}</p>
+            <p><strong>Tracción:</strong> ${car.specs.Tracción}</p>
+            <p><strong>Color Exterior:</strong> ${car.specs['Color Exterior']}</p>
+            <p><strong>Color Interior:</strong> ${car.specs['Color Interior']}</p>
         `;
 
         // Configurar botón de WhatsApp en el modal
@@ -196,9 +198,9 @@ Comentarios adicionales: ${formData.get('additional-comments')}`;
         }
         // Reemplaza estos con los códigos de inserción reales de tus Reels de Instagram
         const reelEmbedCodes = [
-            '<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DCpleENxVsU/" data-instgrm-version="14"></blockquote>',
-            '<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DEF456/" data-instgrm-version="14"></blockquote>',
-            '<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/GHI789/" data-instgrm-version="14"></blockquote>',
+            '<iframe src="https://www.instagram.com/reel/DCpleENxVsU/embed" width="340" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
+            '<iframe src="https://www.instagram.com/reel/DEF456/embed" width="340" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
+            '<iframe src="https://www.instagram.com/reel/GHI789/embed" width="340" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
         ];
 
         reelsContainer.innerHTML = reelEmbedCodes.map(code => `
@@ -206,18 +208,6 @@ Comentarios adicionales: ${formData.get('additional-comments')}`;
                 ${code}
             </div>
         `).join('');
-
-        // Cargar el script de Instagram para procesar los embeds
-        if (!document.getElementById('instagram-embed-script')) {
-            const script = document.createElement('script');
-            script.id = 'instagram-embed-script';
-            script.src = '//www.instagram.com/embed.js';
-            document.body.appendChild(script);
-        } else {
-            if (window.instgrm) {
-                window.instgrm.Embeds.process();
-            }
-        }
     }
 
     loadInstagramReels();
