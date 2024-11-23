@@ -28,24 +28,24 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCarCards() {
         const carListings = document.getElementById('car-listings');
         carListings.innerHTML = cars.map(car => `
-            <div class="swiper-slide">
-                <div class="car-card">
-                    <div class="car-image-slider" data-car-id="${car.id}">
-                        <img src="${car.images[0]}" alt="${car.name}" class="active" />
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold mb-2">${car.year} ${car.name}</h3>
-                        <p class="text-xl font-bold text-primary mb-2">${car.price}</p>
-                        <button class="view-car-details w-full bg-dark text-white py-2 text-sm hover:bg-gray-800 transition-colors" 
-                                data-car-id="${car.id}">
-                            Ver Detalles
-                        </button>
-                    </div>
+            <div class="car-card">
+                <div class="car-image-slider" data-car-id="${car.id}">
+                    ${car.images.map((img, index) => `
+                        <img src="${img}" alt="${car.name}" class="${index === 0 ? 'active' : ''}" />
+                    `).join('')}
+                </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-bold mb-2">${car.year} ${car.name}</h3>
+                    <p class="text-xl font-bold text-primary mb-2">${car.price}</p>
+                    <button class="view-car-details w-full bg-dark text-white py-2 text-sm hover:bg-gray-800 transition-colors" 
+                            data-car-id="${car.id}">
+                        Ver Detalles
+                    </button>
                 </div>
             </div>
         `).join('');
 
-        initCarSlider();
+        initImageSliders();
 
         // Agregar event listeners a los botones
         document.querySelectorAll('.view-car-details').forEach(button => {
@@ -53,53 +53,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inicializar slider de autos
-    function initCarSlider() {
-        new Swiper('.car-slider', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-            },
+    // Inicializar sliders de imágenes
+    function initImageSliders() {
+        const sliders = document.querySelectorAll('.car-image-slider');
+        sliders.forEach(slider => {
+            const images = slider.querySelectorAll('img');
+            let currentIndex = 0;
+
+            setInterval(() => {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }, 3000); // Cambiar imagen cada 3 segundos
         });
     }
-
-    // Inicializar slider de Instagram
-    new Swiper('.instagram-slider', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-            },
-            1024: {
-                slidesPerView: 3,
-            },
-        },
-    });
 
     // Modal de Detalles
     const modal = document.getElementById('car-modal');
@@ -112,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-title').textContent = `${car.year} ${car.name}`;
 
         // Actualizar imágenes del slider
-        const swiperWrapper = document.querySelector('.car-images-slider .swiper-wrapper');
+        const swiperWrapper = document.querySelector('.swiper-wrapper');
         swiperWrapper.innerHTML = car.images.map(img => `
             <div class="swiper-slide">
                 <img src="${img}" alt="${car.name}" class="w-full h-96 object-cover">
