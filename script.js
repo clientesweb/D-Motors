@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Instagram Reels Slider
     const reelsData = [
-        'https://www.instagram.com/reel/ABC123/',
+        'https://www.instagram.com/reel/DCpleENxVsU/',
         'https://www.instagram.com/reel/DEF456/',
         'https://www.instagram.com/reel/GHI789/'
     ];
