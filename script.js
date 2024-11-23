@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="car-card">
                 <div class="car-image-slider" data-car-id="${car.id}">
                     ${car.images.map((img, index) => `
-                        <img src="${img}" alt="${car.name}" style="opacity: ${index === 0 ? '1' : '0'};" />
+                        <img src="${img}" alt="${car.name}" class="${index === 0 ? 'active' : ''}" />
                     `).join('')}
                 </div>
                 <div class="p-4">
@@ -61,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let currentIndex = 0;
 
             setInterval(() => {
-                images[currentIndex].style.opacity = '0';
+                images[currentIndex].classList.remove('active');
                 currentIndex = (currentIndex + 1) % images.length;
-                images[currentIndex].style.opacity = '1';
+                images[currentIndex].classList.add('active');
             }, 3000); // Cambiar imagen cada 3 segundos
         });
     }
@@ -184,33 +184,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         whatsappNotification.classList.remove('hidden');
     }, 5000);
-
-    // Inicializar el scroll horizontal para los Instagram Reels
-    const reelsContainer = document.querySelector('.instagram-reels-container');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    reelsContainer.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - reelsContainer.offsetLeft;
-        scrollLeft = reelsContainer.scrollLeft;
-    });
-
-    reelsContainer.addEventListener('mouseleave', () => {
-        isDown = false;
-    });
-
-    reelsContainer.addEventListener('mouseup', () => {
-        isDown = false;
-    });
-
-    reelsContainer.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - reelsContainer.offsetLeft;
-        const walk = (x - startX) * 3;
-        reelsContainer.scrollLeft = scrollLeft - walk;
-    });
 });
 
