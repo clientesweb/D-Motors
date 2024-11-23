@@ -1,194 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D'Motors - Luxury Cars</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>D'Motors - Vehículos de Lujo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="font-dmotors">
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-95 z-50 hidden">
-        <div class="flex flex-col h-full">
-            <div class="flex justify-between items-center p-6">
-                <img src="logo.png" alt="D'Motors Logo" class="h-12">
+<body>
+    <!-- Menú Móvil -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black opacity-0 pointer-events-none z-50 transition-opacity duration-300">
+        <div class="h-full flex flex-col">
+            <div class="flex justify-between items-center p-6 border-b border-gray-800">
+                <img src="images/logo.png" alt="D'Motors Logo" class="h-12">
                 <button id="close-menu" class="text-white text-3xl">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <nav class="flex flex-col items-center justify-center flex-grow">
-                <a href="#" class="text-white text-2xl py-4 hover:text-red-600 transition-colors">BUY</a>
-                <a href="#" class="text-white text-2xl py-4 hover:text-red-600 transition-colors">SELL YOUR CAR</a>
-                <a href="#" class="text-white text-2xl py-4 hover:text-red-600 transition-colors">NEWS</a>
-                <a href="#" class="text-white text-2xl py-4 hover:text-red-600 transition-colors">CONTACT</a>
-                <a href="#" class="text-white text-2xl py-4 hover:text-red-600 transition-colors">ABOUT</a>
+            <nav class="flex-1 flex flex-col justify-center items-center space-y-8">
+                <a href="#" class="text-white text-2xl hover:text-primary transition-colors">COMPRAR</a>
+                <a href="#" class="text-white text-2xl hover:text-primary transition-colors">VENDER TU AUTO</a>
+                <a href="#" class="text-white text-2xl hover:text-primary transition-colors">NOTICIAS</a>
+                <a href="#" class="text-white text-2xl hover:text-primary transition-colors">CONTACTO</a>
+                <a href="#" class="text-white text-2xl hover:text-primary transition-colors">NOSOTROS</a>
             </nav>
-            <div class="p-6">
+            <div class="p-6 border-t border-gray-800">
                 <div class="flex justify-center space-x-6">
-                    <a href="#" class="text-white hover:text-red-600"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-white hover:text-red-600"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white hover:text-red-600"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Header -->
-    <header class="bg-white shadow-md fixed w-full z-40">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <img src="images/logo.png" alt="D'Motors Logo" class="h-8">
-            <div class="hidden md:flex space-x-8">
-                <a href="#" class="text-gray-800 hover:text-red-600 transition-colors">BUY</a>
-                <a href="#" class="text-gray-800 hover:text-red-600 transition-colors">SELL YOUR CAR</a>
-                <a href="#" class="text-gray-800 hover:text-red-600 transition-colors">NEWS</a>
-                <a href="#" class="text-gray-800 hover:text-red-600 transition-colors">CONTACT</a>
-                <a href="#" class="text-gray-800 hover:text-red-600 transition-colors">ABOUT</a>
+    <header class="fixed w-full bg-white shadow-md z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <img src="images/logo.png" alt="D'Motors Logo" class="h-8">
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-dark hover:text-primary transition-colors">COMPRAR</a>
+                    <a href="#" class="text-dark hover:text-primary transition-colors">VENDER TU AUTO</a>
+                    <a href="#" class="text-dark hover:text-primary transition-colors">NOTICIAS</a>
+                    <a href="#" class="text-dark hover:text-primary transition-colors">CONTACTO</a>
+                    <a href="#" class="text-dark hover:text-primary transition-colors">NOSOTROS</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <button class="md:hidden text-2xl" id="mobile-menu-button">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </header>
 
-    <main class="pt-16">
-        <!-- Hero Video Section -->
-        <section class="relative h-screen overflow-hidden">
-            <video class="absolute w-full h-full object-cover" autoplay loop muted playsinline>
-                <source src="video/luxury-cars.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-            <div class="container mx-auto px-4 h-full flex flex-col justify-center items-start relative z-10">
-                <h1 class="text-white text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                    Wide Range of<br>Cars to select from
-                </h1>
-                <button class="bg-red-600 text-white px-8 py-3 rounded-full hover:bg-red-700 transition-all transform hover:scale-105">
-                    Show available cars
-                </button>
+    <main>
+        <!-- Hero -->
+        <section class="hero relative h-screen">
+            <div class="absolute inset-0">
+                <img src="showroom.jpg" alt="D'Motors Showroom" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50"></div>
             </div>
-        </section>
-
-        <!-- Categories -->
-        <section class="py-12 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="category-card">
-                        <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:transform hover:scale-105 transition-all cursor-pointer">
-                            <i class="fas fa-car text-4xl text-red-600 mb-4"></i>
-                            <h3 class="text-xl font-bold mb-2">New Cars</h3>
-                            <p class="text-gray-600">Explore our latest models</p>
-                        </div>
-                    </div>
-                    <!-- Repeat for other categories -->
+            <div class="container mx-auto px-4 h-full flex items-center relative z-10">
+                <div>
+                    <h1 class="text-white text-4xl md:text-6xl font-bold mb-6">
+                        Amplia Gama de<br>Autos para elegir
+                    </h1>
+                    <button class="bg-primary text-white px-8 py-3 rounded-none hover:bg-primary-dark transition-colors">
+                        Ver autos disponibles
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- Car Listings -->
+        <!-- Categorías -->
+        <section class="categories border-t border-gray-200">
+            <div class="grid grid-cols-1 md:grid-cols-4">
+                <a href="#" class="category-item">
+                    <span>Autos Nuevos</span>
+                </a>
+                <a href="#" class="category-item">
+                    <span>Autos Usados</span>
+                </a>
+                <a href="#" class="category-item">
+                    <span>Vender tu Auto</span>
+                </a>
+                <a href="#" class="category-item">
+                    <span>Atención al Cliente</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Listado de Autos -->
         <section class="py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-12 inline-block border-b-2 border-red-600 pb-2">
-                    Latest Arrival
+                <h2 class="inline-block text-2xl font-semibold border-b-2 border-primary pb-2 mb-12">
+                    Últimas Llegadas
                 </h2>
                 <div id="car-listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Car cards will be inserted here by JavaScript -->
+                    <!-- Los autos se insertarán aquí mediante JavaScript -->
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
+    <footer class="bg-dark text-white py-16">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div>
                     <img src="logo.png" alt="D'Motors Logo" class="h-12 mb-6">
                     <p class="text-gray-400">
-                        Your premier destination for luxury and performance vehicles in the UAE.
+                        Tu destino premium para vehículos de lujo y alto rendimiento.
                     </p>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-6">Quick Links</h4>
+                    <h4 class="text-xl font-bold mb-6">Enlaces Rápidos</h4>
                     <ul class="space-y-4">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Inventory</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Inicio</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Inventario</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Servicios</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contacto</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-6">Contact Us</h4>
-                    <ul class="space-y-4 text-gray-400">
-                        <li class="flex items-center">
+                    <h4 class="text-xl font-bold mb-6">Contáctanos</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-center text-gray-400">
                             <i class="fas fa-map-marker-alt w-6"></i>
-                            <span>123 Luxury Lane, Dubai, UAE</span>
+                            <span>Av. Principal 123, Ciudad</span>
                         </li>
-                        <li class="flex items-center">
+                        <li class="flex items-center text-gray-400">
                             <i class="fas fa-phone w-6"></i>
-                            <span>+971 123 456 789</span>
+                            <span>+123 456 789</span>
                         </li>
-                        <li class="flex items-center">
+                        <li class="flex items-center text-gray-400">
                             <i class="fas fa-envelope w-6"></i>
-                            <span>info@dmotors.ae</span>
+                            <span>info@dmotors.com</span>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-6">Follow Us</h4>
+                    <h4 class="text-xl font-bold mb-6">Síguenos</h4>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-600 transition-colors">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-600 transition-colors">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-600 transition-colors">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 D'Motors. All rights reserved.</p>
-            </div>
         </div>
     </footer>
 
-    <!-- Car Details Modal -->
+    <!-- Modal de Detalles -->
     <div id="car-modal" class="fixed inset-0 bg-black bg-opacity-90 hidden z-50">
         <div class="container mx-auto px-4 h-full flex items-center justify-center">
-            <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto">
                 <div class="sticky top-0 bg-white p-4 border-b flex justify-between items-center">
                     <h3 id="modal-title" class="text-2xl font-bold"></h3>
-                    <button id="close-modal" class="text-2xl hover:text-red-600">
+                    <button id="close-modal" class="text-2xl hover:text-primary">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
                 <div class="p-6">
-                    <!-- Image Slider -->
                     <div class="swiper car-images-slider mb-8">
                         <div class="swiper-wrapper">
-                            <!-- Images will be inserted here -->
+                            <!-- Las imágenes se insertarán aquí -->
                         </div>
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
                     
-                    <!-- Car Details -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                            <h4 class="text-xl font-bold mb-4">Vehicle Information</h4>
+                            <h4 class="text-xl font-bold mb-4">Información del Vehículo</h4>
                             <div id="vehicle-info" class="space-y-2">
-                                <!-- Vehicle info will be inserted here -->
+                                <!-- La información se insertará aquí -->
                             </div>
                         </div>
                         <div>
-                            <h4 class="text-xl font-bold mb-4">Technical Specifications</h4>
+                            <h4 class="text-xl font-bold mb-4">Especificaciones Técnicas</h4>
                             <div id="technical-specs" class="space-y-2">
-                                <!-- Technical specs will be inserted here -->
+                                <!-- Las especificaciones se insertarán aquí -->
                             </div>
                         </div>
                     </div>
