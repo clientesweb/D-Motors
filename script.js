@@ -29,11 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const carListings = document.getElementById('car-listings');
         carListings.innerHTML = cars.map(car => `
             <div class="car-card">
-                <div class="relative">
-                    <img src="${car.images[0]}" alt="${car.name}" class="w-full h-48 object-cover">
-                    <span class="car-badge ${car.condition}">
-                        ${car.condition === 'new' ? 'Nuevo' : 'Usado'}
-                    </span>
+                <div class="car-image-slider" data-car-id="${car.id}">
+                    ${car.images.map((img, index) => `
+                        <img src="${img}" alt="${car.name}" class="${index === 0 ? 'active' : ''}" />
+                    `).join('')}
                 </div>
                 <div class="p-4">
                     <h3 class="text-lg font-bold mb-2">${car.year} ${car.name}</h3>
@@ -46,9 +45,27 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
 
+        // Iniciar sliders de imágenes
+        initImageSliders();
+
         // Agregar event listeners a los botones
         document.querySelectorAll('.view-car-details').forEach(button => {
             button.addEventListener('click', () => showCarDetails(button.dataset.carId));
+        });
+    }
+
+    // Inicializar sliders de imágenes
+    function initImageSliders() {
+        const sliders = document.querySelectorAll('.car-image-slider');
+        sliders.forEach(slider => {
+            const images = slider.querySelectorAll('img');
+            let currentIndex = 0;
+
+            setInterval(() => {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }, 3000); // Cambiar imagen cada 3 segundos
         });
     }
 
@@ -168,4 +185,32 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         whatsappNotification.classList.remove('hidden');
     }, 5000);
+
+    // Inicializar el scroll horizontal para los Instagram Reels
+    const reelsContainer = document.querySelector('.instagram-reels-container');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    reelsContainer.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - reelsContainer.offsetLeft;
+        scrollLeft = reelsContainer.scrollLeft;
+    });
+
+    reelsContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+    });
+
+    reelsContainer.addEventListener('mouseup', () => {
+        isDown = false;
+    });
+
+    reelsContainer.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - reelsContainer.offsetLeft;
+        const walk = (x - startX) * 3;
+        reelsContainer.scrollLeft = scrollLeft - walk;
+    });
 });
