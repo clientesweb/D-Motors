@@ -37,10 +37,10 @@
 
     <!-- Top Banner -->
     <div class="bg-primary text-white py-2">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <div>
-                <span class="mr-4"><i class="fas fa-phone mr-2"></i>(123) 456-7890</span>
-                <span><i class="fas fa-envelope mr-2"></i>info@dmotors.com</span>
+        <div class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <div class="w-full sm:w-auto mb-2 sm:mb-0">
+                <span class="mr-4 inline-block"><i class="fas fa-phone mr-2"></i>(123) 456-7890</span>
+                <span class="inline-block"><i class="fas fa-envelope mr-2"></i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="99f0f7fff6d9fdf4f6edf6ebeab7faf6f4">[email&#160;protected]</a></span>
             </div>
             <div class="flex space-x-4">
                 <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-facebook"></i></a>
@@ -109,8 +109,8 @@
                 <div class="text-center text-white">
                     <h2 class="text-3xl md:text-4xl font-bold mb-4">Ofertas Especiales Este Mes</h2>
                     <p class="text-xl mb-8">No te pierdas nuestras increíbles ofertas en vehículos de lujo</p>
-                    <div class="flex justify-center space-x-4">
-                        <a href="#comprar" class="bg-primary text-white py-2 px-6 rounded-full text-lg font-semibold hover:bg-primary-dark transition-colors">
+                    <div class="flex flex-wrap justify-center space-x-4">
+                        <a href="#comprar" class="bg-primary text-white py-2 px-6 rounded-full text-lg font-semibold hover:bg-primary-dark transition-colors mb-4 sm:mb-0">
                             Ver Ofertas
                         </a>
                         <a href="#contacto" class="bg-secondary text-white py-2 px-6 rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors">
@@ -127,7 +127,7 @@
                 <h2 class="inline-block text-2xl font-semibold border-b-2 border-primary pb-2 mb-12">
                     Nuestro Inventario
                 </h2>
-                <div id="car-listings" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div id="car-listings" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     <!-- Los autos se insertarán aquí mediante JavaScript -->
                 </div>
             </div>
@@ -145,46 +145,52 @@
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                                 Nombre
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Tu nombre" required>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" name="name" type="text" placeholder="Tu nombre" required>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
                                 Email
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="tu@email.com" required>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="email" placeholder="tu@email.com" required>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
                                 Teléfono
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" type="tel" placeholder="Tu número de teléfono" required>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" name="phone" type="tel" placeholder="Tu número de teléfono" required>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="car-make">
                                 Marca del Auto
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-make" type="text" placeholder="Ej. Toyota" required>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-make" name="car-make" type="text" placeholder="Ej. Toyota" required>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="car-model">
                                 Modelo del Auto
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-model" type="text" placeholder="Ej. Corolla" required>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-model" name="car-model" type="text" placeholder="Ej. Corolla" required>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="car-year">
                                 Año del Auto
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-year" type="number" placeholder="Ej. 2018" required>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-year" name="car-year" type="number" placeholder="Ej. 2018" required>
                         </div>
-                        <div class="mb-6">
+                        <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="car-mileage">
                                 Kilometraje
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-mileage" type="number" placeholder="Ej. 50000" required>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-mileage" name="car-mileage" type="number" placeholder="Ej. 50000" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="additional-comments">
+                                Comentarios Adicionales
+                            </label>
+                            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="additional-comments" name="additional-comments" rows="4" placeholder="Proporciona cualquier información adicional sobre tu vehículo"></textarea>
                         </div>
                         <div class="flex items-center justify-between">
-                            <button class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            <button class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" type="submit">
                                 Enviar
                             </button>
                         </div>
@@ -236,7 +242,7 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">Sobre Nosotros</h3>
+                    <img src="images/logo.png" alt="D'Motors Logo" class="footer-logo mb-4">
                     <p>D'Motors es tu destino para vehículos de lujo. Ofrecemos una amplia selección de autos de alta gama y un servicio excepcional.</p>
                 </div>
                 <div>
@@ -252,7 +258,7 @@
                     <h3 class="text-xl font-semibold mb-4">Contacto</h3>
                     <p>Dirección: 123 Calle Principal, Ciudad</p>
                     <p>Teléfono: (123) 456-7890</p>
-                    <p>Email: info@dmotors.com</p>
+                    <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6e070008012e0a03011a011c1d400d0103">[email&#160;protected]</a></p>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold mb-4">Síguenos</h3>
@@ -324,7 +330,7 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
