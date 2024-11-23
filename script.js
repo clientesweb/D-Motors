@@ -169,5 +169,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ... (resto del código)
+    // Acordeón mejorado
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        const content = item.querySelector('.accordion-content');
+
+        header.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Cerrar todos los items
+            accordionItems.forEach(i => {
+                i.classList.remove('active');
+                i.querySelector('.accordion-content').style.maxHeight = null;
+            });
+
+            // Abrir el item actual si no estaba activo
+            if (!isActive) {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    });
+
+    // Botón de WhatsApp
+    const whatsappButton = document.getElementById('whatsapp-button');
+    const whatsappNotification = document.getElementById('whatsapp-notification');
+
+    whatsappButton.addEventListener('click', () => {
+        window.open('https://wa.me/1234567890', '_blank');
+    });
+
+    // Simular notificación después de 5 segundos
+    setTimeout(() => {
+        whatsappNotification.classList.remove('hidden');
+    }, 5000);
 });
