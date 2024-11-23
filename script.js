@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeMenu.addEventListener('click', toggleMenu);
 
     // Cargar datos de autos desde JSON
-    fetch('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cars%20(1)-EGkZJWifU0Xlfjs6INXHDKO4fAiLej.json')
+    fetch('cars.json')
         .then(response => response.json())
         .then(data => {
             cars = data;
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="car-image-slider" data-car-id="${car.id}">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            ${car.images.map(img => `
+                            ${car.cardImages.map(img => `
                                 <div class="swiper-slide">
                                     <img src="${img}" alt="${car.name}" />
                                 </div>
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Actualizar imágenes del slider
         const swiperWrapper = document.querySelector('.car-images-slider .swiper-wrapper');
-        swiperWrapper.innerHTML = car.images.map(img => `
+        swiperWrapper.innerHTML = car.detailImages.map(img => `
             <div class="swiper-slide">
                 <img src="${img}" alt="${car.name}" class="w-full h-96 object-cover">
             </div>
@@ -169,40 +169,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Acordeón mejorado
-    const accordionItems = document.querySelectorAll('.accordion-item');
-    accordionItems.forEach(item => {
-        const header = item.querySelector('.accordion-header');
-        const content = item.querySelector('.accordion-content');
-
-        header.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-
-            // Cerrar todos los items
-            accordionItems.forEach(i => {
-                i.classList.remove('active');
-                i.querySelector('.accordion-content').style.maxHeight = null;
-            });
-
-            // Abrir el item actual si no estaba activo
-            if (!isActive) {
-                item.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    });
-
-    // Botón de WhatsApp
-    const whatsappButton = document.getElementById('whatsapp-button');
-    const whatsappNotification = document.getElementById('whatsapp-notification');
-
-    whatsappButton.addEventListener('click', () => {
-        window.open('https://wa.me/1234567890', '_blank');
-    });
-
-    // Simular notificación después de 5 segundos
-    setTimeout(() => {
-        whatsappNotification.classList.remove('hidden');
-    }, 5000);
+    // ... (resto del código)
 });
-
