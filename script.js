@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         Ver Detalles
                     </button>
                 </div>
-                <div class="car-badge ${car.condition.toLowerCase()}">${car.condition}</div>
             </div>
         `).join('');
 
@@ -106,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalSlider = document.querySelector('.car-images-slider .swiper-wrapper');
         modalSlider.innerHTML = car.detailImages.map(img => `
             <div class="swiper-slide">
-                <img src="${img}" alt="${car.name}" class="w-full h-auto" />
+                <img src="${img}" alt="${car.name}" class="w-full h-full object-cover" />
             </div>
         `).join('');
 
@@ -222,16 +221,15 @@ Comentarios adicionales: ${formData.get('additional-comments')}`;
         });
     });
 
-    // Notificación de WhatsApp
-    const whatsappButton = document.getElementById('whatsapp-button');
-    const whatsappNotification = document.getElementById('whatsapp-notification');
-
-    // Simular una notificación después de 5 segundos
-    setTimeout(() => {
-        whatsappNotification.classList.remove('hidden');
-    }, 5000);
-
-    whatsappButton.addEventListener('click', () => {
-        whatsappNotification.classList.add('hidden');
-    });
+    // Verificar y reiniciar el video del hero si no se está reproduciendo
+    const heroVideo = document.querySelector('.hero video');
+    if (heroVideo) {
+        setInterval(() => {
+            if (heroVideo.paused) {
+                heroVideo.play().catch(error => {
+                    console.error('Error al intentar reproducir el video:', error);
+                });
+            }
+        }, 1000);
+    }
 });
