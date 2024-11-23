@@ -47,11 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="swiper-button-prev"></div>
                     </div>
                 </div>
-                <div class="p-4">
-                    <h3 class="text-lg font-bold mb-2">${car.year} ${car.name}</h3>
-                    <p class="text-xl font-bold text-primary mb-2">${car.price}</p>
-                    <button class="view-car-details w-full bg-accent text-white py-2 text-sm hover:bg-gray-800 transition-colors" 
-                            data-car-id="${car.id}">
+                <div class="car-info">
+                    <h3 class="car-title">${car.year} ${car.name}</h3>
+                    <p class="car-price">${car.price}</p>
+                    <div class="car-details">
+                        <span class="car-detail"><i class="fas fa-road"></i> ${car.mileage}</span>
+                        <span class="car-detail"><i class="fas fa-gas-pump"></i> ${car.fuelType}</span>
+                        <span class="car-detail"><i class="fas fa-cog"></i> ${car.transmission}</span>
+                    </div>
+                    <button class="view-car-details" data-car-id="${car.id}">
                         Ver Detalles
                     </button>
                 </div>
@@ -241,4 +245,3 @@ Comentarios adicionales: ${formData.get('additional-comments')}`;
         whatsappNotification.classList.add('hidden');
     });
 });
-
