@@ -75,21 +75,16 @@
             </div>
         </section>
 
-        <!-- Categorías -->
+        <!-- Categorías actualizadas -->
         <section class="categories border-t border-gray-200">
-            <div class="grid grid-cols-1 md:grid-cols-4">
-                <a href="#" class="category-item">
-                    <span>Autos Nuevos</span>
-                </a>
-                <a href="#" class="category-item">
-                    <span>Autos Usados</span>
-                </a>
-                <a href="#" class="category-item">
-                    <span>Vender tu Auto</span>
-                </a>
-                <a href="#" class="category-item">
-                    <span>Atención al Cliente</span>
-                </a>
+            <div class="container mx-auto px-4">
+                <div class="flex flex-wrap justify-center">
+                    <button class="category-item active" data-category="all">Todos</button>
+                    <button class="category-item" data-category="new">Autos Nuevos</button>
+                    <button class="category-item" data-category="used">Autos Usados</button>
+                    <button class="category-item" data-category="sell">Vender tu Auto</button>
+                    <button class="category-item" data-category="support">Atención al Cliente</button>
+                </div>
             </div>
         </section>
 
@@ -115,7 +110,7 @@
         <section class="py-16">
             <div class="container mx-auto px-4">
                 <h2 class="inline-block text-2xl font-semibold border-b-2 border-primary pb-2 mb-12">
-                    Últimas Llegadas
+                    Nuestro Inventario
                 </h2>
                 <div id="car-listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Los autos se insertarán aquí mediante JavaScript -->
@@ -197,7 +192,7 @@
         </div>
     </footer>
 
-    <!-- Modal de Detalles -->
+    <!-- Modal de Detalles actualizado -->
     <div id="car-modal" class="fixed inset-0 bg-black bg-opacity-90 hidden z-50 overflow-y-auto">
         <div class="container mx-auto px-4 min-h-screen flex items-center justify-center py-8">
             <div class="bg-white w-full max-w-4xl rounded-lg shadow-xl overflow-hidden">
@@ -217,20 +212,30 @@
                         <div class="swiper-button-prev"></div>
                     </div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <h4 class="text-xl font-bold mb-4">Información del Vehículo</h4>
-                            <div id="vehicle-info" class="space-y-2">
-                                <!-- La información se insertará aquí -->
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Información del Vehículo
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <div id="vehicle-info"></div>
                             </div>
                         </div>
-                        <div>
-                            <h4 class="text-xl font-bold mb-4">Especificaciones Técnicas</h4>
-                            <div id="technical-specs" class="space-y-2">
-                                <!-- Las especificaciones se insertarán aquí -->
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Especificaciones Técnicas
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <div id="technical-specs"></div>
                             </div>
                         </div>
                     </div>
+                    
+                    <button id="modal-whatsapp-button" class="mt-6 bg-green-500 text-white w-full py-3 rounded-lg hover:bg-green-600 transition-colors">
+                        <i class="fab fa-whatsapp mr-2"></i> Consultar por WhatsApp
+                    </button>
                 </div>
             </div>
         </div>
