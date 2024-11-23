@@ -55,17 +55,14 @@ body {
     @apply bg-dark text-white;
 }
 
-/* Slider de imágenes de autos */
+/* Actualización del slider de imágenes de autos */
 .car-image-slider {
     @apply relative overflow-hidden h-48;
+    width: 100%;
 }
 
 .car-image-slider img {
-    @apply absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out;
-}
-
-.car-image-slider img.active {
-    @apply opacity-100;
+    @apply absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out;
 }
 
 /* Slider */
@@ -83,7 +80,7 @@ body {
     overflow: hidden;
 }
 
-/* Instagram Reels */
+/* Actualización de Instagram Reels */
 .instagram-reels-container {
     @apply flex overflow-x-auto space-x-4 py-4 px-4;
     scroll-snap-type: x mandatory;
@@ -96,12 +93,15 @@ body {
 }
 
 .instagram-reel {
-    @apply flex-shrink-0 w-64 h-[512px];
+    @apply flex-shrink-0;
+    width: 340px;
+    height: 600px;
     scroll-snap-align: start;
 }
 
 .instagram-reel iframe {
     @apply w-full h-full;
+    border-radius: 15px;
 }
 
 /* WhatsApp Button */
