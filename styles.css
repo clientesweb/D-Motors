@@ -31,7 +31,7 @@ body {
 
 /* Grid de vehículos */
 #car-listings {
-    @apply grid grid-cols-2 gap-4;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
 }
 
 /* Tarjetas de Autos */
@@ -171,16 +171,36 @@ body {
 
 /* Estilos para el slider de Instagram Reels */
 .instagram-reels-slider {
-    @apply relative overflow-hidden;
-    height: 600px; /* Ajusta esto según sea necesario */
+    @apply relative;
+    height: 100vh;
+    max-height: 812px; /* Altura máxima de un iPhone 12 Pro */
+    width: 100%;
+    max-width: 375px; /* Ancho máximo de un iPhone 12 Pro */
+    margin: 0 auto;
 }
 
 .instagram-reels-slider .swiper-slide {
     @apply flex items-center justify-center;
+    height: 100% !important;
 }
 
 .instagram-reels-slider iframe {
     @apply w-full h-full;
-    max-width: 315px; /* Ancho estándar de un Reel de Instagram */
-    max-height: 560px; /* Altura estándar de un Reel de Instagram */
+    max-width: 375px; /* Ancho máximo de un iPhone 12 Pro */
+    max-height: 812px; /* Altura máxima de un iPhone 12 Pro */
+}
+
+/* Responsive para Instagram Reels */
+@media (max-width: 640px) {
+    .instagram-reels-slider {
+        height: 100vh;
+        max-height: none;
+        width: 100%;
+        max-width: none;
+    }
+
+    .instagram-reels-slider iframe {
+        max-width: 100%;
+        max-height: none;
+    }
 }
