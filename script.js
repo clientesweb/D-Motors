@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="car-image-slider" data-car-id="${car.id}">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            ${car.images.map(img => `
+                            ${car.cardImages.map(img => `
                                 <div class="swiper-slide">
                                     <img src="${img}" alt="${car.name}" />
                                 </div>
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Actualizar imágenes del slider
         const swiperWrapper = document.querySelector('.car-images-slider .swiper-wrapper');
-        swiperWrapper.innerHTML = car.images.map(img => `
+        swiperWrapper.innerHTML = car.detailImages.map(img => `
             <div class="swiper-slide">
                 <img src="${img}" alt="${car.name}" class="w-full h-96 object-cover">
             </div>
