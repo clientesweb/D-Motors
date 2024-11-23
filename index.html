@@ -13,27 +13,15 @@
 <body class="font-montserrat">
     <!-- Menú Móvil -->
     <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-95 opacity-0 pointer-events-none z-50 transition-opacity duration-300">
-        <div class="h-full flex flex-col">
-            <div class="flex justify-between items-center p-6 border-b border-gray-800">
-                <img src="images/logo.png" alt="D'Motors Logo" class="h-12">
-                <button id="close-menu" class="text-white text-3xl">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <nav class="flex-1 flex flex-col justify-center items-center space-y-8">
-                <a href="#comprar" class="text-white text-2xl hover:text-primary transition-colors">COMPRAR</a>
-                <a href="#vender" class="text-white text-2xl hover:text-primary transition-colors">VENDER TU AUTO</a>
-                <a href="#noticias" class="text-white text-2xl hover:text-primary transition-colors">NOTICIAS</a>
-                <a href="#contacto" class="text-white text-2xl hover:text-primary transition-colors">CONTACTO</a>
-                <a href="#nosotros" class="text-white text-2xl hover:text-primary transition-colors">NOSOTROS</a>
+        <div class="flex flex-col h-full justify-center items-center">
+            <button id="close-menu" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
+            <nav class="text-center">
+                <a href="#comprar" class="block text-white text-2xl py-4">COMPRAR</a>
+                <a href="#vender" class="block text-white text-2xl py-4">VENDER TU AUTO</a>
+                <a href="#noticias" class="block text-white text-2xl py-4">NOTICIAS</a>
+                <a href="#nosotros" class="block text-white text-2xl py-4">NOSOTROS</a>
+                <a href="#contacto" class="block text-white text-2xl py-4">CONTACTO</a>
             </nav>
-            <div class="p-6 border-t border-gray-800">
-                <div class="flex justify-center space-x-6">
-                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -41,13 +29,13 @@
     <header class="fixed w-full bg-white shadow-md z-40">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-20">
-                <img src="images/logo.png" alt="D'Motors Logo" class="h-8">
+                <img src="images/logo.png" alt="D'Motors Logo" class="h-12">
                 <nav class="hidden md:flex space-x-8">
                     <a href="#comprar" class="text-dark hover:text-primary transition-colors">COMPRAR</a>
                     <a href="#vender" class="text-dark hover:text-primary transition-colors">VENDER TU AUTO</a>
                     <a href="#noticias" class="text-dark hover:text-primary transition-colors">NOTICIAS</a>
-                    <a href="#contacto" class="text-dark hover:text-primary transition-colors">CONTACTO</a>
                     <a href="#nosotros" class="text-dark hover:text-primary transition-colors">NOSOTROS</a>
+                    <a href="#contacto" class="text-dark hover:text-primary transition-colors">CONTACTO</a>
                 </nav>
                 <button id="mobile-menu-button" class="md:hidden text-2xl">
                     <i class="fas fa-bars"></i>
@@ -59,17 +47,16 @@
     <main>
         <!-- Hero Video -->
         <section class="hero relative h-screen">
-            <video class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline>
-                <source src="video/luxury-cars.mp4" type="video/mp4">
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                <source src="videos/hero-video.mp4" type="video/mp4">
+                Tu navegador no soporta el tag de video.
             </video>
-            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-            <div class="container mx-auto px-4 h-full flex items-center relative z-10">
-                <div>
-                    <h1 class="text-white text-4xl md:text-6xl font-bold mb-6">
-                        Amplia Gama de<br>Autos para elegir
-                    </h1>
-                    <a href="#comprar" class="bg-primary text-white px-8 py-3 rounded-none hover:bg-primary-dark transition-colors">
-                        Ver autos disponibles
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div class="text-center text-white">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Descubre el Lujo en Cuatro Ruedas</h1>
+                    <p class="text-xl md:text-2xl mb-8">Experimenta la excelencia automotriz con D'Motors</p>
+                    <a href="#comprar" class="bg-primary text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-primary-dark transition-colors">
+                        Ver Inventario
                     </a>
                 </div>
             </div>
@@ -81,7 +68,7 @@
                 <h2 class="inline-block text-2xl font-semibold border-b-2 border-primary pb-2 mb-12">
                     Nuestro Inventario
                 </h2>
-                <div id="car-listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div id="car-listings" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                     <!-- Los autos se insertarán aquí mediante JavaScript -->
                 </div>
             </div>
@@ -93,53 +80,57 @@
                 <h2 class="inline-block text-2xl font-semibold border-b-2 border-primary pb-2 mb-12">
                     Vender Tu Auto
                 </h2>
-                <form id="sell-car-form" class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
-                    <div class="mb-4">
-                        <label for="name" class="block text-gray-700 font-bold mb-2">Nombre completo</label>
-                        <input type="text" id="name" name="name" class="w-full px-3 py-2 border rounded-lg" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="email" class="block text-gray-700 font-bold mb-2">Correo electrónico</label>
-                        <input type="email" id="email" name="email" class="w-full px-3 py-2 border rounded-lg" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="phone" class="block text-gray-700 font-bold mb-2">Teléfono</label>
-                        <input type="tel" id="phone" name="phone" class="w-full px-3 py-2 border rounded-lg" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="car-make" class="block text-gray-700 font-bold mb-2">Marca del auto</label>
-                        <input type="text" id="car-make" name="car-make" class="w-full px-3 py-2 border rounded-lg" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="car-model" class="block text-gray-700 font-bold mb-2">Modelo del auto</label>
-                        <input type="text" id="car-model" name="car-model" class="w-full px-3 py-2 border rounded-lg" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="car-year" class="block text-gray-700 font-bold mb-2">Año del auto</label>
-                        <input type="number" id="car-year" name="car-year" class="w-full px-3 py-2 border rounded-lg" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="car-mileage" class="block text-gray-700 font-bold mb-2">Kilometraje</label>
-                        <input type="number" id="car-mileage" name="car-mileage" class="w-full px-3 py-2 border rounded-lg" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="car-condition" class="block text-gray-700 font-bold mb-2">Condición del auto</label>
-                        <select id="car-condition" name="car-condition" class="w-full px-3 py-2 border rounded-lg" required>
-                            <option value="">Selecciona una opción</option>
-                            <option value="excelente">Excelente</option>
-                            <option value="bueno">Bueno</option>
-                            <option value="regular">Regular</option>
-                            <option value="necesita-reparacion">Necesita reparación</option>
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label for="comments" class="block text-gray-700 font-bold mb-2">Comentarios adicionales</label>
-                        <textarea id="comments" name="comments" rows="4" class="w-full px-3 py-2 border rounded-lg"></textarea>
-                    </div>
-                    <button type="submit" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors">
-                        Enviar información
-                    </button>
-                </form>
+                <div class="max-w-2xl mx-auto">
+                    <form id="sell-car-form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                                Nombre
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                                Email
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
+                                Teléfono
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" type="tel" placeholder="Tu número de teléfono" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="car-make">
+                                Marca del Auto
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-make" type="text" placeholder="Ej. Toyota" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="car-model">
+                                Modelo del Auto
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-model" type="text" placeholder="Ej. Corolla" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="car-year">
+                                Año del Auto
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-year" type="number" placeholder="Ej. 2018" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="car-mileage">
+                                Kilometraje
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="car-mileage" type="number" placeholder="Ej. 50000" required>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <button class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                Enviar
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
 
@@ -149,13 +140,33 @@
                 <h2 class="inline-block text-2xl font-semibold border-b-2 border-primary pb-2 mb-12">
                     Nuestros Reels
                 </h2>
-                <div class="instagram-reels-slider overflow-hidden">
-                    <div class="swiper-wrapper">
+                <div class="instagram-reels-slider overflow-x-auto">
+                    <div class="flex space-x-4">
                         <!-- Los Reels se insertarán aquí mediante JavaScript -->
                     </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nueva Sección Nosotros -->
+        <section id="nosotros" class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="inline-block text-2xl font-semibold border-b-2 border-primary pb-2 mb-12">
+                    Nosotros
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold">Nuestra Historia</h3>
+                        <p>D'Motors nació de la pasión por los automóviles de lujo y la búsqueda de la excelencia en el servicio al cliente. Desde nuestros inicios, nos hemos dedicado a ofrecer una experiencia única en la compra y venta de vehículos de alta gama.</p>
+                        <h3 class="text-xl font-semibold">Nuestra Misión</h3>
+                        <p>Nuestra misión es proporcionar a nuestros clientes los mejores vehículos de lujo del mercado, junto con un servicio personalizado y de calidad superior, garantizando su satisfacción en cada interacción con nosotros.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="images/team-1.jpg" alt="Equipo D'Motors" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="images/showroom-1.jpg" alt="Showroom D'Motors" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="images/car-detail-1.jpg" alt="Detalle de auto" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="images/team-2.jpg" alt="Equipo D'Motors" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </div>
                 </div>
             </div>
         </section>
@@ -164,105 +175,77 @@
     <!-- Footer -->
     <footer id="contacto" class="bg-dark text-white py-16">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <img src="logo.png" alt="D'Motors Logo" class="h-12 mb-6">
-                    <p class="text-gray-400">
-                        Tu destino premium para vehículos de lujo y alto rendimiento.
-                    </p>
+                    <h3 class="text-xl font-semibold mb-4">Sobre Nosotros</h3>
+                    <p>D'Motors es tu destino para vehículos de lujo. Ofrecemos una amplia selección de autos de alta gama y un servicio excepcional.</p>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-6">Enlaces Rápidos</h4>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Inicio</a></li>
-                        <li><a href="#comprar" class="text-gray-400 hover:text-white">Inventario</a></li>
-                        <li><a href="#vender" class="text-gray-400 hover:text-white">Vender Tu Auto</a></li>
-                        <li><a href="#noticias" class="text-gray-400 hover:text-white">Noticias</a></li>
+                    <h3 class="text-xl font-semibold mb-4">Enlaces Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#comprar" class="hover:text-primary transition-colors">Comprar</a></li>
+                        <li><a href="#vender" class="hover:text-primary transition-colors">Vender</a></li>
+                        <li><a href="#noticias" class="hover:text-primary transition-colors">Noticias</a></li>
+                        <li><a href="#nosotros" class="hover:text-primary transition-colors">Nosotros</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-6">Contáctanos</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-center text-gray-400">
-                            <i class="fas fa-map-marker-alt w-6"></i>
-                            <span>Av. Principal 123, Ciudad</span>
-                        </li>
-                        <li class="flex items-center text-gray-400">
-                            <i class="fas fa-phone w-6"></i>
-                            <span>+54 9 3547 504071</span>
-                        </li>
-                        <li class="flex items-center text-gray-400">
-                            <i class="fas fa-envelope w-6"></i>
-                            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2440494b504b56570a474645644349454d480a474b49">[email&#160;protected]</a></span>
-                        </li>
-                    </ul>
+                    <h3 class="text-xl font-semibold mb-4">Contacto</h3>
+                    <p>Dirección: 123 Calle Principal, Ciudad</p>
+                    <p>Teléfono: (123) 456-7890</p>
+                    <p>Email: info@dmotors.com</p>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-6">Síguenos</h4>
+                    <h3 class="text-xl font-semibold mb-4">Síguenos</h3>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
+                        <a href="#" class="text-2xl hover:text-primary transition-colors"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-2xl hover:text-primary transition-colors"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
                 <p>&copy; 2023 D'Motors. Todos los derechos reservados.</p>
-                <p class="mt-2">Powered by Duality Domain</p>
             </div>
         </div>
     </footer>
 
     <!-- Modal de Detalles -->
     <div id="car-modal" class="fixed inset-0 bg-black bg-opacity-90 hidden z-50 overflow-y-auto">
-        <div class="container mx-auto px-4 min-h-screen flex items-center justify-center py-8">
-            <div class="bg-white w-full max-w-4xl rounded-lg shadow-xl overflow-hidden">
-                <div class="sticky top-0 bg-white p-4 border-b flex justify-between items-center">
-                    <h3 id="modal-title" class="text-2xl font-bold"></h3>
-                    <button id="close-modal" class="text-2xl hover:text-primary transition-colors">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
+        <div class="container mx-auto px-4 py-8">
+            <div class="bg-white rounded-lg overflow-hidden max-w-4xl mx-auto">
                 <div class="p-6">
-                    <div class="swiper car-images-slider mb-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 id="modal-title" class="text-2xl font-bold"></h2>
+                        <button id="close-modal" class="text-3xl">&times;</button>
+                    </div>
+                    <div class="car-images-slider mb-6">
                         <div class="swiper-wrapper">
-                            <!-- Las imágenes se insertarán aquí -->
+                            <!-- Las imágenes se insertarán aquí mediante JavaScript -->
                         </div>
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
-                    
-                    <div class="space-y-4">
-                        <div class="border rounded-lg overflow-hidden">
-                            <button class="accordion-header w-full bg-gray-100 px-4 py-2 text-left font-semibold flex justify-between items-center">
-                                Información del Vehículo
-                                <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                            </button>
-                            <div class="accordion-content px-4 py-2">
-                                <div id="vehicle-info"></div>
-                            </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Información del Vehículo</h3>
+                            <div id="vehicle-info"></div>
                         </div>
-                        <div class="border rounded-lg overflow-hidden">
-                            <button class="accordion-header w-full bg-gray-100 px-4 py-2 text-left font-semibold flex justify-between items-center">
-                                Especificaciones Técnicas
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 accordion-header flex justify-between items-center cursor-pointer">
+                                <span>Especificaciones Técnicas</span>
                                 <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                            </button>
-                            <div class="accordion-content px-4 py-2">
-                                <div id="technical-specs"></div>
-                            </div>
+                            </h3>
+                            <div id="technical-specs" class="accordion-content"></div>
                         </div>
                     </div>
-                    
-                    <button id="modal-whatsapp-button" class="mt-6 bg-green-500 text-white w-full py-3 rounded-lg hover:bg-green-600 transition-colors">
-                        <i class="fab fa-whatsapp mr-2"></i> Consultar por WhatsApp
-                    </button>
+                    <div class="mt-8 text-center">
+                        <button id="modal-whatsapp-button" class="bg-green-500 text-white py-2 px-6 rounded-full inline-flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i> Consultar por WhatsApp
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -270,15 +253,14 @@
 
     <!-- Botón flotante de WhatsApp -->
     <div id="whatsapp-button" class="fixed bottom-6 right-6 z-50">
-        <button class="bg-green-500 text-white rounded-full p-4 shadow-lg hover:bg-green-600 transition-colors">
+        <a href="https://wa.me/5493547504071" target="_blank" class="bg-green-500 text-white rounded-full p-3 inline-block shadow-lg">
             <i class="fab fa-whatsapp text-3xl"></i>
-        </button>
-        <span id="whatsapp-notification" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hidden">
+        </a>
+        <div id="whatsapp-notification" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">
             1
-        </span>
+        </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
