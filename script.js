@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const whatsappButton = document.getElementById('modal-whatsapp-button');
         whatsappButton.onclick = () => {
             const message = encodeURIComponent(`Hola, estoy interesado en el ${car.year} ${car.name}. ¿Podrían darme más información?`);
-            window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
+            window.open(`https://wa.me/5493547504071?text=${message}`, '_blank');
         };
 
         modal.classList.remove('hidden');
@@ -136,6 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
             swiper.destroy();
         }
         initSwiper();
+
+        // Inicializar acordeón
+        initAccordion();
     }
 
     closeModal.addEventListener('click', () => {
@@ -170,34 +173,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Acordeón mejorado
-    const accordionItems = document.querySelectorAll('.accordion-item');
-    accordionItems.forEach(item => {
-        const header = item.querySelector('.accordion-header');
-        const content = item.querySelector('.accordion-content');
+    function initAccordion() {
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('i');
 
-        header.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
+                // Toggle active class
+                header.classList.toggle('active');
 
-            // Cerrar todos los items
-            accordionItems.forEach(i => {
-                i.classList.remove('active');
-                i.querySelector('.accordion-content').style.maxHeight = null;
+                // Toggle icon rotation
+                icon.style.transform = header.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
+
+                // Toggle content visibility
+                if (header.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = null;
+                }
             });
-
-            // Abrir el item actual si no estaba activo
-            if (!isActive) {
-                item.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
         });
-    });
+    }
 
     // Botón de WhatsApp
     const whatsappButton = document.getElementById('whatsapp-button');
     const whatsappNotification = document.getElementById('whatsapp-notification');
 
     whatsappButton.addEventListener('click', () => {
-        window.open('https://wa.me/1234567890', '_blank');
+        window.open('https://wa.me/5493547504071', '_blank');
     });
 
     // Simular notificación después de 5 segundos
