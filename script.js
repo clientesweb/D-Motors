@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="car-card">
                 <div class="car-image-slider" data-car-id="${car.id}">
                     ${car.images.map((img, index) => `
-                        <img src="${img}" alt="${car.name}" class="${index === 0 ? 'active' : ''}" />
+                        <img src="${img}" alt="${car.name}" style="opacity: ${index === 0 ? '1' : '0'};" />
                     `).join('')}
                 </div>
                 <div class="p-4">
@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
 
-        // Iniciar sliders de imágenes
         initImageSliders();
 
         // Agregar event listeners a los botones
@@ -62,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let currentIndex = 0;
 
             setInterval(() => {
-                images[currentIndex].classList.remove('active');
+                images[currentIndex].style.opacity = '0';
                 currentIndex = (currentIndex + 1) % images.length;
-                images[currentIndex].classList.add('active');
+                images[currentIndex].style.opacity = '1';
             }, 3000); // Cambiar imagen cada 3 segundos
         });
     }
@@ -214,3 +213,4 @@ document.addEventListener('DOMContentLoaded', () => {
         reelsContainer.scrollLeft = scrollLeft - walk;
     });
 });
+
