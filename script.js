@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function toggleMenu() {
         mobileMenu.classList.toggle('active');
-        document.body.classList.toggle('modal-open');
+        document.body.classList.toggle('overflow-hidden');
     }
 
     mobileMenuButton.addEventListener('click', toggleMenu);
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function renderCarCards() {
         carListings.innerHTML = cars.map(car => `
-            <div class="car-card bg-white shadow-lg overflow-hidden relative">
+            <div class="car-card">
                 <div class="relative">
                     <img src="${car.images[0]}" alt="${car.name}" class="w-full h-64 object-cover">
                     <span class="car-badge ${car.condition}">
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .join('');
 
         modal.classList.remove('hidden');
-        document.body.classList.add('modal-open');
+        document.body.classList.add('overflow-hidden');
         
         // Reinicializar Swiper
         if (swiper) {
@@ -142,16 +142,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeModal.addEventListener('click', () => {
         modal.classList.add('hidden');
-        document.body.classList.remove('modal-open');
+        document.body.classList.remove('overflow-hidden');
     });
 
     // Cerrar modal con tecla Escape
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
             modal.classList.add('hidden');
-            document.body.classList.remove('modal-open');
+            document.body.classList.remove('overflow-hidden');
         }
     });
+
+    // Botón de WhatsApp
+    const whatsappButton = document.getElementById('whatsapp-button');
+    const whatsappNotification = document.getElementById('whatsapp-notification');
+
+    whatsappButton.addEventListener('click', () => {
+        window.open('https://wa.me/1234567890', '_blank');
+    });
+
+    // Simular notificación después de 5 segundos
+    setTimeout(() => {
+        whatsappNotification.classList.remove('hidden');
+    }, 5000);
 
     // Inicializar la página
     renderCarCards();
