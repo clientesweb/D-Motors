@@ -56,6 +56,11 @@ body {
 }
 
 /* Actualización del slider de imágenes de autos */
+.car-slider {
+    width: 100%;
+    overflow: hidden;
+}
+
 .car-image-slider {
     @apply relative overflow-hidden;
     width: 100%;
@@ -63,11 +68,7 @@ body {
 }
 
 .car-image-slider img {
-    @apply absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out;
-}
-
-.car-image-slider img.active {
-    @apply opacity-100;
+    @apply absolute top-0 left-0 w-full h-full object-cover;
 }
 
 /* Slider */
@@ -86,29 +87,13 @@ body {
 }
 
 /* Actualización de Instagram Reels */
-.instagram-reels-container {
-    @apply flex flex-col space-y-4 py-4 px-4 items-center;
-    max-height: 80vh;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-primary) #f1f1f1;
-}
-
-.instagram-reels-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.instagram-reels-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-.instagram-reels-container::-webkit-scrollbar-thumb {
-    background-color: var(--color-primary);
-    border-radius: 3px;
+.instagram-slider {
+    width: 100%;
+    overflow: hidden;
 }
 
 .instagram-reel {
-    @apply w-full max-w-sm;
+    @apply w-full max-w-sm mx-auto;
     height: 600px;
 }
 
@@ -182,3 +167,7 @@ body {
     transition: max-height 0.5s ease-in;
 }
 
+/* Ajustes para Swiper */
+.swiper-slide {
+    height: auto;
+}
