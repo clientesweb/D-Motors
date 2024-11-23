@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeMenu.addEventListener('click', toggleMenu);
 
     // Cargar datos de autos desde JSON
-    fetch('cars.json')
+    fetch('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cars%20(1)-EGkZJWifU0Xlfjs6INXHDKO4fAiLej.json')
         .then(response => response.json())
         .then(data => {
             cars = data;
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="car-image-slider" data-car-id="${car.id}">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            ${car.cardImages.map(img => `
+                            ${car.images.map(img => `
                                 <div class="swiper-slide">
                                     <img src="${img}" alt="${car.name}" />
                                 </div>
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Actualizar imágenes del slider
         const swiperWrapper = document.querySelector('.car-images-slider .swiper-wrapper');
-        swiperWrapper.innerHTML = car.detailImages.map(img => `
+        swiperWrapper.innerHTML = car.images.map(img => `
             <div class="swiper-slide">
                 <img src="${img}" alt="${car.name}" class="w-full h-96 object-cover">
             </div>
@@ -112,6 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <p><strong>Motor:</strong> ${car.engine}</p>
             <p><strong>Potencia:</strong> ${car.power}</p>
             <p><strong>Transmisión:</strong> ${car.transmission}</p>
+            <p><strong>Color:</strong> ${car.color}</p>
+            <p><strong>Tipo:</strong> ${car.type}</p>
         `;
 
         // Actualizar especificaciones técnicas
@@ -203,3 +205,4 @@ document.addEventListener('DOMContentLoaded', () => {
         whatsappNotification.classList.remove('hidden');
     }, 5000);
 });
+
