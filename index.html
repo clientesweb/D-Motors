@@ -4,13 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D'Motors - Vehículos de Lujo</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --color-primary: #FF0000;
+            --color-primary-dark: #CC0000;
+            --color-secondary: #0066CC;
+            --color-accent: #FFD700;
+            --color-dark: #1A1A1A;
+            --color-light: #F5F5F5;
+        }
+    </style>
 </head>
 <body class="font-montserrat">
+    <!-- SVG Background -->
+    <div class="fixed inset-0 z-0 pointer-events-none opacity-5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <defs>
+                <pattern id="news-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <text x="10" y="50" font-family="Arial" font-size="20" fill="#FFFFFF">VIP</text>
+                    <text x="50" y="80" font-family="Arial" font-size="15" fill="#FFFFFF">DESIGN</text>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#news-pattern)" />
+        </svg>
+    </div>
+
+    <!-- Top Banner -->
+    <div class="bg-primary text-white py-2">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div>
+                <span class="mr-4"><i class="fas fa-phone mr-2"></i>(123) 456-7890</span>
+                <span><i class="fas fa-envelope mr-2"></i>info@dmotors.com</span>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
     <!-- Menú Móvil -->
     <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-95 opacity-0 pointer-events-none z-50 transition-opacity duration-300">
         <div class="flex flex-col h-full justify-center items-center">
@@ -58,6 +98,25 @@
                     <a href="#comprar" class="bg-primary text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-primary-dark transition-colors">
                         Ver Inventario
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Banner Publicitario -->
+        <section class="relative py-16 bg-cover bg-center" style="background-image: url('images/banner-bg.jpg');">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center text-white">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Ofertas Especiales Este Mes</h2>
+                    <p class="text-xl mb-8">No te pierdas nuestras increíbles ofertas en vehículos de lujo</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#comprar" class="bg-primary text-white py-2 px-6 rounded-full text-lg font-semibold hover:bg-primary-dark transition-colors">
+                            Ver Ofertas
+                        </a>
+                        <a href="#contacto" class="bg-secondary text-white py-2 px-6 rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors">
+                            Contactar
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -207,6 +266,7 @@
             </div>
             <div class="mt-8 pt-8 border-t border-gray-700 text-center">
                 <p>&copy; 2023 D'Motors. Todos los derechos reservados.</p>
+                <p class="mt-2">Powered by Duality Domain</p>
             </div>
         </div>
     </footer>
@@ -230,8 +290,11 @@
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <h3 class="text-xl font-semibold mb-4">Información del Vehículo</h3>
-                            <div id="vehicle-info"></div>
+                            <h3 class="text-xl font-semibold mb-4 accordion-header flex justify-between items-center cursor-pointer">
+                                <span>Información del Vehículo</span>
+                                <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </h3>
+                            <div id="vehicle-info" class="accordion-content"></div>
                         </div>
                         <div>
                             <h3 class="text-xl font-semibold mb-4 accordion-header flex justify-between items-center cursor-pointer">
