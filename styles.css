@@ -29,69 +29,9 @@ body {
     pointer-events: auto;
 }
 
-/* Categorías actualizadas */
-.categories {
-    @apply py-8;
-}
-
-.category-item {
-    @apply px-6 py-3 m-2 text-dark border-2 border-gray-200 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105;
-}
-
-.category-item:hover,
-.category-item.active {
-    @apply bg-primary text-white border-primary shadow-lg;
-}
-
-/* Animación para las categorías */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.category-item {
-    animation: fadeInUp 0.5s ease-out forwards;
-    opacity: 0;
-}
-
-.category-item:nth-child(1) { animation-delay: 0.1s; }
-.category-item:nth-child(2) { animation-delay: 0.2s; }
-.category-item:nth-child(3) { animation-delay: 0.3s; }
-.category-item:nth-child(4) { animation-delay: 0.4s; }
-.category-item:nth-child(5) { animation-delay: 0.5s; }
-
-/* Acordeón mejorado */
-.accordion-item {
-    @apply border-b border-gray-200 overflow-hidden;
-}
-
-.accordion-header {
-    @apply flex justify-between items-center w-full py-4 px-6 text-left text-lg font-semibold hover:bg-gray-50 transition-colors cursor-pointer;
-}
-
-.accordion-header i {
-    @apply transition-transform duration-300 ease-in-out;
-}
-
-.accordion-item.active .accordion-header i {
-    @apply transform rotate-180;
-}
-
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-}
-
-.accordion-item.active .accordion-content {
-    max-height: 1000px; /* Ajusta este valor según el contenido máximo esperado */
-    transition: max-height 0.5s ease-in;
+/* Grid de vehículos */
+#car-listings {
+    @apply grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3;
 }
 
 /* Tarjetas de Autos */
@@ -131,12 +71,22 @@ body {
 }
 
 /* Instagram Reels */
+.instagram-reels-container {
+    @apply overflow-x-auto whitespace-nowrap py-4;
+    scrollbar-width: none; /* Para Firefox */
+    -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+}
+
+.instagram-reels-container::-webkit-scrollbar {
+    display: none; /* Para Chrome, Safari y Opera */
+}
+
 .instagram-reel {
-    @apply w-full h-0 relative pb-[177.77%];
+    @apply inline-block w-64 h-[512px] mx-2;
 }
 
 .instagram-reel iframe {
-    @apply absolute top-0 left-0 w-full h-full;
+    @apply w-full h-full;
 }
 
 /* WhatsApp Button */
@@ -174,4 +124,32 @@ body {
     .container {
         @apply px-4;
     }
+}
+
+/* Acordeón mejorado */
+.accordion-item {
+    @apply border-b border-gray-200 overflow-hidden;
+}
+
+.accordion-header {
+    @apply flex justify-between items-center w-full py-4 px-6 text-left text-lg font-semibold hover:bg-gray-50 transition-colors cursor-pointer;
+}
+
+.accordion-header i {
+    @apply transition-transform duration-300 ease-in-out;
+}
+
+.accordion-item.active .accordion-header i {
+    @apply transform rotate-180;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 1000px; /* Ajusta este valor según el contenido máximo esperado */
+    transition: max-height 0.5s ease-in;
 }
