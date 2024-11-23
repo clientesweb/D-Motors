@@ -31,7 +31,7 @@ body {
 
 /* Grid de vehículos */
 #car-listings {
-    @apply grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3;
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
 }
 
 /* Tarjetas de Autos */
@@ -56,11 +56,6 @@ body {
 }
 
 /* Actualización del slider de imágenes de autos */
-.car-slider {
-    width: 100%;
-    overflow: hidden;
-}
-
 .car-image-slider {
     @apply relative overflow-hidden;
     width: 100%;
@@ -68,7 +63,11 @@ body {
 }
 
 .car-image-slider img {
-    @apply absolute top-0 left-0 w-full h-full object-cover;
+    @apply absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out;
+}
+
+.car-image-slider img.active {
+    @apply opacity-100;
 }
 
 /* Slider */
@@ -87,14 +86,29 @@ body {
 }
 
 /* Actualización de Instagram Reels */
-.instagram-slider {
-    width: 100%;
-    overflow: hidden;
+.instagram-reels-container {
+    @apply flex flex-nowrap space-x-4 py-4 px-4 overflow-x-auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) #f1f1f1;
+}
+
+.instagram-reels-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.instagram-reels-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.instagram-reels-container::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: 3px;
 }
 
 .instagram-reel {
-    @apply w-full max-w-sm mx-auto;
-    height: 600px;
+    @apply flex-shrink-0;
+    width: 315px;
+    height: 560px;
 }
 
 .instagram-reel iframe {
@@ -165,9 +179,4 @@ body {
 .accordion-item.active .accordion-content {
     max-height: 1000px;
     transition: max-height 0.5s ease-in;
-}
-
-/* Ajustes para Swiper */
-.swiper-slide {
-    height: auto;
 }
