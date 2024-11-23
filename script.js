@@ -51,23 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         Ver Detalles
                     </button>
                 </div>
+                <div class="car-badge ${car.condition.toLowerCase()}">${car.condition}</div>
             </div>
         `).join('');
 
-        initCarSliders();
-
-        // Agregar event listeners a los botones
-        document.querySelectorAll('.view-car-details').forEach(button => {
-            button.addEventListener('click', () => showCarDetails(button.dataset.carId));
-        });
-    }
-
-    // Inicializar sliders de imágenes
-    function initCarSliders() {
-        const sliders = document.querySelectorAll('.car-image-slider');
-        sliders.forEach(slider => {
-            const carId = slider.dataset.carId;
-            carSliders[carId] = new Swiper(slider.querySelector('.swiper'), {
+        // Inicializar Swipers para cada tarjeta de auto
+        cars.forEach(car => {
+            const slider = document.querySelector(`.car-image-slider[data-car-id="${car.id}"] .swiper`);
+            carSliders[car.id] = new Swiper(slider, {
                 loop: true,
                 pagination: {
                     el: '.swiper-pagination',
@@ -75,19 +66,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 navigation: {
                     nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev'
+                    prevEl: '.swiper-button-prev',
                 },
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false
-                }
+            });
+        });
+
+        // Agregar event listeners para los botones "Ver Detalles"
+        document.querySelectorAll('.view-car-details').forEach(button => {
+            button.addEventListener('click', () => {
+                const carId = button.getAttribute('data-car-id');
+                showCarDetails(carId);
             });
         });
     }
 
-    // Modal de Detalles
+    // Modal de Detalles del Auto
     const modal = document.getElementById('car-modal');
     const closeModal = document.getElementById('close-modal');
+    let modalSwiper;
 
     function showCarDetails(carId) {
         const car = cars.find(c => c.id === parseInt(carId));
@@ -96,69 +92,18 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-title').textContent = `${car.year} ${car.name}`;
 
         // Actualizar imágenes del slider
-        const swiperWrapper = document.querySelector('.car-images-slider .swiper-wrapper');
-        swiperWrapper.innerHTML = car.detailImages.map(img => `
+        const modalSlider = document.querySelector('.car-images-slider .swiper-wrapper');
+        modalSlider.innerHTML = car.detailImages.map(img => `
             <div class="swiper-slide">
-                <img src="${img}" alt="${car.name}" class="w-full h-96 object-cover">
+                <img src="${img}" alt="${car.name}" class="w-full h-auto" />
             </div>
         `).join('');
 
-        // Actualizar información del vehículo
-        document.getElementById('vehicle-info').innerHTML = `
-            <p><strong>Precio:</strong> ${car.price}</p>
-            <p><strong>Condición:</strong> ${car.condition === 'new' ? 'Nuevo' : 'Usado'}</p>
-            <p><strong>Año:</strong> ${car.year}</p>
-            <p><strong>Kilometraje:</strong> ${car.mileage.toLocaleString()} km</p>
-            <p><strong>Motor:</strong> ${car.engine}</p>
-            <p><strong>Potencia:</strong> ${car.power}</p>
-            <p><strong>Transmisión:</strong> ${car.transmission}</p>
-            <p><strong>Color:</strong> ${car.color}</p>
-            <p><strong>Tipo:</strong> ${car.type}</p>
-        `;
-
-        // Actualizar especificaciones técnicas
-        document.getElementById('technical-specs').innerHTML = Object.entries(car.specs)
-            .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
-            .join('');
-
-        // Configurar botón de WhatsApp
-        const whatsappButton = document.getElementById('modal-whatsapp-button');
-        whatsappButton.onclick = () => {
-            const message = encodeURIComponent(`Hola, estoy interesado en el ${car.year} ${car.name}. ¿Podrían darme más información?`);
-            window.open(`https://wa.me/5493547504071?text=${message}`, '_blank');
-        };
-
-        modal.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-
-        // Reinicializar Swiper
-        if (window.modalSwiper) {
-            window.modalSwiper.destroy();
+        // Inicializar o actualizar Swiper
+        if (modalSwiper) {
+            modalSwiper.destroy();
         }
-        initModalSwiper();
-
-        // Inicializar acordeón
-        initAccordion();
-    }
-
-    closeModal.addEventListener('click', () => {
-        modal.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-    });
-
-    // Cerrar modal con tecla Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-            modal.classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
-        }
-    });
-
-    // Inicializar Swiper para el modal
-    function initModalSwiper() {
-        window.modalSwiper = new Swiper('.car-images-slider', {
-            slidesPerView: 1,
-            spaceBetween: 30,
+        modalSwiper = new Swiper('.car-images-slider', {
             loop: true,
             pagination: {
                 el: '.swiper-pagination',
@@ -166,73 +111,115 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             navigation: {
                 nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev'
-            }
+                prevEl: '.swiper-button-prev',
+            },
         });
+
+        // Actualizar información del vehículo
+        const vehicleInfo = document.getElementById('vehicle-info');
+        vehicleInfo.innerHTML = `
+            <p><strong>Marca:</strong> ${car.brand}</p>
+            <p><strong>Modelo:</strong> ${car.name}</p>
+            <p><strong>Año:</strong> ${car.year}</p>
+            <p><strong>Precio:</strong> ${car.price}</p>
+            <p><strong>Kilometraje:</strong> ${car.mileage}</p>
+            <p><strong>Condición:</strong> ${car.condition}</p>
+        `;
+
+        // Actualizar especificaciones técnicas
+        const technicalSpecs = document.getElementById('technical-specs');
+        technicalSpecs.innerHTML = `
+            <p><strong>Motor:</strong> ${car.engine}</p>
+            <p><strong>Transmisión:</strong> ${car.transmission}</p>
+            <p><strong>Combustible:</strong> ${car.fuelType}</p>
+            <p><strong>Tracción:</strong> ${car.drivetrain}</p>
+            <p><strong>Color Exterior:</strong> ${car.exteriorColor}</p>
+            <p><strong>Color Interior:</strong> ${car.interiorColor}</p>
+        `;
+
+        // Configurar botón de WhatsApp en el modal
+        const modalWhatsAppButton = document.getElementById('modal-whatsapp-button');
+        modalWhatsAppButton.href = `https://wa.me/5493547504071?text=Hola, estoy interesado en el ${car.year} ${car.name}. ¿Podrían darme más información?`;
+
+        modal.classList.remove('hidden');
+        document.body.classList.add('modal-open');
     }
 
-    // Acordeón mejorado
-    function initAccordion() {
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
-        accordionHeaders.forEach(header => {
-            header.addEventListener('click', () => {
-                const content = header.nextElementSibling;
-                const icon = header.querySelector('i');
-
-                // Toggle active class
-                header.classList.toggle('active');
-
-                // Toggle icon rotation
-                icon.style.transform = header.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
-
-                // Toggle content visibility
-                if (header.classList.contains('active')) {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                } else {
-                    content.style.maxHeight = null;
-                }
-            });
-        });
-    }
-
-    // Botón de WhatsApp
-    const whatsappButton = document.getElementById('whatsapp-button');
-    const whatsappNotification = document.getElementById('whatsapp-notification');
-
-    whatsappButton.addEventListener('click', () => {
-        window.open('https://wa.me/5493547504071', '_blank');
+    closeModal.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        document.body.classList.remove('modal-open');
     });
 
-    // Simular notificación después de 5 segundos
-    setTimeout(() => {
-        whatsappNotification.classList.remove('hidden');
-    }, 5000);
+    // Cerrar modal al hacer clic fuera del contenido
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }
+    });
 
-    // Formulario de venta de autos
+    // Manejar envío del formulario de venta de autos
     const sellCarForm = document.getElementById('sell-car-form');
     sellCarForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData(sellCarForm);
-        let message = 'Nuevo formulario de venta de auto:\n\n';
-        for (let [key, value] of formData.entries()) {
-            message += `${key}: ${value}\n`;
-        }
-        const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/5493547504071?text=${encodedMessage}`, '_blank');
+        const message = `Nuevo formulario de venta de auto:
+Nombre: ${formData.get('name')}
+Email: ${formData.get('email')}
+Teléfono: ${formData.get('phone')}
+Marca: ${formData.get('car-make')}
+Modelo: ${formData.get('car-model')}
+Año: ${formData.get('car-year')}
+Kilometraje: ${formData.get('car-mileage')}`;
+
+        window.open(`https://wa.me/5493547504071?text=${encodeURIComponent(message)}`, '_blank');
+        sellCarForm.reset();
     });
 
-    // Instagram Reels Slider
-    const reelsData = [
-        'https://www.instagram.com/reel/ABC123/',
-        'https://www.instagram.com/reel/DEF456/',
-        'https://www.instagram.com/reel/GHI789/'
-    ];
+    // Cargar y mostrar Instagram Reels
+    function loadInstagramReels() {
+        const reelsContainer = document.querySelector('.instagram-reels-slider .flex');
+        // Reemplaza estos con los códigos de inserción reales de tus Reels de Instagram
+        const reelEmbedCodes = [
+            '<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/ABC123/" data-instgrm-version="14"></blockquote>',
+            '<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DEF456/" data-instgrm-version="14"></blockquote>',
+            '<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/GHI789/" data-instgrm-version="14"></blockquote>',
+        ];
 
-    const reelsSlider = document.querySelector('.instagram-reels-slider .flex');
-    reelsData.forEach(reelUrl => {
-        const reel = document.createElement('div');
-        reel.className = 'instagram-reel';
-        reel.innerHTML = `<iframe src="${reelUrl}embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>`;
-        reelsSlider.appendChild(reel);
+        reelsContainer.innerHTML = reelEmbedCodes.map(code => `
+            <div class="instagram-reel">
+                ${code}
+            </div>
+        `).join('');
+
+        // Cargar el script de Instagram para procesar los embeds
+        const script = document.createElement('script');
+        script.src = '//www.instagram.com/embed.js';
+        document.body.appendChild(script);
+    }
+
+    loadInstagramReels();
+
+    // Manejar acordeones en el modal
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            header.classList.toggle('active');
+            const icon = header.querySelector('i');
+            icon.classList.toggle('rotate-180');
+        });
+    });
+
+    // Notificación de WhatsApp
+    const whatsappButton = document.getElementById('whatsapp-button');
+    const whatsappNotification = document.getElementById('whatsapp-notification');
+
+    // Simular una notificación después de 5 segundos
+    setTimeout(() => {
+        whatsappNotification.classList.remove('hidden');
+    }, 5000);
+
+    whatsappButton.addEventListener('click', () => {
+        whatsappNotification.classList.add('hidden');
     });
 });
