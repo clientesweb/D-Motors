@@ -132,10 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('overflow-hidden');
 
         // Reinicializar Swiper
-        if (swiper) {
-            swiper.destroy();
+        if (window.modalSwiper) {
+            window.modalSwiper.destroy();
         }
-        initSwiper();
+        initModalSwiper();
 
         // Inicializar acordeón
         initAccordion();
@@ -154,10 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Inicializar Swiper
-    let swiper;
-    function initSwiper() {
-        swiper = new Swiper('.car-images-slider', {
+    // Inicializar Swiper para el modal
+    function initModalSwiper() {
+        window.modalSwiper = new Swiper('.car-images-slider', {
             slidesPerView: 1,
             spaceBetween: 30,
             loop: true,
@@ -229,22 +228,11 @@ document.addEventListener('DOMContentLoaded', () => {
         'https://www.instagram.com/reel/GHI789/'
     ];
 
-    const reelsSlider = document.querySelector('.instagram-reels-slider .swiper-wrapper');
+    const reelsSlider = document.querySelector('.instagram-reels-slider .flex');
     reelsData.forEach(reelUrl => {
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide';
-        slide.innerHTML = `<iframe src="${reelUrl}embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>`;
-        reelsSlider.appendChild(slide);
-    });
-
-    new Swiper('.instagram-reels-slider', {
-        direction: 'vertical',
-        slidesPerView: 1,
-        spaceBetween: 0,
-        mousewheel: true,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
+        const reel = document.createElement('div');
+        reel.className = 'instagram-reel';
+        reel.innerHTML = `<iframe src="${reelUrl}embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>`;
+        reelsSlider.appendChild(reel);
     });
 });
