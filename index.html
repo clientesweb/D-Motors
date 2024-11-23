@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="font-montserrat">
@@ -99,13 +99,8 @@
                 <h2 class="inline-block text-2xl font-semibold border-b-2 border-primary pb-2 mb-12">
                     Nuestro Inventario
                 </h2>
-                <div class="car-slider">
-                    <div id="car-listings" class="swiper-wrapper">
-                        <!-- Los autos se insertarán aquí mediante JavaScript -->
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+                <div id="car-listings" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Los autos se insertarán aquí mediante JavaScript -->
                 </div>
             </div>
         </section>
@@ -114,37 +109,22 @@
         <section class="py-16 bg-gray-100">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-8 text-center">Síguenos en Instagram</h2>
-                <div class="instagram-slider">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="instagram-reel">
-                                <iframe src="https://www.instagram.com/reel/REEL_ID_1/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="instagram-reel">
-                                <iframe src="https://www.instagram.com/reel/REEL_ID_2/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="instagram-reel">
-                                <iframe src="https://www.instagram.com/reel/REEL_ID_3/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="instagram-reel">
-                                <iframe src="https://www.instagram.com/reel/REEL_ID_4/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="instagram-reel">
-                                <iframe src="https://www.instagram.com/reel/REEL_ID_5/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                            </div>
-                        </div>
+                <div class="instagram-reels-container">
+                    <div class="instagram-reel">
+                        <iframe src="https://www.instagram.com/reel/REEL_ID_1/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
                     </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+                    <div class="instagram-reel">
+                        <iframe src="https://www.instagram.com/reel/REEL_ID_2/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+                    <div class="instagram-reel">
+                        <iframe src="https://www.instagram.com/reel/REEL_ID_3/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+                    <div class="instagram-reel">
+                        <iframe src="https://www.instagram.com/reel/REEL_ID_4/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
+                    <div class="instagram-reel">
+                        <iframe src="https://www.instagram.com/reel/REEL_ID_5/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
                 </div>
             </div>
         </section>
