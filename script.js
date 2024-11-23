@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     let cars = [];
+    let motos = [];
     let carSliders = {};
+    let motoSliders = {};
 
     // Menú Móvil
     const mobileMenu = document.getElementById('mobile-menu');
@@ -23,6 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
             renderCarCards();
         })
         .catch(error => console.error('Error cargando los datos de autos:', error));
+
+    // Cargar datos de motos desde JSON
+    fetch('motos.json')
+        .then(response => response.json())
+        .then(data => {
+            motos = data;
+            renderMotoCards();
+        })
+        .catch(error => console.error('Error cargando los datos de motos:', error));
 
     // Renderizar Tarjetas de Autos
     function renderCarCards() {
@@ -90,6 +101,72 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Renderizar Tarjetas de Motos
+    function renderMotoCards() {
+        const motoListings = document.getElementById('moto-listings');
+        if (!motoListings) {
+            console.error('El elemento #moto-listings no se encontró en el DOM');
+            return;
+        }
+        motoListings.innerHTML = motos.map(moto => `
+            <div class="moto-card">
+                <div class="moto-image-slider" data-moto-id="${moto.id}">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            ${moto.cardImages.map(img => `
+                                <div class="swiper-slide">
+                                    <img src="${img}" alt="${moto.name}" />
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-bold mb-2">${moto.year} ${moto.name}</h3>
+                    <p class="text-xl font-bold text-primary mb-2">${moto.price}</p>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span><i class="fas fa-road mr-1"></i>${moto.mileage} km</span>
+                        <span><i class="fas fa-gas-pump mr-1"></i>${moto.specs.Combustible}</span>
+                        <span><i class="fas fa-cog mr-1"></i>${moto.transmission}</span>
+                    </div>
+                    <button class="view-moto-details w-full bg-accent text-white py-2 text-sm hover:bg-gray-800 transition-colors" 
+                            data-moto-id="${moto.id}">
+                        Ver Detalles
+                    </button>
+                </div>
+            </div>
+        `).join('');
+
+        // Inicializar Swipers para cada tarjeta de moto
+        motos.forEach(moto => {
+            const slider = document.querySelector(`.moto-image-slider[data-moto-id="${moto.id}"] .swiper`);
+            if (slider) {
+                motoSliders[moto.id] = new Swiper(slider, {
+                    loop: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+            }
+        });
+
+        // Agregar event listeners para los botones "Ver Detalles"
+        document.querySelectorAll('.view-moto-details').forEach(button => {
+            button.addEventListener('click', () => {
+                const motoId = button.getAttribute('data-moto-id');
+                showMotoDetails(motoId);
+            });
+        });
+    }
+
     // Modal de Detalles del Auto
     const modal = document.getElementById('car-modal');
     const closeModal = document.getElementById('close-modal');
@@ -151,6 +228,66 @@ document.addEventListener('DOMContentLoaded', () => {
         // Configurar botón de WhatsApp en el modal
         const modalWhatsAppButton = document.getElementById('modal-whatsapp-button');
         modalWhatsAppButton.href = `https://wa.me/5493547504071?text=Hola, estoy interesado en el ${car.year} ${car.name}. ¿Podrían darme más información?`;
+
+        modal.classList.remove('hidden');
+        document.body.classList.add('modal-open');
+    }
+
+    function showMotoDetails(motoId) {
+        const moto = motos.find(m => m.id === parseInt(motoId));
+        if (!moto) return;
+
+        document.getElementById('modal-title').textContent = `${moto.year} ${moto.name}`;
+
+        // Actualizar imágenes del slider
+        const modalSlider = document.querySelector('.car-images-slider .swiper-wrapper');
+        modalSlider.innerHTML = moto.detailImages.map(img => `
+            <div class="swiper-slide">
+                <img src="${img}" alt="${moto.name}" class="w-full h-full object-cover" />
+            </div>
+        `).join('');
+
+        // Inicializar o actualizar Swiper
+        if (modalSwiper) {
+            modalSwiper.destroy();
+        }
+        modalSwiper = new Swiper('.car-images-slider', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        // Actualizar información del vehículo
+        const vehicleInfo = document.getElementById('vehicle-info');
+        vehicleInfo.innerHTML = `
+            <p><strong>Marca:</strong> ${moto.name.split(' ')[0]}</p>
+            <p><strong>Modelo:</strong> ${moto.name.split(' ').slice(1).join(' ')}</p>
+            <p><strong>Año:</strong> ${moto.year}</p>
+            <p><strong>Precio:</strong> ${moto.price}</p>
+            <p><strong>Kilometraje:</strong> ${moto.mileage} km</p>
+            <p><strong>Condición:</strong> ${moto.condition}</p>
+        `;
+
+        // Actualizar especificaciones técnicas
+        const technicalSpecs = document.getElementById('technical-specs');
+        technicalSpecs.innerHTML = `
+            <p><strong>Motor:</strong> ${moto.engine}</p>
+            <p><strong>Potencia:</strong> ${moto.power}</p>
+            <p><strong>Transmisión:</strong> ${moto.transmission}</p>
+            <p><strong>Combustible:</strong> ${moto.specs.Combustible}</p>
+            <p><strong>Cilindrada:</strong> ${moto.specs.Cilindrada}</p>
+            <p><strong>Color:</strong> ${moto.specs.Color}</p>
+        `;
+
+        // Configurar botón de WhatsApp en el modal
+        const modalWhatsAppButton = document.getElementById('modal-whatsapp-button');
+        modalWhatsAppButton.href = `https://wa.me/5493547504071?text=Hola, estoy interesado en la ${moto.year} ${moto.name}. ¿Podrían darme más información?`;
 
         modal.classList.remove('hidden');
         document.body.classList.add('modal-open');
