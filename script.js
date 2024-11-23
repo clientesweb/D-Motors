@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    let cars = [];
+    let swiper;
+
     // Menú Móvil
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -12,61 +15,38 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenuButton.addEventListener('click', toggleMenu);
     closeMenu.addEventListener('click', toggleMenu);
 
-    // Datos de los Autos
-    const cars = [
-        {
-            id: 1,
-            name: 'BMW X5 xDrive40i',
-            year: 2020,
-            mileage: 62255,
-            type: 'GCC',
-            color: 'Azul',
-            price: '219,000 AED',
-            condition: 'used',
-            engine: '3.0L 6 cilindros',
-            power: '335 hp',
-            transmission: 'Automática 8 velocidades',
-            images: [
-                'bmw-x5-1.jpg',
-                'bmw-x5-2.jpg',
-                'bmw-x5-3.jpg'
-            ],
-            specs: {
-                'Tipo de Carrocería': 'SUV',
-                'Combustible': 'Gasolina',
-                'Tracción': 'Integral',
-                'Color Interior': 'Negro',
-                'Color Exterior': 'Azul',
-                'VIN': 'WBAKS4102L0V00000'
-            }
-        },
-        // Agregar más autos aquí
-    ];
+    // Cargar datos de autos desde JSON
+    fetch('cars.json')
+        .then(response => response.json())
+        .then(data => {
+            cars = data;
+            renderCarCards();
+            setupCategoryFilter();
+        })
+        .catch(error => console.error('Error cargando los datos de autos:', error));
 
-    // Inicializar Swiper
-    let swiper;
-
-    function initSwiper() {
-        swiper = new Swiper('.car-images-slider', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev'
-            }
+    // Filtro de categorías
+    function setupCategoryFilter() {
+        const categoryButtons = document.querySelectorAll('.category-item');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.dataset.category;
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterCars(category);
+            });
         });
     }
 
+    function filterCars(category) {
+        const filteredCars = category === 'all' ? cars : cars.filter(car => car.category === category);
+        renderCarCards(filteredCars);
+    }
+
     // Renderizar Tarjetas de Autos
-    const carListings = document.getElementById('car-listings');
-    
-    function renderCarCards() {
-        carListings.innerHTML = cars.map(car => `
+    function renderCarCards(carsToRender = cars) {
+        const carListings = document.getElementById('car-listings');
+        carListings.innerHTML = carsToRender.map(car => `
             <div class="car-card">
                 <div class="relative">
                     <img src="${car.images[0]}" alt="${car.name}" class="w-full h-64 object-cover">
@@ -77,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2">${car.year} ${car.name}</h3>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">${car.mileage} km</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">${car.mileage.toLocaleString()} km</span>
                         <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">${car.type}</span>
                         <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">${car.color}</span>
                     </div>
@@ -96,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Mostrar Modal de Detalles
+    // Modal de Detalles
     const modal = document.getElementById('car-modal');
     const closeModal = document.getElementById('close-modal');
     
@@ -119,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p><strong>Precio:</strong> ${car.price}</p>
             <p><strong>Condición:</strong> ${car.condition === 'new' ? 'Nuevo' : 'Usado'}</p>
             <p><strong>Año:</strong> ${car.year}</p>
-            <p><strong>Kilometraje:</strong> ${car.mileage} km</p>
+            <p><strong>Kilometraje:</strong> ${car.mileage.toLocaleString()} km</p>
             <p><strong>Motor:</strong> ${car.engine}</p>
             <p><strong>Potencia:</strong> ${car.power}</p>
             <p><strong>Transmisión:</strong> ${car.transmission}</p>
@@ -129,6 +109,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('technical-specs').innerHTML = Object.entries(car.specs)
             .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
             .join('');
+
+        // Configurar botón de WhatsApp
+        const whatsappButton = document.getElementById('modal-whatsapp-button');
+        whatsappButton.onclick = () => {
+            const message = encodeURIComponent(`Hola, estoy interesado en el ${car.year} ${car.name}. ¿Podrían darme más información?`);
+            window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
+        };
 
         modal.classList.remove('hidden');
         document.body.classList.add('overflow-hidden');
@@ -153,6 +140,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Inicializar Swiper
+    function initSwiper() {
+        swiper = new Swiper('.car-images-slider', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            }
+        });
+    }
+
+    // Acordeón
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        header.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            accordionItems.forEach(i => i.classList.remove('active'));
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+
     // Botón de WhatsApp
     const whatsappButton = document.getElementById('whatsapp-button');
     const whatsappNotification = document.getElementById('whatsapp-notification');
@@ -165,7 +182,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         whatsappNotification.classList.remove('hidden');
     }, 5000);
-
-    // Inicializar la página
-    renderCarCards();
 });
