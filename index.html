@@ -30,7 +30,7 @@
         <div class="container mx-auto px-4 flex flex-wrap justify-between items-center">
             <div class="w-full sm:w-auto mb-2 sm:mb-0">
                 <span class="mr-4 inline-block"><i class="fas fa-phone mr-2"></i>(123) 456-7890</span>
-                <span class="inline-block"><i class="fas fa-envelope mr-2"></i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d1b8bfb7be91b5bcbea5bea3a2ffb2bebc">[email&#160;protected]</a></span>
+                <span class="inline-block"><i class="fas fa-envelope mr-2"></i>info@dmotors.com</span>
             </div>
             <div class="flex space-x-4">
                 <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-facebook"></i></a>
@@ -81,13 +81,15 @@
                 <source src="video/luxury-cars.mp4" type="video/mp4">
                 Tu navegador no soporta el tag de video.
             </video>
-            <div class="absolute inset-0 bg-accent bg-opacity-50 flex items-center justify-center">
-                <div class="text-center text-white">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Descubre el Lujo en Cuatro Ruedas</h1>
-                    <p class="text-xl md:text-2xl mb-8">Experimenta la excelencia automotriz con D'Motors</p>
-                    <a href="#comprar" class="bg-primary text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-primary-dark transition-colors">
-                        Ver Inventario
-                    </a>
+            <div class="absolute inset-0 bg-accent bg-opacity-50 flex items-center">
+                <div class="container mx-auto px-4">
+                    <div class="text-white max-w-lg">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4">Descubre el Lujo en Cuatro Ruedas</h1>
+                        <p class="text-xl md:text-2xl mb-8">Experimenta la excelencia automotriz con D'Motors</p>
+                        <a href="#comprar" class="bg-primary text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-primary-dark transition-colors inline-block">
+                            Ver Inventario
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -115,10 +117,22 @@
         <section id="comprar" class="py-16">
             <div class="container mx-auto px-4">
                 <h2 class="inline-block text-2xl font-semibold border-b-2 border-primary pb-2 mb-12">
-                    Nuestro Inventario
+                    Nuestro Inventario de Autos
                 </h2>
                 <div id="car-listings" class="flex flex-nowrap overflow-x-auto gap-4 pb-4">
                     <!-- Los autos se insertarán aquí mediante JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Listado de Motos -->
+        <section id="motos" class="py-16 bg-light">
+            <div class="container mx-auto px-4">
+                <h2 class="inline-block text-2xl font-semibold border-b-2 border-primary pb-2 mb-12">
+                    Nuestras Motos
+                </h2>
+                <div id="moto-listings" class="flex flex-nowrap overflow-x-auto gap-4 pb-4">
+                    <!-- Las motos se insertarán aquí mediante JavaScript -->
                 </div>
             </div>
         </section>
@@ -214,14 +228,13 @@
                         <h3 class="text-xl font-semibold">Nuestra Historia</h3>
                         <p>D'Motors nació de la pasión por los automóviles de lujo y la búsqueda de la excelencia en el servicio al cliente. Desde nuestros inicios, nos hemos dedicado a ofrecer una experiencia única en la compra y venta de vehículos de alta gama.</p>
                         <h3 class="text-xl font-semibold">Nuestra Misión</h3>
-                        <p>Nuestra misión es proporcionar a nuestros clientes los mejores vehículos de lujo del mercado, junto con un servicio personalizado y de calidad superior, garantizando su
-satisfacción en cada interacción con nosotros.</p>
+                        <p>Nuestra misión es proporcionar a nuestros clientes los mejores vehículos de lujo del mercado, junto con un servicio personalizado y de calidad superior, garantizando su satisfacción en cada interacción con nosotros.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
-                        <img src="images/team-1.jpg" alt="Equipo D'Motors" class="w-full h-64 object-cover rounded-lg shadow-md">
-                        <img src="images/showroom-1.jpg" alt="Showroom D'Motors" class="w-full h-64 object-cover rounded-lg shadow-md">
-                        <img src="images/car-detail-1.jpg" alt="Detalle de auto" class="w-full h-64 object-cover rounded-lg shadow-md">
-                        <img src="images/team-2.jpg" alt="Equipo D'Motors" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="https://source.unsplash.com/random/800x600?luxury+car" alt="Equipo D'Motors" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="https://source.unsplash.com/random/800x600?car+showroom" alt="Showroom D'Motors" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="https://source.unsplash.com/random/800x600?car+detail" alt="Detalle de auto" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="https://source.unsplash.com/random/800x600?car+team" alt="Equipo D'Motors" class="w-full h-64 object-cover rounded-lg shadow-md">
                     </div>
                 </div>
             </div>
@@ -249,7 +262,7 @@ satisfacción en cada interacción con nosotros.</p>
                     <h3 class="text-xl font-semibold mb-4">Contacto</h3>
                     <p>Dirección: 123 Calle Principal, Ciudad</p>
                     <p>Teléfono: (123) 456-7890</p>
-                    <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7e171018113e1a13110a110c0d501d1113">[email&#160;protected]</a></p>
+                    <p>Email: info@dmotors.com</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold mb-4">Síguenos</h3>
@@ -318,7 +331,7 @@ satisfacción en cada interacción con nosotros.</p>
         </a>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
