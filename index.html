@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="font-montserrat">
@@ -99,35 +99,55 @@
                 <h2 class="inline-block text-2xl font-semibold border-b-2 border-primary pb-2 mb-12">
                     Nuestro Inventario
                 </h2>
-                <div id="car-listings" class="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    <!-- Los autos se insertarán aquí mediante JavaScript -->
+                <div class="car-slider">
+                    <div id="car-listings" class="swiper-wrapper">
+                        <!-- Los autos se insertarán aquí mediante JavaScript -->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
         </section>
 
         <!-- Instagram Reels -->
-<section class="py-16 bg-gray-100">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 text-center">Síguenos en Instagram</h2>
-        <div class="instagram-reels-container">
-            <div class="instagram-reel">
-                <iframe src="https://www.instagram.com/reel/REEL_ID_1/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 text-center">Síguenos en Instagram</h2>
+                <div class="instagram-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="instagram-reel">
+                                <iframe src="https://www.instagram.com/reel/REEL_ID_1/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="instagram-reel">
+                                <iframe src="https://www.instagram.com/reel/REEL_ID_2/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="instagram-reel">
+                                <iframe src="https://www.instagram.com/reel/REEL_ID_3/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="instagram-reel">
+                                <iframe src="https://www.instagram.com/reel/REEL_ID_4/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="instagram-reel">
+                                <iframe src="https://www.instagram.com/reel/REEL_ID_5/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
             </div>
-            <div class="instagram-reel">
-                <iframe src="https://www.instagram.com/reel/REEL_ID_2/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-            </div>
-            <div class="instagram-reel">
-                <iframe src="https://www.instagram.com/reel/REEL_ID_3/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-            </div>
-            <div class="instagram-reel">
-                <iframe src="https://www.instagram.com/reel/REEL_ID_4/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-            </div>
-            <div class="instagram-reel">
-                <iframe src="https://www.instagram.com/reel/REEL_ID_5/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -162,7 +182,7 @@
                         </li>
                         <li class="flex items-center text-gray-400">
                             <i class="fas fa-envelope w-6"></i>
-                            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="026b6c646d42666f6d766d70712c616d6f">[email&#160;protected]</a></span>
+                            <span>info@dmotors.com</span>
                         </li>
                     </ul>
                 </div>
@@ -243,7 +263,7 @@
         </span>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
