@@ -157,15 +157,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Acordeón
+    // Acordeón mejorado
     const accordionItems = document.querySelectorAll('.accordion-item');
     accordionItems.forEach(item => {
         const header = item.querySelector('.accordion-header');
+        const content = item.querySelector('.accordion-content');
+        
         header.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
-            accordionItems.forEach(i => i.classList.remove('active'));
+            
+            // Cerrar todos los items
+            accordionItems.forEach(i => {
+                i.classList.remove('active');
+                i.querySelector('.accordion-content').style.maxHeight = null;
+            });
+            
+            // Abrir el item actual si no estaba activo
             if (!isActive) {
                 item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
             }
         });
     });
@@ -182,4 +192,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         whatsappNotification.classList.remove('hidden');
     }, 5000);
+
+    // Animación de categorías
+    const categoryItems = document.querySelectorAll('.category-item');
+    categoryItems.forEach((item, index) => {
+        item.style.animationDelay = `${(index + 1) * 0.1}s`;
+    });
 });
