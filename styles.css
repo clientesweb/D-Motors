@@ -55,6 +55,19 @@ body {
     @apply bg-dark text-white;
 }
 
+/* Slider de imágenes de autos */
+.car-image-slider {
+    @apply relative overflow-hidden h-48;
+}
+
+.car-image-slider img {
+    @apply absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out;
+}
+
+.car-image-slider img.active {
+    @apply opacity-100;
+}
+
 /* Slider */
 .swiper-button-next,
 .swiper-button-prev {
@@ -72,17 +85,19 @@ body {
 
 /* Instagram Reels */
 .instagram-reels-container {
-    @apply overflow-x-auto whitespace-nowrap py-4;
-    scrollbar-width: none; /* Para Firefox */
-    -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+    @apply flex overflow-x-auto space-x-4 py-4 px-4;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .instagram-reels-container::-webkit-scrollbar {
-    display: none; /* Para Chrome, Safari y Opera */
+    display: none;
 }
 
 .instagram-reel {
-    @apply inline-block w-64 h-[512px] mx-2;
+    @apply flex-shrink-0 w-64 h-[512px];
+    scroll-snap-align: start;
 }
 
 .instagram-reel iframe {
@@ -150,6 +165,6 @@ body {
 }
 
 .accordion-item.active .accordion-content {
-    max-height: 1000px; /* Ajusta este valor según el contenido máximo esperado */
+    max-height: 1000px;
     transition: max-height 0.5s ease-in;
 }
