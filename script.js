@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Renderizar Tarjetas de Autos
     function renderCarCards() {
         const carListings = document.getElementById('car-listings');
+        if (!carListings) {
+            console.error('El elemento #car-listings no se encontró en el DOM');
+            return;
+        }
         carListings.innerHTML = cars.map(car => `
             <div class="car-card">
                 <div class="car-image-slider" data-car-id="${car.id}">
@@ -46,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="p-4">
                     <h3 class="text-lg font-bold mb-2">${car.year} ${car.name}</h3>
                     <p class="text-xl font-bold text-primary mb-2">${car.price}</p>
-                    <button class="view-car-details w-full bg-dark text-white py-2 text-sm hover:bg-gray-800 transition-colors" 
+                    <button class="view-car-details w-full bg-accent text-white py-2 text-sm hover:bg-gray-800 transition-colors" 
                             data-car-id="${car.id}">
                         Ver Detalles
                     </button>
@@ -58,17 +62,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // Inicializar Swipers para cada tarjeta de auto
         cars.forEach(car => {
             const slider = document.querySelector(`.car-image-slider[data-car-id="${car.id}"] .swiper`);
-            carSliders[car.id] = new Swiper(slider, {
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-            });
+            if (slider) {
+                carSliders[car.id] = new Swiper(slider, {
+                    loop: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+            }
         });
 
         // Agregar event listeners para los botones "Ver Detalles"
@@ -180,6 +186,10 @@ Comentarios adicionales: ${formData.get('additional-comments')}`;
     // Cargar y mostrar Instagram Reels
     function loadInstagramReels() {
         const reelsContainer = document.querySelector('.instagram-reels-slider .flex');
+        if (!reelsContainer) {
+            console.error('El contenedor de Instagram Reels no se encontró en el DOM');
+            return;
+        }
         // Reemplaza estos con los códigos de inserción reales de tus Reels de Instagram
         const reelEmbedCodes = [
             '<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/ABC123/" data-instgrm-version="14"></blockquote>',
@@ -194,9 +204,16 @@ Comentarios adicionales: ${formData.get('additional-comments')}`;
         `).join('');
 
         // Cargar el script de Instagram para procesar los embeds
-        const script = document.createElement('script');
-        script.src = '//www.instagram.com/embed.js';
-        document.body.appendChild(script);
+        if (!document.getElementById('instagram-embed-script')) {
+            const script = document.createElement('script');
+            script.id = 'instagram-embed-script';
+            script.src = '//www.instagram.com/embed.js';
+            document.body.appendChild(script);
+        } else {
+            if (window.instgrm) {
+                window.instgrm.Embeds.process();
+            }
+        }
     }
 
     loadInstagramReels();
@@ -224,3 +241,4 @@ Comentarios adicionales: ${formData.get('additional-comments')}`;
         whatsappNotification.classList.add('hidden');
     });
 });
+
