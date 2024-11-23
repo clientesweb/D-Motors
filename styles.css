@@ -31,7 +31,7 @@ body {
 
 /* Grid de vehículos */
 #car-listings {
-    @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+    @apply grid grid-cols-2 gap-4;
 }
 
 /* Tarjetas de Autos */
@@ -70,6 +70,22 @@ body {
     @apply w-full h-full object-cover;
 }
 
+/* Asegurar que todas las imágenes de las tarjetas tengan el mismo tamaño */
+.car-card .swiper-slide {
+    height: 0;
+    padding-bottom: 75%; /* Mantiene el aspect ratio 4:3 */
+    position: relative;
+}
+
+.car-card .swiper-slide img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /* Slider */
 .swiper-button-next,
 .swiper-button-prev {
@@ -83,37 +99,6 @@ body {
 /* Modal */
 .modal-open {
     overflow: hidden;
-}
-
-/* Instagram Reels */
-.instagram-reels-container {
-    @apply flex flex-nowrap space-x-4 py-4 px-4 overflow-x-auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-primary) #f1f1f1;
-}
-
-.instagram-reels-container::-webkit-scrollbar {
-    height: 6px;
-}
-
-.instagram-reels-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-.instagram-reels-container::-webkit-scrollbar-thumb {
-    background-color: var(--color-primary);
-    border-radius: 3px;
-}
-
-.instagram-reel {
-    @apply flex-shrink-0;
-    width: 315px;
-    height: 560px;
-}
-
-.instagram-reel iframe {
-    @apply w-full h-full;
-    border-radius: 15px;
 }
 
 /* WhatsApp Button */
