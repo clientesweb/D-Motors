@@ -5,8 +5,10 @@
 :root {
     --color-primary: #FF0000;
     --color-primary-dark: #CC0000;
+    --color-secondary: #0066CC;
+    --color-accent: #FFD700;
     --color-dark: #1A1A1A;
-    --color-gray: #4A4A4A;
+    --color-light: #F5F5F5;
 }
 
 body {
@@ -16,6 +18,7 @@ body {
 /* Utilidades */
 .text-primary { color: var(--color-primary); }
 .bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
 .bg-dark { background-color: var(--color-dark); }
 .border-primary { border-color: var(--color-primary); }
 
@@ -222,4 +225,10 @@ body {
 
 #nosotros img:hover {
     transform: scale(1.05);
+}
+
+/* Estilos para el banner publicitario */
+.bg-cover {
+    background-size: cover;
+    background-position: center;
 }
