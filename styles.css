@@ -31,7 +31,7 @@ body {
 
 /* Grid de vehículos */
 #car-listings {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
 }
 
 /* Tarjetas de Autos */
@@ -55,19 +55,19 @@ body {
     @apply bg-dark text-white;
 }
 
-/* Actualización del slider de imágenes de autos */
+/* Slider de imágenes de autos */
 .car-image-slider {
     @apply relative overflow-hidden;
     width: 100%;
     padding-top: 75%; /* Aspect ratio 4:3 */
 }
 
-.car-image-slider img {
-    @apply absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out;
+.car-image-slider .swiper {
+    @apply absolute top-0 left-0 w-full h-full;
 }
 
-.car-image-slider img.active {
-    @apply opacity-100;
+.car-image-slider .swiper-slide img {
+    @apply w-full h-full object-cover;
 }
 
 /* Slider */
@@ -85,7 +85,7 @@ body {
     overflow: hidden;
 }
 
-/* Actualización de Instagram Reels */
+/* Instagram Reels */
 .instagram-reels-container {
     @apply flex flex-nowrap space-x-4 py-4 px-4 overflow-x-auto;
     scrollbar-width: thin;
