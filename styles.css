@@ -1,19 +1,84 @@
-.car-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 4px 8px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
+@font-face {
+    font-family: 'DMotors';
+    src: url('path-to-your-font.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
 }
 
-.pre-owned {
-    background-color: #EF4444;
-    color: white;
+:root {
+    --primary-color: #FF0000;
+    --secondary-color: #4A4A4A;
 }
 
-.brand-new {
-    background-color: #10B981;
-    color: white;
+.font-dmotors {
+    font-family: 'DMotors', sans-serif;
+}
+
+/* Mobile Menu Animations */
+#mobile-menu {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#mobile-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#mobile-menu nav a {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+#mobile-menu.active nav a {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Car Cards */
+.car-card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.car-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Swiper Customization */
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--primary-color);
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--primary-color);
+}
+
+/* Category Cards */
+.category-card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
 }
