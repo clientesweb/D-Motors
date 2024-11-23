@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Instagram Reels Slider
     const reelsData = [
-        'https://www.instagram.com/reel/DCpleENxVsU/',
+        'https://www.instagram.com/reel/ABC123/',
         'https://www.instagram.com/reel/DEF456/',
         'https://www.instagram.com/reel/GHI789/'
     ];
@@ -238,16 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     new Swiper('.instagram-reels-slider', {
+        direction: 'vertical',
         slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
+        spaceBetween: 0,
+        mousewheel: true,
         pagination: {
             el: '.swiper-pagination',
-            clickable: true
+            clickable: true,
         },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        }
     });
 });
