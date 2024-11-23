@@ -31,7 +31,21 @@ body {
 
 /* Grid de vehículos */
 #car-listings {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    #car-listings {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    #car-listings {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
 }
 
 /* Tarjetas de Autos */
@@ -172,35 +186,40 @@ body {
 /* Estilos para el slider de Instagram Reels */
 .instagram-reels-slider {
     @apply relative;
-    height: 100vh;
-    max-height: 812px; /* Altura máxima de un iPhone 12 Pro */
     width: 100%;
-    max-width: 375px; /* Ancho máximo de un iPhone 12 Pro */
-    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Para Firefox */
+    -ms-overflow-style: none; /* Para Internet Explorer y Edge */
 }
 
-.instagram-reels-slider .swiper-slide {
-    @apply flex items-center justify-center;
-    height: 100% !important;
+.instagram-reels-slider::-webkit-scrollbar {
+    display: none; /* Para Chrome, Safari y Opera */
+}
+
+.instagram-reels-slider .flex {
+    display: inline-flex;
+}
+
+.instagram-reels-slider .instagram-reel {
+    flex: 0 0 auto;
+    width: 340px;
+    height: 600px;
+    margin-right: 1rem;
 }
 
 .instagram-reels-slider iframe {
-    @apply w-full h-full;
-    max-width: 375px; /* Ancho máximo de un iPhone 12 Pro */
-    max-height: 812px; /* Altura máxima de un iPhone 12 Pro */
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
-/* Responsive para Instagram Reels */
-@media (max-width: 640px) {
-    .instagram-reels-slider {
-        height: 100vh;
-        max-height: none;
-        width: 100%;
-        max-width: none;
-    }
+/* Estilos para la sección Nosotros */
+#nosotros img {
+    transition: transform 0.3s ease-in-out;
+}
 
-    .instagram-reels-slider iframe {
-        max-width: 100%;
-        max-height: none;
-    }
+#nosotros img:hover {
+    transform: scale(1.05);
 }
