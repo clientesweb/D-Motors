@@ -208,4 +208,46 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         whatsappNotification.classList.remove('hidden');
     }, 5000);
+
+    // Formulario de venta de autos
+    const sellCarForm = document.getElementById('sell-car-form');
+    sellCarForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(sellCarForm);
+        let message = 'Nuevo formulario de venta de auto:\n\n';
+        for (let [key, value] of formData.entries()) {
+            message += `${key}: ${value}\n`;
+        }
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/5493547504071?text=${encodedMessage}`, '_blank');
+    });
+
+    // Instagram Reels Slider
+    const reelsData = [
+        'https://www.instagram.com/reel/ABC123/',
+        'https://www.instagram.com/reel/DEF456/',
+        'https://www.instagram.com/reel/GHI789/'
+    ];
+
+    const reelsSlider = document.querySelector('.instagram-reels-slider .swiper-wrapper');
+    reelsData.forEach(reelUrl => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        slide.innerHTML = `<iframe src="${reelUrl}embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>`;
+        reelsSlider.appendChild(slide);
+    });
+
+    new Swiper('.instagram-reels-slider', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        }
+    });
 });
