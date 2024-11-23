@@ -3,274 +3,240 @@
 @import 'tailwindcss/utilities';
 
 :root {
-    --color-primary: #FF0000;
-    --color-primary-dark: #CC0000;
-    --color-secondary: #0066CC;
-    --color-accent: #FFD700;
-    --color-dark: #1A1A1A;
-    --color-light: #F5F5F5;
+  --color-primary: #808080; /* Gris del logo */
+  --color-primary-dark: #606060; /* Gris oscuro para hover */
+  --color-secondary: #404040; /* Gris más oscuro para contraste */
+  --color-accent: #000000; /* Negro para elegancia */
+  --color-light: #F5F5F5; /* Gris claro para fondos */
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--color-secondary);
 }
 
 /* Utilidades */
 .text-primary { color: var(--color-primary); }
 .bg-primary { background-color: var(--color-primary); }
 .bg-secondary { background-color: var(--color-secondary); }
-.bg-dark { background-color: var(--color-dark); }
+.bg-accent { background-color: var(--color-accent); }
 .border-primary { border-color: var(--color-primary); }
 
 /* Menú Móvil */
 #mobile-menu {
-    transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 #mobile-menu.active {
-    opacity: 1;
-    pointer-events: auto;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Grid de vehículos */
 #car-listings {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1rem;
-}
-
-@media (min-width: 640px) {
-    #car-listings {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-}
-
-@media (min-width: 1024px) {
-    #car-listings {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
 }
 
 /* Tarjetas de Autos */
 .car-card {
-    @apply bg-white shadow-lg overflow-hidden transition duration-300 ease-in-out;
+  @apply bg-white shadow-lg overflow-hidden transition duration-300 ease-in-out;
 }
 
 .car-card:hover {
-    @apply transform -translate-y-2 shadow-xl;
+  @apply transform -translate-y-2 shadow-xl;
 }
 
 .car-badge {
-    @apply absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold uppercase;
+  @apply absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold uppercase;
 }
 
 .car-badge.new {
-    @apply bg-primary text-white;
+  @apply bg-primary text-white;
 }
 
 .car-badge.used {
-    @apply bg-dark text-white;
+  @apply bg-secondary text-white;
 }
 
 /* Slider de imágenes de autos */
 .car-image-slider {
-    @apply relative overflow-hidden;
-    width: 100%;
-    padding-top: 75%; /* Aspect ratio 4:3 */
+  @apply relative overflow-hidden;
+  width: 100%;
+  padding-top: 75%; /* Aspect ratio 4:3 */
 }
 
 .car-image-slider .swiper {
-    @apply absolute top-0 left-0 w-full h-full;
+  @apply absolute top-0 left-0 w-full h-full;
 }
 
 .car-image-slider .swiper-slide img {
-    @apply w-full h-full object-cover;
-}
-
-/* Asegurar que todas las imágenes de las tarjetas tengan el mismo tamaño */
-.car-card .swiper-slide {
-    height: 0;
-    padding-bottom: 75%; /* Mantiene el aspect ratio 4:3 */
-    position: relative;
-}
-
-.car-card .swiper-slide img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  @apply w-full h-full object-cover;
 }
 
 /* Slider */
 .swiper-button-next,
 .swiper-button-prev {
-    color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
 }
 
 .swiper-pagination-bullet-active {
-    background-color: var(--color-primary) !important;
+  background-color: var(--color-primary) !important;
 }
 
 /* Modal */
 .modal-open {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* WhatsApp Button */
 #whatsapp-button {
-    transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 #whatsapp-button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 #whatsapp-notification {
-    animation: pulse 2s infinite;
+  animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-    0% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
-    }
-    
-    70% {
-        transform: scale(1);
-        box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
-    }
-    
-    100% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
-    }
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(128, 128, 128, 0.7);
+  }
+  
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(128, 128, 128, 0);
+  }
+  
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(128, 128, 128, 0);
+  }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .container {
-        @apply px-4;
-    }
+  .container {
+    @apply px-4;
+  }
 }
 
 /* Acordeón en el modal */
 .accordion-header {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
 }
 
 .accordion-header.active + .accordion-content {
-    max-height: 1000px; /* Ajusta este valor según sea necesario */
-    transition: max-height 0.5s ease-in;
+  max-height: 1000px;
+  transition: max-height 0.5s ease-in;
 }
 
 /* Estilos para el formulario de venta de autos */
 #sell-car-form {
-    @apply space-y-4;
+  @apply space-y-4;
 }
 
 #sell-car-form input,
 #sell-car-form select,
 #sell-car-form textarea {
-    @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary;
+  @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary;
 }
 
 #sell-car-form button[type="submit"] {
-    @apply w-full;
+  @apply w-full bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded transition-colors;
 }
 
 /* Estilos para el slider de Instagram Reels */
 .instagram-reels-slider {
-    @apply relative;
-    width: 100%;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Para Firefox */
-    -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+  @apply relative;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .instagram-reels-slider::-webkit-scrollbar {
-    display: none; /* Para Chrome, Safari y Opera */
+  display: none;
 }
 
 .instagram-reels-slider .flex {
-    display: inline-flex;
+  display: inline-flex;
 }
 
 .instagram-reels-slider .instagram-reel {
-    flex: 0 0 auto;
-    width: 340px;
-    height: 600px;
-    margin-right: 1rem;
+  flex: 0 0 auto;
+  width: 340px;
+  height: 600px;
+  margin-right: 1rem;
 }
 
 .instagram-reels-slider iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 /* Estilos para la sección Nosotros */
 #nosotros img {
-    transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 #nosotros img:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 /* Estilos para el banner publicitario */
 .bg-cover {
-    background-size: cover;
-    background-position: center;
+  background-size: cover;
+  background-position: center;
 }
 
 /* Mejoras de responsividad */
 @media (max-width: 640px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-    .hero p {
-        font-size: 1rem;
-    }
-    #car-listings {
-        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-    }
-    .instagram-reels-slider .instagram-reel {
-        width: 100%;
-        height: 400px;
-    }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  #car-listings {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+  .instagram-reels-slider .instagram-reel {
+    width: 100%;
+    height: 400px;
+  }
 }
 
 @media (max-width: 768px) {
-    .grid-cols-1 {
-        grid-template-columns: 1fr;
-    }
+  .grid-cols-1 {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    .md\:grid-cols-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-/* Ajustes para el formulario de venta */
-#sell-car-form textarea {
-    @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary;
-    min-height: 100px;
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* Logo en el footer */
 .footer-logo {
-    max-width: 150px;
-    height: auto;
+  max-width: 150px;
+  height: auto;
 }
 
